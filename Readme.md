@@ -1,7 +1,7 @@
 # Личный проект «Шесть городов» [![Build status][travis-image]][travis-url]
 
-* Студент: [Дмитрий Гусев](https://up.htmlacademy.ru/react/3/user/1355579).
-* Наставник: `Неизвестно`.
+- Студент: [Дмитрий Гусев](https://up.htmlacademy.ru/react/3/user/1355579).
+- Наставник: `Илья Кибардин`.
 
 ---
 
