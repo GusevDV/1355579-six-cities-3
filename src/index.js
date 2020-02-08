@@ -3,10 +3,17 @@ import ReactDOM from 'react-dom';
 import App from './components/app/app.jsx';
 
 const Data = {
-  OFFERS_COUNT: 6,
+  Offers: [
+    `Beautiful & luxurious apartment at great location`,
+    `Wood and stone place`,
+    `Nice, cozy, warm big bed apartment`,
+    `Canal View Prinsengracht`,
+    `Beautiful & luxurious apartment at great location`,
+    `Nice, cozy, warm big bed apartment`,
+  ]
 };
 
 ReactDOM.render(
-    <App offersCount={Data.OFFERS_COUNT} />,
+    <App offers={Data.Offers} />,
     document.getElementById(`root`)
 );
