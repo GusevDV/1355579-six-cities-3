@@ -1,9 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const Main = ({offers, onTitleLinkClick}) => {
+const Main = ({offers, onTitleLinkClick, getPrice}) => {
   const renderOfferCard = (offer, i) => {
-    const price = Math.floor(Math.random() * (500 - 100) + 100);
+    const price = getPrice();
     return (
       <article key={i} className="cities__place-card place-card">
         <div className="place-card__mark">
@@ -173,7 +173,8 @@ const Main = ({offers, onTitleLinkClick}) => {
 
 Main.propTypes = {
   offers: PropTypes.arrayOf(PropTypes.string).isRequired,
-  onTitleLinkClick: PropTypes.func.isRequired
+  onTitleLinkClick: PropTypes.func.isRequired,
+  getPrice: PropTypes.func.isRequired,
 };
 
 export default Main;

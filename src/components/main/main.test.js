@@ -11,12 +11,16 @@ const Offers = [
 ];
 
 it(`Should Main component render correctly`, () => {
-  const render = renderer
+
+  const getPriceMock = () => 10;
+
+  const tree = renderer
     .create(<Main
       offers={Offers}
       onTitleLinkClick={() => {}}
+      getPrice={getPriceMock}
     />)
     .toJSON();
 
-  expect(render).toMatchSnapshot();
+  expect(tree).toMatchSnapshot();
 });

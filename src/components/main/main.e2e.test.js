@@ -23,6 +23,7 @@ it(`Should title link be clicked`, () => {
       <Main
         offers={Offers}
         onTitleLinkClick={onTitleLinkClick}
+        getPrice={()=>10}
       />
   );
 
@@ -33,4 +34,18 @@ it(`Should title link be clicked`, () => {
   });
 
   expect(onTitleLinkClick).toHaveBeenCalled();
+});
+
+it(`Should getPrice be called`, () => {
+  const getPrice = jest.fn();
+
+  shallow(
+      <Main
+        offers={Offers}
+        onTitleLinkClick={() => {}}
+        getPrice={getPrice}
+      />
+  );
+
+  expect(getPrice).toHaveBeenCalledTimes(Offers.length);
 });

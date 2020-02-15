@@ -12,8 +12,10 @@ const Offers = [
 
 it(`Should App component render correctly`, () => {
 
+  const getPriceMock = () => 10;
+
   const render = renderer.create(
-      <App offers={Offers} />
+      <App offers={Offers} getPrice={getPriceMock} />
   )
   .toJSON();
 

@@ -13,7 +13,9 @@ const Data = {
   ]
 };
 
+const getPrice = () => Math.floor(Math.random() * (500 - 100) + 100);
+
 ReactDOM.render(
-    <App offers={Data.Offers} />,
+    <App offers={Data.Offers} getPrice={getPrice} />,
     document.getElementById(`root`)
 );

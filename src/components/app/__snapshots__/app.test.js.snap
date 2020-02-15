@@ -262,7 +262,7 @@ exports[`Should App component render correctly 1`] = `
                       className="place-card__price-value"
                     >
                       €
-                      349
+                      10
                     </b>
                     <span
                       className="place-card__price-text"
@@ -365,7 +365,7 @@ exports[`Should App component render correctly 1`] = `
                       className="place-card__price-value"
                     >
                       €
-                      425
+                      10
                     </b>
                     <span
                       className="place-card__price-text"
@@ -468,7 +468,7 @@ exports[`Should App component render correctly 1`] = `
                       className="place-card__price-value"
                     >
                       €
-                      372
+                      10
                     </b>
                     <span
                       className="place-card__price-text"
@@ -571,7 +571,7 @@ exports[`Should App component render correctly 1`] = `
                       className="place-card__price-value"
                     >
                       €
-                      256
+                      10
                     </b>
                     <span
                       className="place-card__price-text"
@@ -674,7 +674,7 @@ exports[`Should App component render correctly 1`] = `
                       className="place-card__price-value"
                     >
                       €
-                      480
+                      10
                     </b>
                     <span
                       className="place-card__price-text"
