@@ -43,7 +43,7 @@ const Main = ({offers, onTitleLinkClick, getPrice}) => {
             </div>
           </div>
           <h2 className="place-card__name">
-            <a href="#" onClick={onTitleLinkClick}>{offer}</a>
+            <a className="place-card__name-link" href="#" onClick={onTitleLinkClick}>{offer}</a>
           </h2>
           <p className="place-card__type">Apartment</p>
         </div>

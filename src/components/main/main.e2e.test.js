@@ -27,13 +27,13 @@ it(`Should title link be clicked`, () => {
       />
   );
 
-  const titleLink = main.find(`h2.place-card__name > a`);
+  const titleLink = main.find(`.place-card__name-link`);
 
   titleLink.forEach((link, index) => {
     titleLink.at(index).simulate(`click`);
   });
 
-  expect(onTitleLinkClick).toHaveBeenCalled();
+  expect(onTitleLinkClick).toHaveBeenCalledTimes(Offers.length);
 });
 
 it(`Should getPrice be called`, () => {
