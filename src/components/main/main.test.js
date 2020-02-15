@@ -2,7 +2,7 @@ import React from "react";
 import renderer from "react-test-renderer";
 import Main from "./main.jsx";
 
-const OffersMocks = [
+const Offers = [
   `Flat 2`,
   `Very Nice Mega Cool Flat 3`,
   `Apartment`,
@@ -13,8 +13,8 @@ const OffersMocks = [
 it(`Should Main component render correctly`, () => {
   const render = renderer
     .create(<Main
-      offers={OffersMocks}
-      onTitleClick={() => {}}
+      offers={Offers}
+      onTitleLinkClick={() => {}}
     />)
     .toJSON();
 

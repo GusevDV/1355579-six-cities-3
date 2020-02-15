@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const Main = ({offers}) => {
+const Main = ({offers, onTitleLinkClick}) => {
   const renderOfferCard = (offer, i) => {
     const price = Math.floor(Math.random() * (500 - 100) + 100);
     return (
@@ -43,7 +43,7 @@ const Main = ({offers}) => {
             </div>
           </div>
           <h2 className="place-card__name">
-            <a href="#">{offer}</a>
+            <a href="#" onClick={onTitleLinkClick}>{offer}</a>
           </h2>
           <p className="place-card__type">Apartment</p>
         </div>
@@ -172,7 +172,8 @@ const Main = ({offers}) => {
 };
 
 Main.propTypes = {
-  offers: PropTypes.arrayOf(PropTypes.string).isRequired
+  offers: PropTypes.arrayOf(PropTypes.string).isRequired,
+  onTitleLinkClick: PropTypes.func.isRequired
 };
 
 export default Main;

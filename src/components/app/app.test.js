@@ -2,7 +2,7 @@ import React from "react";
 import renderer from "react-test-renderer";
 import App from "./app.jsx";
 
-const OffersMocks = [
+const Offers = [
   `Flat 2`,
   `Very Nice Mega Cool Flat 3`,
   `Apartment`,
@@ -13,7 +13,7 @@ const OffersMocks = [
 it(`Should App component render correctly`, () => {
 
   const render = renderer.create(
-      <App offers={OffersMocks} />
+      <App offers={Offers} />
   )
   .toJSON();
 
