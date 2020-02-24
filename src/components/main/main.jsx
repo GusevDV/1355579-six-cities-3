@@ -1,56 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
+import PlaceCardList from "../place-card-list/place-card-list.jsx";
+import {offerType} from '../../types/offers-types.js';
 
-const Main = ({offers, onTitleLinkClick, getPrice}) => {
-  const renderOfferCard = (offer, i) => {
-    const price = getPrice();
-    return (
-      <article key={i} className="cities__place-card place-card">
-        <div className="place-card__mark">
-          <span>Premium</span>
-        </div>
-        <div className="cities__image-wrapper place-card__image-wrapper">
-          <a href="#">
-            <img
-              className="place-card__image"
-              src="img/apartment-01.jpg"
-              width="260"
-              height="200"
-              alt="Place image"
-            />
-          </a>
-        </div>
-        <div className="place-card__info">
-          <div className="place-card__price-wrapper">
-            <div className="place-card__price">
-              <b className="place-card__price-value">&euro;{price}</b>
-              <span className="place-card__price-text">&#47;&nbsp;night</span>
-            </div>
-            <button
-              className="place-card__bookmark-button button"
-              type="button"
-            >
-              <svg className="place-card__bookmark-icon" width="18" height="19">
-                <use xlinkHref="#icon-bookmark"></use>
-              </svg>
-              <span className="visually-hidden">To bookmarks</span>
-            </button>
-          </div>
-          <div className="place-card__rating rating">
-            <div className="place-card__stars rating__stars">
-              <span style={{width: `80%`}}></span>
-              <span className="visually-hidden">Rating</span>
-            </div>
-          </div>
-          <h2 className="place-card__name">
-            <a className="place-card__name-link" href="#" onClick={onTitleLinkClick}>{offer}</a>
-          </h2>
-          <p className="place-card__type">Apartment</p>
-        </div>
-      </article>
-    );
-  };
-
+const Main = ({offers, onTitleLinkClick}) => {
   return (
     <div className="page page--gray page--main">
       <header className="header">
@@ -158,7 +111,7 @@ const Main = ({offers, onTitleLinkClick, getPrice}) => {
                 </ul>
               </form>
               <div className="cities__places-list places__list tabs__content">
-                {offers.map((offer, i) => renderOfferCard(offer, i))}
+                <PlaceCardList offers={offers} onTitleLinkClick={onTitleLinkClick} />
               </div>
             </section>
             <div className="cities__right-section">
@@ -172,9 +125,8 @@ const Main = ({offers, onTitleLinkClick, getPrice}) => {
 };
 
 Main.propTypes = {
-  offers: PropTypes.arrayOf(PropTypes.string).isRequired,
-  onTitleLinkClick: PropTypes.func.isRequired,
-  getPrice: PropTypes.func.isRequired,
+  offers: PropTypes.arrayOf(offerType).isRequired,
+  onTitleLinkClick: PropTypes.func.isRequired
 };
 
 export default Main;

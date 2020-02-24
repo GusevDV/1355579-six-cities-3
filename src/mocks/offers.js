@@ -5,7 +5,9 @@ export default [
     pricePeriod: 'night',
     thumnnailUrl: '/img/apartment-01.jpg',
     objectType: 'apartment',
-    badgeText: null
+    badgeText: null,
+    rating: 50,
+    cityId: 1
   },
   {
     title: 'Apartment 2',
@@ -13,22 +15,28 @@ export default [
     pricePeriod: 'night',
     thumnnailUrl: '/img/apartment-02.jpg',
     objectType: 'apartment',
-    badgeText: 'VIP'
+    badgeText: 'VIP',
+    rating: 80,
+    cityId: 1
   },
   {
     title: 'Apartment 3',
     price: 250,
     pricePeriod: 'night',
-    thumnnailUrl: '/img/apartment-03.jpg',
+    thumnnailUrl: '/img/apartment-01.jpg',
     objectType: 'apartment',
-    badgeText: 'Premium'
+    badgeText: 'Premium',
+    rating: 95,
+    cityId: 1
   },
   {
     title: 'Apartment 4',
     price: 199,
     pricePeriod: 'night',
-    thumnnailUrl: '/img/apartment-04.jpg',
+    thumnnailUrl: '/img/apartment-02.jpg',
     objectType: 'apartment',
     badgeText: null,
+    rating: 70,
+    cityId: 1
   }
 ]
