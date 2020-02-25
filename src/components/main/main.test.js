@@ -3,22 +3,54 @@ import renderer from "react-test-renderer";
 import Main from "./main.jsx";
 
 const Offers = [
-  `Flat 2`,
-  `Very Nice Mega Cool Flat 3`,
-  `Apartment`,
-  `Beautiful & luxurious apartment at great location`,
-  `Nice, cozy, warm big bed apartment`,
+  {
+    title: `Apartment 1`,
+    price: 100,
+    pricePeriod: `night`,
+    thumnnailUrl: `/img/apartment-01.jpg`,
+    objectType: `apartment`,
+    badgeText: null,
+    rating: 50,
+    cityId: 1
+  },
+  {
+    title: `Apartment 2`,
+    price: 200,
+    pricePeriod: `night`,
+    thumnnailUrl: `/img/apartment-02.jpg`,
+    objectType: `apartment`,
+    badgeText: `Premium`,
+    rating: 80,
+    cityId: 1
+  },
+  {
+    title: `Apartment 3`,
+    price: 250,
+    pricePeriod: `night`,
+    thumnnailUrl: `/img/apartment-01.jpg`,
+    objectType: `apartment`,
+    badgeText: `Premium`,
+    rating: 95,
+    cityId: 1
+  },
+  {
+    title: `Apartment 4`,
+    price: 199,
+    pricePeriod: `night`,
+    thumnnailUrl: `/img/apartment-02.jpg`,
+    objectType: `apartment`,
+    badgeText: null,
+    rating: 70,
+    cityId: 1
+  }
 ];
 
 it(`Should Main component render correctly`, () => {
-
-  const getPriceMock = () => 10;
 
   const tree = renderer
     .create(<Main
       offers={Offers}
       onTitleLinkClick={() => {}}
-      getPrice={getPriceMock}
     />)
     .toJSON();
 

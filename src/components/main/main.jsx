@@ -110,9 +110,7 @@ const Main = ({offers, onTitleLinkClick}) => {
                   </li>
                 </ul>
               </form>
-              <div className="cities__places-list places__list tabs__content">
-                <PlaceCardList offers={offers} onTitleLinkClick={onTitleLinkClick} />
-              </div>
+              <PlaceCardList offers={offers} onTitleLinkClick={onTitleLinkClick} />
             </section>
             <div className="cities__right-section">
               <section className="cities__map map"></section>

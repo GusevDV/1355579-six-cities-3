@@ -3,10 +3,14 @@ import PropTypes from 'prop-types';
 import {offerType} from '../../types/offers-types.js';
 
 const PlaceCard = (props) => {
-  const {offer, onTitleLinkClick} = props;
+  const {offer, onTitleLinkClick, onCardHover, onCardMouseLeave} = props;
   const {title, price, pricePeriod, thumnnailUrl, objectType, badgeText, rating} = offer;
   return (
-    <article className="cities__place-card place-card">
+    <article
+      className="cities__place-card place-card"
+      onMouseOver={() => onCardHover(offer)}
+      onMouseLeave={onCardMouseLeave}
+    >
       {badgeText && (
         <div className="place-card__mark">
           <span>{badgeText}</span>
@@ -57,7 +61,9 @@ const PlaceCard = (props) => {
 
 PlaceCard.propTypes = {
   offer: offerType,
-  onTitleLinkClick: PropTypes.func.isRequired
+  onTitleLinkClick: PropTypes.func.isRequired,
+  onCardHover: PropTypes.func.isRequired,
+  onCardMouseLeave: PropTypes.func.isRequired
 };
 
 export default PlaceCard;

@@ -1,12 +1,6 @@
-/* eslint-disable no-console */
 import React from "react";
-import Enzyme, {mount} from "enzyme";
-import Adapter from "enzyme-adapter-react-16";
-import Main from "./main.jsx";
-
-Enzyme.configure({
-  adapter: new Adapter(),
-});
+import renderer from "react-test-renderer";
+import PlaceCardList from "./place-card-list.jsx";
 
 const Offers = [
   {
@@ -51,22 +45,12 @@ const Offers = [
   }
 ];
 
-it(`Should title link be clicked`, () => {
-  const onTitleLinkClick = jest.fn();
+it(`Should PlaceCardList component render correctly`, () => {
 
-  const main = mount(
-      <Main
-        offers={Offers}
-        onTitleLinkClick={onTitleLinkClick}
-      />
-  );
+  const render = renderer.create(
+      <PlaceCardList offers={Offers} onTitleLinkClick={() => {}} />
+  )
+  .toJSON();
 
-  const titleLink = main.find(`.place-card__name-link`);
-
-  titleLink.forEach((link, index) => {
-    titleLink.at(index).simulate(`click`);
-  });
-
-  expect(onTitleLinkClick).toHaveBeenCalledTimes(Offers.length);
+  expect(render).toMatchSnapshot();
 });
-
