@@ -8,30 +8,31 @@ class PlaceCardList extends React.PureComponent {
     super(props);
 
     this.state = {
-      activeCard: {},
+      activeCardId: null,
     };
+
     this.handleCardHover = this.handleCardHover.bind(this);
     this.renderOfferCard = this.renderOfferCard.bind(this);
     this.handleCardHover = this.handleCardHover.bind(this);
     this.handleCardMouseLeave = this.handleCardMouseLeave.bind(this);
   }
-  handleCardHover(offer) {
-    this.setState((prevState) => ({
-      activeCard: Object.assign({}, prevState.offer, offer)
-    }));
+  handleCardHover(offerId) {
+    this.setState({
+      activeCardId: offerId
+    });
   }
   handleCardMouseLeave() {
-    this.setState((prevState) => ({
-      activeCard: Object.assign({}, prevState.offer, {})
-    }));
+    this.setState({
+      activeCardId: null
+    });
   }
   renderOfferCard(offer) {
     return (
       <PlaceCard
-        key={offer.title}
+        key={offer.id}
         offer={offer}
         onTitleLinkClick={this.props.onTitleLinkClick}
-        onCardHover={() => this.handleCardHover(offer)}
+        onCardHover={() => this.handleCardHover(offer.id)}
         onCardMouseLeave={this.handleCardMouseLeave}
       />
     );

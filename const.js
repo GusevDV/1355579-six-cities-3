@@ -4,7 +4,3 @@ export const OfferTypes = {
   HOUSE: `house`,
   HOTEL: `hotel`,
 };
-
-export const OfferBadgeTypes = {
-  PREMIUM: `Premium`,
-};

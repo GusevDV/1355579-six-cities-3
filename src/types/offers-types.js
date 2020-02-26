@@ -1,7 +1,8 @@
 import PropTypes from 'prop-types';
-import {OfferTypes, OfferBadgeTypes} from '../../const.js';
+import {OfferTypes} from '../../const.js';
 
 export const offerType = PropTypes.shape({
+  id: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
   price: PropTypes.number.isRequired,
   pricePeriod: PropTypes.string.isRequired,
@@ -12,7 +13,7 @@ export const offerType = PropTypes.shape({
     OfferTypes.HOUSE,
     OfferTypes.ROOM]
   ).isRequired,
-  badgeText: PropTypes.PropTypes.oneOf([OfferBadgeTypes.PREMIUM]),
+  isPremium: PropTypes.bool.isRequired,
   rating: createRatingPropType(true, 0, 100)
 }).isRequired;
 

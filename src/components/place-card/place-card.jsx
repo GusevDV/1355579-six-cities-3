@@ -4,16 +4,16 @@ import {offerType} from '../../types/offers-types.js';
 
 const PlaceCard = (props) => {
   const {offer, onTitleLinkClick, onCardHover, onCardMouseLeave} = props;
-  const {title, price, pricePeriod, thumnnailUrl, objectType, badgeText, rating} = offer;
+  const {title, price, pricePeriod, thumnnailUrl, objectType, isPremium, rating} = offer;
   return (
     <article
       className="cities__place-card place-card"
-      onMouseOver={() => onCardHover(offer)}
+      onMouseOver={() => onCardHover(offer.id)}
       onMouseLeave={onCardMouseLeave}
     >
-      {badgeText && (
+      {isPremium && (
         <div className="place-card__mark">
-          <span>{badgeText}</span>
+          <span>Premium</span>
         </div>
       )}
 

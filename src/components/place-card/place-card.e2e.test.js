@@ -9,13 +9,14 @@ Enzyme.configure({
 });
 
 const offer = {
-  title: `Apartment 1`,
-  price: 100,
+  id: 1,
+  title: `Apartment 2`,
+  price: 200,
   pricePeriod: `night`,
-  thumnnailUrl: `/img/apartment-01.jpg`,
+  thumnnailUrl: `/img/apartment-02.jpg`,
   objectType: `apartment`,
-  badgeText: null,
-  rating: 50,
+  isPremium: true,
+  rating: 80,
   cityId: 1
 };
 
@@ -38,7 +39,7 @@ it(`Should title link be clicked`, () => {
   expect(onTitleLinkClick).toHaveBeenCalledTimes(1);
 });
 
-it(`Should onCardHover be called with offer argument`, () => {
+it(`Should onCardHover be called with offer.id argument`, () => {
   const onCardHover = jest.fn();
 
   const main = mount(
@@ -54,7 +55,7 @@ it(`Should onCardHover be called with offer argument`, () => {
 
   card.simulate(`mouseover`);
 
-  expect(onCardHover).toHaveBeenCalledWith(offer);
+  expect(onCardHover).toHaveBeenCalledWith(offer.id);
 });
 
 it(`Should onCardMouseLeave be called`, () => {

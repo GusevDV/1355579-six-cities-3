@@ -3,13 +3,14 @@ import renderer from "react-test-renderer";
 import PlaceCard from "./place-card.jsx";
 
 const offer = {
-  title: `Apartment 1`,
-  price: 100,
+  id: 1,
+  title: `Apartment 2`,
+  price: 200,
   pricePeriod: `night`,
-  thumnnailUrl: `/img/apartment-01.jpg`,
+  thumnnailUrl: `/img/apartment-02.jpg`,
   objectType: `apartment`,
-  badgeText: null,
-  rating: 50,
+  isPremium: true,
+  rating: 80,
   cityId: 1
 };
 
