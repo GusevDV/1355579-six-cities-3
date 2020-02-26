@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 import React from "react";
-import Enzyme, {shallow} from "enzyme";
+import Enzyme, {mount} from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 import Main from "./main.jsx";
 
@@ -9,21 +9,37 @@ Enzyme.configure({
 });
 
 const Offers = [
-  `Flat 2`,
-  `Very Nice Mega Cool Flat 3`,
-  `Apartment`,
-  `Beautiful & luxurious apartment at great location`,
-  `Nice, cozy, warm big bed apartment`,
+  {
+    id: 1,
+    title: `Apartment 1`,
+    price: 100,
+    pricePeriod: `night`,
+    thumnnailUrl: `/img/apartment-01.jpg`,
+    objectType: `apartment`,
+    isPremium: false,
+    rating: 50,
+    cityId: 1
+  },
+  {
+    id: 2,
+    title: `Apartment 2`,
+    price: 200,
+    pricePeriod: `night`,
+    thumnnailUrl: `/img/apartment-02.jpg`,
+    objectType: `apartment`,
+    isPremium: true,
+    rating: 80,
+    cityId: 1
+  }
 ];
 
 it(`Should title link be clicked`, () => {
   const onTitleLinkClick = jest.fn();
 
-  const main = shallow(
+  const main = mount(
       <Main
         offers={Offers}
         onTitleLinkClick={onTitleLinkClick}
-        getPrice={()=>10}
       />
   );
 
@@ -36,16 +52,3 @@ it(`Should title link be clicked`, () => {
   expect(onTitleLinkClick).toHaveBeenCalledTimes(Offers.length);
 });
 
-it(`Should getPrice be called`, () => {
-  const getPrice = jest.fn();
-
-  shallow(
-      <Main
-        offers={Offers}
-        onTitleLinkClick={() => {}}
-        getPrice={getPrice}
-      />
-  );
-
-  expect(getPrice).toHaveBeenCalledTimes(Offers.length);
-});

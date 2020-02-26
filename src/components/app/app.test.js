@@ -3,19 +3,34 @@ import renderer from "react-test-renderer";
 import App from "./app.jsx";
 
 const Offers = [
-  `Flat 2`,
-  `Very Nice Mega Cool Flat 3`,
-  `Apartment`,
-  `Beautiful & luxurious apartment at great location`,
-  `Nice, cozy, warm big bed apartment`,
+  {
+    id: 1,
+    title: `Apartment 1`,
+    price: 100,
+    pricePeriod: `night`,
+    thumnnailUrl: `/img/apartment-01.jpg`,
+    objectType: `apartment`,
+    isPremium: false,
+    rating: 50,
+    cityId: 1
+  },
+  {
+    id: 2,
+    title: `Apartment 2`,
+    price: 200,
+    pricePeriod: `night`,
+    thumnnailUrl: `/img/apartment-02.jpg`,
+    objectType: `apartment`,
+    isPremium: true,
+    rating: 80,
+    cityId: 1
+  }
 ];
 
 it(`Should App component render correctly`, () => {
 
-  const getPriceMock = () => 10;
-
   const render = renderer.create(
-      <App offers={Offers} getPrice={getPriceMock} />
+      <App offers={Offers} onTitleLinkClick={() => {}} />
   )
   .toJSON();
 
