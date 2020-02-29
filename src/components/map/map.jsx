@@ -38,7 +38,6 @@ class Map extends React.PureComponent {
       .marker(offer.coords, this.icon)
       .addTo(map);
     });
-
   }
 
   render() {

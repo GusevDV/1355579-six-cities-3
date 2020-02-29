@@ -32,9 +32,13 @@ const Offers = [
 it(`Should App component render correctly`, () => {
 
   const render = renderer.create(
-      <App offers={Offers} onTitleLinkClick={() => {}} />
-  )
-  .toJSON();
+      <App offers={Offers} onTitleLinkClick={() => {}} />,
+      {
+        createNodeMock: () => {
+          return document.createElement(`section`);
+        }
+      }
+  ).toJSON();
 
   expect(render).toMatchSnapshot();
 });

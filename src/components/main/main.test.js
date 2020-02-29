@@ -35,7 +35,12 @@ it(`Should Main component render correctly`, () => {
     .create(<Main
       offers={Offers}
       onTitleLinkClick={() => {}}
-    />)
+    />,
+    {
+      createNodeMock: () => {
+        return document.createElement(`section`);
+      }
+    })
     .toJSON();
 
   expect(tree).toMatchSnapshot();

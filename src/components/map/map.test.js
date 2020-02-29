@@ -30,16 +30,17 @@ const Offers = [
 ];
 
 it(`Should Map component render correctly`, () => {
-  const div = global.document.createElement(`div`);
-  global.document.body.appendChild(div);
   const tree = renderer
     .create(<Map
       city={[52.38333, 4.9]}
       offers={Offers}
     />,
-    {attachTo: div
+    {
+      createNodeMock: () => {
+        return document.createElement(`section`);
+      }
     })
     .toJSON();
 
-  expect(tree.getDOMNode()).toMatchSnapshot();
+  expect(tree).toMatchSnapshot();
 });
