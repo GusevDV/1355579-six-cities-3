@@ -16,11 +16,11 @@ class Map extends React.PureComponent {
       zoomControl: false,
       marker: true
     };
+
     this.icon = leaflet.icon({
       iconUrl: MapSettings.ICON_URL,
       iconSize: MapSettings.ICON_SIZE,
     });
-
   }
 
   componentDidMount() {
