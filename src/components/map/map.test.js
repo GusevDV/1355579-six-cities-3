@@ -1,6 +1,6 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import PlaceCardList from "./place-card-list.jsx";
+import Map from "./Map.jsx";
 
 const Offers = [
   {
@@ -29,12 +29,17 @@ const Offers = [
   }
 ];
 
-it(`Should PlaceCardList component render correctly`, () => {
+it(`Should Map component render correctly`, () => {
+  const div = global.document.createElement(`div`);
+  global.document.body.appendChild(div);
+  const tree = renderer
+    .create(<Map
+      city={[52.38333, 4.9]}
+      offers={Offers}
+    />,
+    {attachTo: div
+    })
+    .toJSON();
 
-  const render = renderer.create(
-      <PlaceCardList offers={Offers} onTitleLinkClick={() => {}} />
-  )
-  .toJSON();
-
-  expect(render).toMatchSnapshot();
+  expect(tree.getDOMNode()).toMatchSnapshot();
 });

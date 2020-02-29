@@ -1,29 +1,31 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import leaflet from 'leaflet';
-
-const city = [52.38333, 4.9];
-const zoom = 12;
+import {offerType} from '../../types/offers-types.js';
+import {MapSettings} from '../../../const.js';
 
 class Map extends React.PureComponent {
   constructor(props) {
     super(props);
 
     this.mapRef = React.createRef();
+
+    this.mapConfig = {
+      center: this.props.city,
+      zoom: MapSettings.ZOOM,
+      zoomControl: false,
+      marker: true
+    };
+    this.icon = leaflet.icon({
+      iconUrl: MapSettings.ICON_URL,
+      iconSize: MapSettings.ICON_SIZE,
+    });
+
   }
 
   componentDidMount() {
-
-    const icon = leaflet.icon({
-      iconUrl: `img/pin.svg`,
-      iconSize: [30, 30]
-    });
-    const map = leaflet.map(this.mapRef.current.id, {
-      center: city,
-      zoom,
-      zoomControl: false,
-      marker: true
-    });
-    map.setView(city, zoom);
+    const map = leaflet.map(this.mapRef.current, this.MapConfig);
+    map.setView(this.props.city, MapSettings.ZOOM);
 
     leaflet
     .tileLayer(`https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`, {
@@ -31,17 +33,24 @@ class Map extends React.PureComponent {
     })
     .addTo(map);
 
-    const offerCords = [52.3709553943508, 4.89309666406198];
-    leaflet
-    .marker(offerCords, {icon})
-    .addTo(map);
+    this.props.offers.forEach((offer) => {
+      leaflet
+      .marker(offer.coords, this.icon)
+      .addTo(map);
+    });
 
   }
+
   render() {
     return (
       <section className="cities__map map" id="map" ref={this.mapRef}></section>
     );
   }
 }
+
+Map.propTypes = {
+  offers: PropTypes.arrayOf(offerType).isRequired,
+  city: PropTypes.arrayOf(PropTypes.number).isRequired,
+};
 
 export default Map;
