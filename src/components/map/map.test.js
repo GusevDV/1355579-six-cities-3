@@ -1,6 +1,6 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import Main from "./main.jsx";
+import Map from "./map.jsx";
 
 const Offers = [
   {
@@ -29,12 +29,11 @@ const Offers = [
   }
 ];
 
-it(`Should Main component render correctly`, () => {
-
+it(`Should Map component render correctly`, () => {
   const tree = renderer
-    .create(<Main
+    .create(<Map
+      city={[52.38333, 4.9]}
       offers={Offers}
-      onTitleLinkClick={() => {}}
     />,
     {
       createNodeMock: () => {
