@@ -9,3 +9,11 @@ export const MapSettings = {
   ICON_URL: `img/pin.svg`,
   ICON_SIZE: [30, 30]
 };
+
+export const CityCoords = {
+  AMSTERDAM: [52.38333, 4.9],
+};
+
+export const CityNames = {
+  AMSTERDAM: `amsterdam`,
+};

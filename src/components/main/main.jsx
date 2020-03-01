@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import PlaceCardList from "../place-card-list/place-card-list.jsx";
 import Map from '../../components/map/map.jsx';
 import {offerType} from '../../types/offers-types.js';
+import {CityCoords} from '../../../const.js';
 
 const Main = ({offers, onTitleLinkClick}) => {
   return (
@@ -114,7 +115,7 @@ const Main = ({offers, onTitleLinkClick}) => {
               <PlaceCardList offers={offers} onTitleLinkClick={onTitleLinkClick} />
             </section>
             <div className="cities__right-section">
-              <Map city={[52.38333, 4.9]} offers={offers} />
+              <Map city={CityCoords.AMSTERDAM} offers={offers} />
             </div>
           </div>
         </div>
