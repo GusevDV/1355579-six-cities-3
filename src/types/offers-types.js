@@ -15,7 +15,7 @@ export const offerType = PropTypes.shape({
   ).isRequired,
   isPremium: PropTypes.bool.isRequired,
   rating: createRatingPropType(true, 0, 100),
-  city: PropTypes.oneOf([CityNames.AMSTERDAM]),
+  city: PropTypes.oneOf([CityNames.AMSTERDAM, CityNames.PARIS]),
   coords: PropTypes.arrayOf(PropTypes.number).isRequired
 }).isRequired;
 

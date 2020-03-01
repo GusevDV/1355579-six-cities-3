@@ -48,6 +48,18 @@ export default [
     rating: 70,
     city: CityNames.AMSTERDAM,
     coords: [52.3809553943508, 4.939309666406198]
+  },
+  {
+    id: 5,
+    title: `Apartment 5`,
+    price: 199,
+    pricePeriod: `night`,
+    thumnnailUrl: `/img/apartment-02.jpg`,
+    objectType: `apartment`,
+    isPremium: false,
+    rating: 70,
+    city: CityNames.PARIS,
+    coords: [52.3809553943508, 4.939309666406198]
   }
 ];
 
