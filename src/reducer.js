@@ -1,6 +1,8 @@
+import {CityNames} from '../const.js';
+import offers from './mocks/offers.js';
 const initialState = {
-  city: null,
-  offers: null,
+  city: CityNames.AMSTERDAM,
+  offers
 };
 
 const ActionTypes = {
@@ -8,14 +10,14 @@ const ActionTypes = {
   GET_OFFERS: `GET_OFFERS`,
 };
 
-const ActionCreator = {
+const ActionCreators = {
   changeCity: (city) => ({
     type: ActionTypes.CHANGE_CITY,
     payload: city,
   }),
-  getOffers: (offers) => ({
+  getOffers: (content) => ({
     type: ActionTypes.GET_OFFERS,
-    payload: offers,
+    payload: content,
   })
 };
 
@@ -30,4 +32,4 @@ const reducer = (state = initialState, action) => {
   return state;
 };
 
-export {ActionCreator, ActionTypes, reducer};
+export {ActionCreators, ActionTypes, reducer};

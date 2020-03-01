@@ -11,7 +11,7 @@ const offer = {
   objectType: `apartment`,
   isPremium: true,
   rating: 80,
-  cityId: 1,
+  city: `Amsterdam`,
   coords: [52.3909553943508, 4.85309666406198]
 };
 

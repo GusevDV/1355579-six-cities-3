@@ -15,5 +15,7 @@ export const CityCoords = {
 };
 
 export const CityNames = {
-  AMSTERDAM: `amsterdam`,
+  AMSTERDAM: `Amsterdam`,
 };
+
+const MAX_CITIES_COUNT = 6;

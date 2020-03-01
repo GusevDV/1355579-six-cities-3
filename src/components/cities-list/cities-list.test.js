@@ -1,6 +1,6 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import Map from "./map.jsx";
+import CitiesList from "./cities-list.jsx";
 
 const Offers = [
   {
@@ -24,22 +24,17 @@ const Offers = [
     objectType: `apartment`,
     isPremium: true,
     rating: 80,
-    city: `Amsterdam`,
+    city: `Paris`,
     coords: [52.3909553943508, 4.85309666406198]
   }
 ];
 
-it(`Should Map component render correctly`, () => {
+it(`Should CitiesList render correctly`, () => {
   const tree = renderer
-    .create(<Map
-      city={[52.38333, 4.9]}
+    .create(<CitiesList
       offers={Offers}
-    />,
-    {
-      createNodeMock: () => {
-        return document.createElement(`section`);
-      }
-    })
+      onCityClick = {() => {}}
+    />)
     .toJSON();
 
   expect(tree).toMatchSnapshot();
