@@ -2,7 +2,7 @@
 
 exports[`Should App component render correctly 1`] = `
 <div
-  className="page page--gray page--main"
+  className="page page--gray page--main 2"
 >
   <header
     className="header"
@@ -77,70 +77,12 @@ exports[`Should App component render correctly 1`] = `
             className="locations__item"
           >
             <a
-              className="locations__item-link tabs__item"
+              className="locations__item-link tabs__item--active"
               href="#"
-            >
-              <span>
-                Paris
-              </span>
-            </a>
-          </li>
-          <li
-            className="locations__item"
-          >
-            <a
-              className="locations__item-link tabs__item"
-              href="#"
-            >
-              <span>
-                Cologne
-              </span>
-            </a>
-          </li>
-          <li
-            className="locations__item"
-          >
-            <a
-              className="locations__item-link tabs__item"
-              href="#"
-            >
-              <span>
-                Brussels
-              </span>
-            </a>
-          </li>
-          <li
-            className="locations__item"
-          >
-            <a
-              className="locations__item-link tabs__item tabs__item--active"
+              onClick={[Function]}
             >
               <span>
                 Amsterdam
-              </span>
-            </a>
-          </li>
-          <li
-            className="locations__item"
-          >
-            <a
-              className="locations__item-link tabs__item"
-              href="#"
-            >
-              <span>
-                Hamburg
-              </span>
-            </a>
-          </li>
-          <li
-            className="locations__item"
-          >
-            <a
-              className="locations__item-link tabs__item"
-              href="#"
-            >
-              <span>
-                Dusseldorf
               </span>
             </a>
           </li>
@@ -165,7 +107,8 @@ exports[`Should App component render correctly 1`] = `
             className="places__found"
           >
             2
-             places to stay in Amsterdam
+             places to stay in 
+            Amsterdam
           </b>
           <form
             action="#"

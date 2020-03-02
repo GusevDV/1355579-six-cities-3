@@ -12,8 +12,8 @@ const CitiesList = (props) => {
     <div className="tabs">
       <section className="locations container">
         <ul className="locations__list tabs__list">
-          {uniqCities.map((city) => (
-            <li key={city} className="locations__item">
+          {uniqCities.map((city, index) => (
+            <li key={`${city}-${index}`} className="locations__item">
               <a className={`locations__item-link ${city === currentCity ? `tabs__item--active` : `tabs__item`}`} href="#" onClick={(e) => props.onCityLinkClick(e, city)}>
                 <span>{city}</span>
               </a>

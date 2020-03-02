@@ -9,8 +9,9 @@ import {CityCoords} from '../../../const.js';
 import {ActionCreators} from "../../reducer";
 
 const Main = (props) => {
+  const currentOffers = props.offers.filter((offer) => (offer.city === props.city));
   return (
-    <div className="page page--gray page--main">
+    <div className={`page page--gray page--main ${currentOffers.length || `page__main--index-empty`}`}>
       <header className="header">
         <div className="container">
           <div className="header__wrapper">
@@ -52,7 +53,7 @@ const Main = (props) => {
             <section className="cities__places places">
               <h2 className="visually-hidden">Places</h2>
               <b className="places__found">
-                {props.offers.length} places to stay in {props.city}
+                {currentOffers.length} places to stay in {props.city}
               </b>
               <form className="places__sorting" action="#" method="get">
                 <span className="places__sorting-caption">Sort by</span>
@@ -80,10 +81,25 @@ const Main = (props) => {
                   </li>
                 </ul>
               </form>
-              <PlaceCardList offers={props.offers} onTitleLinkClick={props.onTitleLinkClick} />
+              <PlaceCardList offers={currentOffers} onTitleLinkClick={props.onTitleLinkClick} />
             </section>
             <div className="cities__right-section">
-              <Map city={CityCoords.AMSTERDAM} offers={props.offers} />
+              {currentOffers.length ? (
+                <Map city={CityCoords[props.city]} offers={currentOffers} />
+              ) :
+                <div className="cities">
+                  <div className="cities__places-container cities__places-container--empty container">
+                    <section className="cities__no-places">
+                      <div className="cities__status-wrapper tabs__content">
+                        <b className="cities__status">No places to stay available</b>
+                        <p className="cities__status-description">We could not find any property availbale at the moment in Dusseldorf</p>
+                      </div>
+                    </section>
+                    <div className="cities__right-section"></div>
+                  </div>
+                </div>
+              }
+
             </div>
           </div>
         </div>
@@ -100,7 +116,7 @@ Main.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  offers: state.offers.filter((offer) => (offer.city === state.city)),
+  offers: state.offers,
   city: state.city,
 });
 

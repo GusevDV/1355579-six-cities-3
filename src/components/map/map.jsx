@@ -21,23 +21,48 @@ class Map extends React.PureComponent {
       iconUrl: MapSettings.ICON_URL,
       iconSize: MapSettings.ICON_SIZE,
     });
+
+
+    this.markers = [];
   }
 
   componentDidMount() {
-    const map = leaflet.map(this.mapRef.current, this.MapConfig);
-    map.setView(this.props.city, MapSettings.ZOOM);
+    this.map = leaflet.map(this.mapRef.current, this.MapConfig);
+    this.map.setView(this.props.city, MapSettings.ZOOM);
 
     leaflet
     .tileLayer(`https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`, {
       attribution: `&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>`
     })
-    .addTo(map);
+    .addTo(this.map);
+    this.addMarkers();
 
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.city !== this.props.city) {
+      this.clearMarkers();
+      this.map.setView(this.props.city, MapSettings.ZOOM);
+      this.addMarkers();
+    }
+  }
+
+  addMarkers() {
     this.props.offers.forEach((offer) => {
-      leaflet
-      .marker(offer.coords, this.icon)
-      .addTo(map);
+      const marker = leaflet
+        .marker(offer.coords, this.icon)
+        .addTo(this.map);
+      this.markers.push(marker);
     });
+  }
+
+  clearMarkers() {
+    if (this.map !== null) {
+      this.markers.forEach((marker) => {
+        this.map.removeLayer(marker);
+      });
+    }
+    this.markers = [];
   }
 
   render() {

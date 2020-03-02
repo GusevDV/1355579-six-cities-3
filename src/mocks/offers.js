@@ -59,7 +59,6 @@ export default [
     isPremium: false,
     rating: 70,
     city: CityNames.PARIS,
-    coords: [52.3809553943508, 4.939309666406198]
+    coords: [48.8647553943508, 2.349009666406198]
   }
 ];
-
