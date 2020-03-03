@@ -2,7 +2,7 @@
 
 exports[`Should App component render correctly 1`] = `
 <div
-  className="page page--gray page--main 2"
+  className="page page--gray page--main page__main--index-empty"
 >
   <header
     className="header"

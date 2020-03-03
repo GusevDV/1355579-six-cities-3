@@ -14,12 +14,12 @@ exports[`Should CitiesList render correctly 1`] = `
         className="locations__item"
       >
         <a
-          className="locations__item-link tabs__item--active"
+          className="locations__item-link tabs__item"
           href="#"
           onClick={[Function]}
         >
           <span>
-            Amsterdam
+            Paris
           </span>
         </a>
       </li>
@@ -27,12 +27,12 @@ exports[`Should CitiesList render correctly 1`] = `
         className="locations__item"
       >
         <a
-          className="locations__item-link tabs__item"
+          className="locations__item-link tabs__item--active"
           href="#"
           onClick={[Function]}
         >
           <span>
-            Paris
+            Amsterdam
           </span>
         </a>
       </li>

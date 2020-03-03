@@ -2,7 +2,7 @@
 
 exports[`Should Main component empty content render correctly 1`] = `
 <div
-  className="page page--gray page--main 2"
+  className="page page--gray page--main page__main--index-empty"
 >
   <header
     className="header"
@@ -392,7 +392,7 @@ exports[`Should Main component empty content render correctly 1`] = `
 
 exports[`Should Main component render correctly 1`] = `
 <div
-  className="page page--gray page--main 2"
+  className="page page--gray page--main page__main--index-empty"
 >
   <header
     className="header"

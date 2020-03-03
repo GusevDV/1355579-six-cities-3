@@ -7,11 +7,16 @@ import CitiesList from '../../components/cities-list/cities-list.jsx';
 import {offerType} from '../../types/offers-types.js';
 import {CityCoords} from '../../../const.js';
 import {ActionCreators} from "../../reducer";
+import {MAX_CITIES_COUNT} from '../../../const.js';
 
 const Main = (props) => {
-  const currentOffers = props.offers.filter((offer) => (offer.city === props.city));
+  const currentOffers = props.offers.filter((offer) => (offer.city === props.currentCity));
+  const onCityLinkClick = (e, city) => {
+    e.preventDefault();
+    props.changeCity(city);
+  };
   return (
-    <div className={`page page--gray page--main ${currentOffers.length || `page__main--index-empty`}`}>
+    <div className={`page page--gray page--main ${currentOffers.length ? `page__main--index-empty` : ``}`}>
       <header className="header">
         <div className="container">
           <div className="header__wrapper">
@@ -47,13 +52,18 @@ const Main = (props) => {
 
       <main className="page__main page__main--index">
         <h1 className="visually-hidden">Cities</h1>
-        <CitiesList offers={props.offers} currentCity={props.city} onCityLinkClick={props.onCityLinkClick} />
+        <CitiesList
+          cities={props.uniqCities}
+          currentCity={props.currentCity}
+          onCityLinkClick={onCityLinkClick}
+          maxCitiesCount={MAX_CITIES_COUNT}
+        />
         <div className="cities">
           <div className="cities__places-container container">
             <section className="cities__places places">
               <h2 className="visually-hidden">Places</h2>
               <b className="places__found">
-                {currentOffers.length} places to stay in {props.city}
+                {currentOffers.length} places to stay in {props.currentCity}
               </b>
               <form className="places__sorting" action="#" method="get">
                 <span className="places__sorting-caption">Sort by</span>
@@ -85,14 +95,14 @@ const Main = (props) => {
             </section>
             <div className="cities__right-section">
               {currentOffers.length ? (
-                <Map city={CityCoords[props.city]} offers={currentOffers} />
+                <Map city={CityCoords[props.currentCity]} offers={currentOffers} />
               ) :
                 <div className="cities">
                   <div className="cities__places-container cities__places-container--empty container">
                     <section className="cities__no-places">
                       <div className="cities__status-wrapper tabs__content">
                         <b className="cities__status">No places to stay available</b>
-                        <p className="cities__status-description">We could not find any property availbale at the moment in Dusseldorf</p>
+                        <p className="cities__status-description">We could not find any property availbale at the moment in {props.currentCity}</p>
                       </div>
                     </section>
                     <div className="cities__right-section"></div>
@@ -111,20 +121,22 @@ const Main = (props) => {
 Main.propTypes = {
   offers: PropTypes.arrayOf(offerType).isRequired,
   onTitleLinkClick: PropTypes.func.isRequired,
-  city: PropTypes.string.isRequired,
-  onCityLinkClick: PropTypes.func.isRequired,
+  currentCity: PropTypes.string.isRequired,
+  changeCity: PropTypes.func.isRequired,
+  uniqCities: PropTypes.array.isRequired
 };
 
 const mapStateToProps = (state) => ({
   offers: state.offers,
-  city: state.city,
+  currentCity: state.city,
+  uniqCities: (function () {
+    const cities = state.offers.map((offer) => offer.city);
+    return cities.filter((city, index) => cities.indexOf(city) === index);
+  })()
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onCityLinkClick: (e, city) => {
-    e.preventDefault();
-    dispatch(ActionCreators.changeCity(city));
-  }
+  changeCity: (city) => dispatch(ActionCreators.changeCity(city))
 });
 
 export {Main};
