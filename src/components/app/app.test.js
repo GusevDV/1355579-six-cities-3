@@ -1,38 +1,22 @@
 import React from "react";
 import renderer from "react-test-renderer";
+import configureStore from "redux-mock-store";
 import App from "./app.jsx";
+import {Provider} from "react-redux";
+import {CityNames} from '../../../const.js';
+import Offers from '../../mocks/offers.js';
 
-const Offers = [
-  {
-    id: 1,
-    title: `Apartment 1`,
-    price: 100,
-    pricePeriod: `night`,
-    thumnnailUrl: `/img/apartment-01.jpg`,
-    objectType: `apartment`,
-    isPremium: false,
-    rating: 50,
-    cityId: 1,
-    coords: [52.3909553943508, 4.85309666406198]
-  },
-  {
-    id: 2,
-    title: `Apartment 2`,
-    price: 200,
-    pricePeriod: `night`,
-    thumnnailUrl: `/img/apartment-02.jpg`,
-    objectType: `apartment`,
-    isPremium: true,
-    rating: 80,
-    cityId: 1,
-    coords: [52.3909553943508, 4.85309666406198]
-  }
-];
+const mockStore = configureStore([]);
 
 it(`Should App component render correctly`, () => {
 
+  const store = mockStore({
+    offers: Offers,
+    city: CityNames.AMSTERDAM
+  });
+
   const render = renderer.create(
-      <App offers={Offers} onTitleLinkClick={() => {}} />,
+      <Provider store={store}><App onTitleLinkClick={() => {}}/></Provider>,
       {
         createNodeMock: () => {
           return document.createElement(`section`);

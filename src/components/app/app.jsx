@@ -1,23 +1,16 @@
 import React from 'react';
 import Main from '../main/main.jsx';
-import PropTypes from 'prop-types';
-import {offerType} from '../../types/offers-types.js';
+import {connect} from "react-redux";
 
 const onTitleLinkClick = () => {};
 
-
-const App = ({offers}) => {
+const App = () => {
   return (
     <Main
-      offers={offers}
       onTitleLinkClick={onTitleLinkClick}
     />
   );
 };
 
-App.propTypes = {
-  offers: PropTypes.arrayOf(offerType).isRequired,
-};
-
-
-export default App;
+export {App};
+export default connect()(App);

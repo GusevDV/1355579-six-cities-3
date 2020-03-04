@@ -9,3 +9,14 @@ export const MapSettings = {
   ICON_URL: `img/pin.svg`,
   ICON_SIZE: [30, 30]
 };
+
+export const CityNames = {
+  AMSTERDAM: `Amsterdam`,
+  PARIS: `Paris`,
+};
+
+export const CityCoords = {
+  [CityNames.AMSTERDAM]: [52.38333, 4.9],
+  [CityNames.PARIS]: [48.8647, 2.3490]
+};
+export const MAX_CITIES_COUNT = 6;
