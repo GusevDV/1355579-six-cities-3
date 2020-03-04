@@ -7,13 +7,6 @@ exports[`Should PlaceCard component render correctly 1`] = `
   onMouseOver={[Function]}
 >
   <div
-    className="place-card__mark"
-  >
-    <span>
-      Premium
-    </span>
-  </div>
-  <div
     className="cities__image-wrapper place-card__image-wrapper"
   >
     <a
@@ -23,7 +16,7 @@ exports[`Should PlaceCard component render correctly 1`] = `
         alt="Place image"
         className="place-card__image"
         height="200"
-        src="/img/apartment-02.jpg"
+        src="/img/apartment-01.jpg"
         width="260"
       />
     </a>
@@ -41,7 +34,7 @@ exports[`Should PlaceCard component render correctly 1`] = `
           className="place-card__price-value"
         >
           €
-          200
+          100
         </b>
         <span
           className="place-card__price-text"
@@ -79,7 +72,7 @@ exports[`Should PlaceCard component render correctly 1`] = `
         <span
           style={
             Object {
-              "width": "80%",
+              "width": "50%",
             }
           }
         />
@@ -98,7 +91,7 @@ exports[`Should PlaceCard component render correctly 1`] = `
         href="#"
         onClick={[Function]}
       >
-        Apartment 2
+        Apartment 1
       </a>
     </h2>
     <p

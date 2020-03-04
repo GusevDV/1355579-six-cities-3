@@ -5,6 +5,10 @@ const CitiesList = (props) => {
   let {cities} = props;
   const {currentCity, maxCitiesCount} = props;
   cities.slice(0, maxCitiesCount - 1);
+  const handleCityLinkClick = (e, city) => {
+    e.preventDefault();
+    props.onCityChange(city);
+  };
   return (
     <div className="tabs">
       <section className="locations container">
@@ -14,7 +18,7 @@ const CitiesList = (props) => {
               <a
                 className={`locations__item-link ${city === currentCity ? `tabs__item--active` : `tabs__item`}`}
                 href="#"
-                onClick={(e) => props.onCityLinkClick(e, city)}
+                onClick={(e) => handleCityLinkClick(e, city)}
               >
                 <span>{city}</span>
               </a>
@@ -29,7 +33,7 @@ const CitiesList = (props) => {
 CitiesList.propTypes = {
   cities: PropTypes.array.isRequired,
   currentCity: PropTypes.string.isRequired,
-  onCityLinkClick: PropTypes.func.isRequired,
+  onCityChange: PropTypes.func.isRequired,
   maxCitiesCount: PropTypes.number.isRequired
 };
 

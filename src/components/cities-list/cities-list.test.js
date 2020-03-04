@@ -12,7 +12,7 @@ it(`Should CitiesList render correctly`, () => {
   const tree = renderer
     .create(<CitiesList
       cities={Cities}
-      onCityLinkClick = {() => {}}
+      onCityChange = {() => {}}
       currentCity={CityNames.AMSTERDAM}
       maxCitiesCount={6}
     />)
