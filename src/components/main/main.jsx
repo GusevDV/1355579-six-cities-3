@@ -8,6 +8,9 @@ import {offerType} from '../../types/offers-types.js';
 import {CityCoords} from '../../../const.js';
 import {ActionCreators} from "../../reducer";
 import {MAX_CITIES_COUNT} from '../../../const.js';
+import withPlaceCardList from '../../hocs/with-place-card-list/with-place-card-list.js';
+
+const PlaceCardListWrapped = withPlaceCardList(PlaceCardList);
 
 const Main = (props) => {
   const currentOffers = props.offers.filter((offer) => (offer.city === props.currentCity));
@@ -87,7 +90,7 @@ const Main = (props) => {
                   </li>
                 </ul>
               </form>
-              <PlaceCardList offers={currentOffers} onTitleLinkClick={props.onTitleLinkClick} />
+              <PlaceCardListWrapped offers={currentOffers} onTitleLinkClick={props.onTitleLinkClick} />
             </section>
             <div className="cities__right-section">
               <Map city={CityCoords[props.currentCity]} offers={currentOffers} />
