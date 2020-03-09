@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {offerType} from '../../types/offers-types.js';
 
-const PlaceCard = (props) => {
+const PlaceCard = React.memo(function PlaceCard(props) {
   const {offer, onTitleLinkClick, onMouseEnter, onMouseLeave} = props;
   const {title, price, pricePeriod, thumnnailUrl, objectType, isPremium, rating} = offer;
   return (
@@ -57,7 +57,7 @@ const PlaceCard = (props) => {
       </div>
     </article>
   );
-};
+});
 
 PlaceCard.propTypes = {
   offer: offerType,

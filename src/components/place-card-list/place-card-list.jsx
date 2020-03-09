@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import PlaceCard from '../place-card/place-card.jsx';
 import {offerType} from '../../types/offers-types.js';
 
-const PlaceCardList = (props) => {
+const PlaceCardList = React.memo(function PlaceCardList(props) {
   const {offers} = props;
   return (
     <div className="cities__places-list places__list tabs__content">
@@ -19,7 +19,7 @@ const PlaceCardList = (props) => {
     </div>
   );
 
-};
+});
 PlaceCardList.propTypes = {
   offers: PropTypes.arrayOf(offerType).isRequired,
   onTitleLinkClick: PropTypes.func.isRequired,

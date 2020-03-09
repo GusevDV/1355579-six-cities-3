@@ -12,14 +12,18 @@ const withActiveItem = (Component) => {
       this.handleMouseLeave = this.handleMouseLeave.bind(this);
     }
     handleMouseEnter(offerId) {
-      this.setState({
-        itemId: offerId
-      });
+      if (this.state.offerId !== offerId) {
+        this.setState({
+          itemId: offerId
+        });
+      }
     }
     handleMouseLeave() {
-      this.setState({
-        itemId: null
-      });
+      if (this.state.offerId !== null) {
+        this.setState({
+          itemId: null
+        });
+      }
     }
     render() {
       return (
