@@ -12,7 +12,7 @@ const PlaceCardList = React.memo(function PlaceCardList(props) {
           key={offer.id}
           offer={offer}
           onTitleLinkClick={props.onTitleLinkClick}
-          onMouseEnter={() => props.onMouseEnter(offer.id)}
+          onMouseEnter={props.onMouseEnter}
           onMouseLeave={props.onMouseLeave}
         />
       ))}

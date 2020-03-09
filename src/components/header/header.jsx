@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Header = () => {
+const Header = React.memo(function Header() {
   return (
     <header className="header">
       <div className="container">
@@ -35,6 +35,6 @@ const Header = () => {
       </div>
     </header>
   );
-};
+});
 
 export default Header;
