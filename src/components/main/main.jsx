@@ -8,9 +8,9 @@ import {offerType} from '../../types/offers-types.js';
 import {CityCoords} from '../../../const.js';
 import {ActionCreators} from "../../reducer";
 import {MAX_CITIES_COUNT} from '../../../const.js';
-import withPlaceCardList from '../../hocs/with-place-card-list/with-place-card-list.js';
+import withActiveItem from '../../hocs/with-active-item/with-active-item.js';
 
-const PlaceCardListWrapped = withPlaceCardList(PlaceCardList);
+const PlaceCardListWrapped = withActiveItem(PlaceCardList);
 
 const Main = (props) => {
   const currentOffers = props.offers.filter((offer) => (offer.city === props.currentCity));

@@ -28,8 +28,8 @@ it(`Should title link be clicked`, () => {
       <PlaceCard
         offer={offer}
         onTitleLinkClick={onTitleLinkClick}
-        onCardHover={() => {}}
-        onCardMouseLeave={() => {}}
+        onMouseEnter={() => {}}
+        onMouseLeave={() => {}}
       />
   );
 
@@ -41,14 +41,14 @@ it(`Should title link be clicked`, () => {
 });
 
 it(`Should onCardHover be called with offer.id argument`, () => {
-  const onCardHover = jest.fn();
+  const onMouseEnter = jest.fn();
 
   const main = mount(
       <PlaceCard
         offer={offer}
         onTitleLinkClick={() => {}}
-        onCardHover={onCardHover}
-        onCardMouseLeave={() => {}}
+        onMouseEnter={onMouseEnter}
+        onMouseLeave={() => {}}
       />
   );
 
@@ -56,18 +56,18 @@ it(`Should onCardHover be called with offer.id argument`, () => {
 
   card.simulate(`mouseover`);
 
-  expect(onCardHover).toHaveBeenCalledWith(offer.id);
+  expect(onMouseEnter).toHaveBeenCalledWith(offer.id);
 });
 
 it(`Should onCardMouseLeave be called`, () => {
-  const onCardMouseLeave = jest.fn();
+  const onMouseLeave = jest.fn();
 
   const main = mount(
       <PlaceCard
         offer={offer}
         onTitleLinkClick={() => {}}
-        onCardHover={() => {}}
-        onCardMouseLeave={onCardMouseLeave}
+        onMouseEnter={() => {}}
+        onMouseLeave={onMouseLeave}
       />
   );
 
@@ -75,5 +75,5 @@ it(`Should onCardMouseLeave be called`, () => {
 
   card.simulate(`mouseleave`);
 
-  expect(onCardMouseLeave).toHaveBeenCalledTimes(1);
+  expect(onMouseLeave).toHaveBeenCalledTimes(1);
 });

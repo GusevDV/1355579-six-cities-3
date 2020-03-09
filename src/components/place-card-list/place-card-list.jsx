@@ -12,8 +12,8 @@ const PlaceCardList = (props) => {
           key={offer.id}
           offer={offer}
           onTitleLinkClick={props.onTitleLinkClick}
-          onCardHover={() => props.onCardHover(offer.id)}
-          onCardMouseLeave={props.onCardMouseLeave}
+          onMouseEnter={() => props.onMouseEnter(offer.id)}
+          onMouseLeave={props.onMouseLeave}
         />
       ))}
     </div>
@@ -23,8 +23,8 @@ const PlaceCardList = (props) => {
 PlaceCardList.propTypes = {
   offers: PropTypes.arrayOf(offerType).isRequired,
   onTitleLinkClick: PropTypes.func.isRequired,
-  onCardHover: PropTypes.func.isRequired,
-  onCardMouseLeave: PropTypes.func.isRequired
+  onMouseEnter: PropTypes.func.isRequired,
+  onMouseLeave: PropTypes.func.isRequired
 };
 
 export default PlaceCardList;

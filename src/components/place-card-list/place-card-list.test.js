@@ -32,7 +32,12 @@ const Offers = [
 it(`Should PlaceCardList component render correctly`, () => {
 
   const render = renderer.create(
-      <PlaceCardList offers={Offers} onTitleLinkClick={() => {}} />
+      <PlaceCardList
+        offers={Offers}
+        onTitleLinkClick={() => {}}
+        onMouseEnter={() => {}}
+        onMouseLeave={() => {}}
+      />
   )
   .toJSON();
 

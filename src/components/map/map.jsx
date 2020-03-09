@@ -22,7 +22,6 @@ class Map extends React.PureComponent {
       iconSize: MapSettings.ICON_SIZE,
     });
 
-
     this.markers = [];
   }
 

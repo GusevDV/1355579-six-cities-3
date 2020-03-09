@@ -8,6 +8,7 @@ const initialState = {
 const ActionTypes = {
   CHANGE_CITY: `CHANGE_CITY`,
   SET_OFFERS: `SET_OFFERS`,
+  CHANGE_CURRENT_HOVER_OFFER_ID: `CHANGE_HOVER_OFFER`
 };
 
 const ActionCreators = {
