@@ -4,7 +4,7 @@ import Main from "./main.jsx";
 import configureStore from "redux-mock-store";
 import {Provider} from "react-redux";
 import {CityNames} from '../../../const.js';
-import Offers from '../../mocks/offers.js';
+import Offers from '../../test-mocks/offers.js';
 
 const mockStore = configureStore([]);
 
