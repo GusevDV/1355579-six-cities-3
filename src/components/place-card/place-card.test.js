@@ -9,8 +9,8 @@ it(`Should PlaceCard component render correctly`, () => {
       <PlaceCard
         offer={Offers[0]}
         onTitleLinkClick={() => {}}
-        onCardHover={() => {}}
-        onCardMouseLeave={() => {}}
+        onMouseEnter={() => {}}
+        onMouseLeave={() => {}}
       />
   )
   .toJSON();

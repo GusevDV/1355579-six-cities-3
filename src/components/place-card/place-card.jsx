@@ -3,13 +3,13 @@ import PropTypes from 'prop-types';
 import {offerType} from '../../types/offers-types.js';
 
 const PlaceCard = (props) => {
-  const {offer, onTitleLinkClick, onCardHover, onCardMouseLeave} = props;
+  const {offer, onTitleLinkClick, onMouseEnter, onMouseLeave} = props;
   const {title, price, pricePeriod, thumnnailUrl, objectType, isPremium, rating} = offer;
   return (
     <article
       className="cities__place-card place-card"
-      onMouseOver={() => onCardHover(offer.id)}
-      onMouseLeave={onCardMouseLeave}
+      onMouseOver={() => onMouseEnter(offer.id)}
+      onMouseLeave={onMouseLeave}
     >
       {isPremium && (
         <div className="place-card__mark">
@@ -62,8 +62,8 @@ const PlaceCard = (props) => {
 PlaceCard.propTypes = {
   offer: offerType,
   onTitleLinkClick: PropTypes.func.isRequired,
-  onCardHover: PropTypes.func.isRequired,
-  onCardMouseLeave: PropTypes.func.isRequired
+  onMouseEnter: PropTypes.func.isRequired,
+  onMouseLeave: PropTypes.func.isRequired
 };
 
-export default PlaceCard;
+export default React.memo(PlaceCard);
