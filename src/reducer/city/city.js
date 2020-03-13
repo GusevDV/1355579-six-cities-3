@@ -1,4 +1,4 @@
-import {CityNames} from '../../const.js';
+import {CityNames} from '../../../const.js';
 
 const initialState = {
   city: CityNames.AMSTERDAM

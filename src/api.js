@@ -1,14 +1,14 @@
 import axios from 'axios';
-import BASE_API_URL from '../const.js';
+import {BASE_API_URL} from '../const.js';
 
 const Error = {
   BAD_REQUEST: 400,
   UNAUTHORIZED: 401,
 };
 
-export const createAPI = (onUnauthorized, onBadRequest) => {
+const createAPI = (onUnauthorized, onBadRequest) => {
   const api = axios.create({
-    baseUrl: BASE_API_URL,
+    baseURL: BASE_API_URL,
     timeout: 5000,
     withCredentials: true
   });
@@ -35,3 +35,4 @@ export const createAPI = (onUnauthorized, onBadRequest) => {
   return api;
 };
 
+export default createAPI;

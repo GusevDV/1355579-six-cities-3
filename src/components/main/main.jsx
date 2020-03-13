@@ -7,7 +7,7 @@ import Header from '../header/header.jsx';
 import CitiesList from '../cities-list/cities-list.jsx';
 import {offerType} from '../../types/offers-types.js';
 import {CityCoords} from '../../../const.js';
-import {ActionCreators} from "../../reducer";
+import {ActionCreators} from "../../reducer/city/city.js";
 import {MAX_CITIES_COUNT} from '../../../const.js';
 import withActiveItem from '../../hocs/with-active-item/with-active-item.js';
 
@@ -83,6 +83,9 @@ const mapStateToProps = (state) => ({
   offers: state.offers,
   currentCity: state.city,
   uniqCities: (function () {
+    if (!state.offers.length) {
+      return [];
+    }
     const cities = state.offers.map((offer) => offer.city);
     return cities.filter((city, index) => cities.indexOf(city) === index);
   })()
