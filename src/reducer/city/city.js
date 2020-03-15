@@ -1,7 +1,8 @@
-import {CityNames} from '../../../const.js';
 
 const initialState = {
-  city: CityNames.AMSTERDAM
+  currentCity: null,
+  coords: [],
+  zoom: 0
 };
 
 const ActionTypes = {
@@ -9,16 +10,20 @@ const ActionTypes = {
 };
 
 const ActionCreators = {
-  changeCity: (city) => ({
+  changeCity: (payload) => ({
     type: ActionTypes.CHANGE_CITY,
-    payload: city,
+    payload,
   })
 };
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case ActionTypes.CHANGE_CITY:
-      return Object.assign({}, state, {city: action.payload});
+      return Object.assign({}, state, {
+        currentCity: action.payload.city,
+        coords: action.payload.coords,
+        zoom: action.payload.zoom,
+      });
   }
 
   return state;

@@ -7,12 +7,11 @@ import {MapSettings} from '../../../const.js';
 class Map extends React.PureComponent {
   constructor(props) {
     super(props);
-
     this.mapRef = React.createRef();
 
     this.mapConfig = {
       center: this.props.city,
-      zoom: MapSettings.ZOOM,
+      zoom: props.zoom,
       zoomControl: false,
       marker: true
     };
@@ -27,7 +26,7 @@ class Map extends React.PureComponent {
 
   componentDidMount() {
     this.map = leaflet.map(this.mapRef.current, this.MapConfig);
-    this.map.setView(this.props.city, MapSettings.ZOOM);
+    this.map.setView(this.props.city, this.props.zoom);
 
     leaflet
     .tileLayer(`https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`, {
@@ -41,7 +40,7 @@ class Map extends React.PureComponent {
   componentDidUpdate(prevProps) {
     if (prevProps.city !== this.props.city) {
       this.clearMarkers();
-      this.map.setView(this.props.city, MapSettings.ZOOM);
+      this.map.setView(this.props.city, this.props.zoom);
       this.addMarkers();
     }
   }
@@ -74,6 +73,7 @@ class Map extends React.PureComponent {
 Map.propTypes = {
   offers: PropTypes.arrayOf(offerType).isRequired,
   city: PropTypes.arrayOf(PropTypes.number).isRequired,
+  zoom: PropTypes.number.isRequired,
 };
 
 export default Map;

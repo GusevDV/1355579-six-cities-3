@@ -6,7 +6,6 @@ import Map from '../map/map.jsx';
 import Header from '../header/header.jsx';
 import CitiesList from '../cities-list/cities-list.jsx';
 import {offerType} from '../../types/offers-types.js';
-import {CityCoords} from '../../../const.js';
 import {ActionCreators} from "../../reducer/city/city.js";
 import {MAX_CITIES_COUNT} from '../../../const.js';
 import withActiveItem from '../../hocs/with-active-item/with-active-item.js';
@@ -62,7 +61,9 @@ const Main = (props) => {
               <PlaceCardListWrapped offers={currentOffers} onTitleLinkClick={props.onTitleLinkClick} />
             </section>
             <div className="cities__right-section">
-              <Map city={CityCoords[props.currentCity]} offers={currentOffers} />
+              {props.currentCity ? (
+                <Map city={props.cityCoords} zoom={props.cityZoom} offers={currentOffers} />
+              ) : null}
             </div>
           </div>
         </div>
@@ -74,21 +75,28 @@ const Main = (props) => {
 Main.propTypes = {
   offers: PropTypes.arrayOf(offerType).isRequired,
   onTitleLinkClick: PropTypes.func.isRequired,
-  currentCity: PropTypes.string.isRequired,
+  currentCity: PropTypes.string,
+  cityCoords: PropTypes.array,
+  cityZoom: PropTypes.number,
   changeCity: PropTypes.func.isRequired,
   uniqCities: PropTypes.array.isRequired
 };
 
 const mapStateToProps = (state) => ({
-  offers: state.offers,
-  currentCity: state.city,
+  offers: state.offers.data,
+  currentCity: state.city.currentCity,
+  cityCoords: state.city.coords,
+  cityZoom: state.city.zoom,
   uniqCities: (function () {
-    if (!state.offers.length) {
-      return [];
-    }
-    const cities = state.offers.map((offer) => offer.city);
-    return cities.filter((city, index) => cities.indexOf(city) === index);
-  })()
+    const cities = state.offers.data.map((offer) => ({
+      name: offer.city,
+      coords: offer.cityCoords,
+      zoom: offer.cityZoom
+    }));
+    return cities.filter((item, index, self) => (
+      index === self.findIndex((t) => (t.name === item.name))
+    ));
+  })(),
 });
 
 const mapDispatchToProps = (dispatch) => ({

@@ -8,6 +8,7 @@ import reducer from './reducer/reducer.js';
 import thunk from 'redux-thunk';
 import createAPI from './api.js';
 import {ApiCalls as offerApi} from "./reducer/offers/offers.js";
+import {ActionCreators as CityActions} from "./reducer/city/city.js";
 
 const api = createAPI();
 
@@ -18,7 +19,11 @@ const store = createStore(
     )
 );
 
-store.dispatch(offerApi.fetchOffers());
+store.dispatch(offerApi.fetchOffers(() => CityActions.changeCity({
+  city: store.getState().offers.data[0].city,
+  coords: store.getState().offers.data[0].cityCoords,
+  zoom: store.getState().offers.data[0].cityZoom,
+})));
 
 ReactDOM.render(
     <Provider store={store}>
