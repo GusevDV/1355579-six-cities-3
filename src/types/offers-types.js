@@ -14,7 +14,7 @@ export const offerType = PropTypes.shape({
     OfferTypes.ROOM]
   ).isRequired,
   isPremium: PropTypes.bool.isRequired,
-  rating: createRatingPropType(true, 0, 100),
+  rating: createRatingPropType(true, 0, 5),
   city: PropTypes.string.isRequired,
   coords: PropTypes.arrayOf(PropTypes.number).isRequired
 }).isRequired;
