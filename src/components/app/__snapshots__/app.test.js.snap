@@ -1,6 +1,24 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Should App component render correctly 1`] = `
+exports[`Should App component render correctly when offers is fetching 1`] = `
+<img
+  alt="throbber"
+  className="throbber"
+  height={100}
+  src="/img/throbber.svg"
+  width={100}
+/>
+`;
+
+exports[`Should App component render correctly when offers is loaded with error 1`] = `
+<p
+  className="error"
+>
+  Нам не удалось получить данные с сервера 😢
+</p>
+`;
+
+exports[`Should App component render correctly when offers is loaded with success 1`] = `
 <div
   className="page page--gray page--main page__main--index-empty"
 >
@@ -251,7 +269,7 @@ exports[`Should App component render correctly 1`] = `
                     <span
                       style={
                         Object {
-                          "width": "50%",
+                          "width": "80%",
                         }
                       }
                     />
@@ -465,7 +483,7 @@ exports[`Should App component render correctly 1`] = `
                     <span
                       style={
                         Object {
-                          "width": "95%",
+                          "width": "40%",
                         }
                       }
                     />
@@ -565,7 +583,7 @@ exports[`Should App component render correctly 1`] = `
                     <span
                       style={
                         Object {
-                          "width": "70%",
+                          "width": "60%",
                         }
                       }
                     />

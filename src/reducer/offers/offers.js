@@ -44,7 +44,7 @@ const ApiCalls = {
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case ActionTypes.FETCH_OFFERS_START:
-      return Object.assign({}, state, {isLoading: true});
+      return Object.assign({}, state, {isLoading: true, isError: false});
     case ActionTypes.FETCH_OFFERS_SUCCESS:
       return Object.assign({}, state, {data: action.payload, isError: false, isLoading: false});
     case ActionTypes.FETCH_OFFERS_FAILURE:

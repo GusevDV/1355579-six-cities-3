@@ -72,7 +72,7 @@ exports[`Should PlaceCard component render correctly 1`] = `
         <span
           style={
             Object {
-              "width": "50%",
+              "width": "80%",
             }
           }
         />

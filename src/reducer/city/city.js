@@ -20,7 +20,7 @@ const reducer = (state = initialState, action) => {
   switch (action.type) {
     case ActionTypes.CHANGE_CITY:
       return Object.assign({}, state, {
-        currentCity: action.payload.city,
+        currentCity: action.payload.name,
         coords: action.payload.coords,
         zoom: action.payload.zoom,
       });

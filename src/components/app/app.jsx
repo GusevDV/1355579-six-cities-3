@@ -22,20 +22,20 @@ const App = (props) => {
   return (
     <>
       {renderApp()}
-      </>
+    </>
   );
 
+};
+
+App.propTypes = {
+  isLoading: PropTypes.bool.isRequired,
+  isError: PropTypes.bool.isRequired
 };
 
 const mapStateToProps = (state) => ({
   isLoading: state.offers.isLoading,
   isError: state.offers.isError,
 });
-
-App.propTypes = {
-  isLoading: PropTypes.bool.isRequired,
-  isError: PropTypes.bool.isRequired
-};
 
 export {App};
 export default connect(mapStateToProps)(App);

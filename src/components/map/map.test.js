@@ -8,6 +8,7 @@ it(`Should Map component render correctly`, () => {
     .create(<Map
       city={[52.38333, 4.9]}
       offers={Offers}
+      zoom={13}
     />,
     {
       createNodeMock: () => {

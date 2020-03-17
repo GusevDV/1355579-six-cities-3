@@ -5,9 +5,9 @@ const CitiesList = (props) => {
   let {cities} = props;
   const {currentCity, maxCitiesCount} = props;
   cities.slice(0, maxCitiesCount - 1);
-  const handleCityLinkClick = (e, city, coords, zoom) => {
+  const handleCityLinkClick = (e, name, coords, zoom) => {
     e.preventDefault();
-    props.onCityChange({city, coords, zoom});
+    props.onCityChange({name, coords, zoom});
   };
   return (
     <div className="tabs">
