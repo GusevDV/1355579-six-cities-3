@@ -10,20 +10,12 @@ const onTitleLinkClick = () => {};
 
 const App = (props) => {
 
-  function renderApp() {
-    if (props.isLoading) {
-      return <Throbber />;
-    } else if (props.isError) {
-      return <ErrorArea message={ErrorMessages.NETWROK_ERROR} />;
-    }
-    return <Main onTitleLinkClick={onTitleLinkClick} />;
+  if (props.isLoading) {
+    return <Throbber />;
+  } else if (props.isError) {
+    return <ErrorArea message={ErrorMessages.NETWROK_ERROR} />;
   }
-
-  return (
-    <>
-      {renderApp()}
-    </>
-  );
+  return <Main onTitleLinkClick={onTitleLinkClick} />;
 
 };
 

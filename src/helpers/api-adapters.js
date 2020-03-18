@@ -9,7 +9,7 @@ export function transformOffers(data) {
       thumnnailUrl: offer.preview_image,
       images: offer.images,
       objectType: offer.type,
-      bedroms: offer.bedroms,
+      bedrooms: offer.bedrooms,
       maxAdults: offer.maxAdults,
       isPremium: offer.is_premium,
       isFavorite: offer.is_favorite,

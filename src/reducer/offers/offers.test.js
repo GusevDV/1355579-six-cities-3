@@ -1,6 +1,7 @@
 import MockAdapter from "axios-mock-adapter";
 import createAPI from "../../api.js";
 import {reducer, ActionTypes, ApiCalls} from "./offers.js";
+import {ActionTypes as CityActionTypes} from "../city/city.js";
 import offers from '../../test-mocks/server-offers.js';
 import {transformOffers} from '../../helpers/api-adapters.js';
 
@@ -92,30 +93,12 @@ describe(`ApiCalls work correctly`, () => {
 
     const expectedActions = [
       {type: ActionTypes.FETCH_OFFERS_START},
-      {type: ActionTypes.FETCH_OFFERS_SUCCESS, payload: transformOffers(offers)}
-    ];
-
-    apiMock
-      .onGet(`/hotels`)
-      .reply(200, offers);
-
-    return offersLoader(dispatch, () => {}, api)
-      .then(() => {
-        expect(dispatch).toHaveBeenCalledTimes(2);
-        expect(dispatch.mock.calls[0][0]).toEqual(expectedActions[0]);
-        expect(dispatch.mock.calls[1][0]).toEqual(expectedActions[1]);
-      });
-  });
-
-  it(`Should API call to /hotels finished successfully and callback is work correctly`, function () {
-    const apiMock = new MockAdapter(api);
-    const dispatch = jest.fn();
-    const callback = jest.fn();
-    const offersLoader = ApiCalls.fetchOffers(callback);
-
-    const expectedActions = [
-      {type: ActionTypes.FETCH_OFFERS_START},
-      {type: ActionTypes.FETCH_OFFERS_SUCCESS, payload: transformOffers(offers)}
+      {type: ActionTypes.FETCH_OFFERS_SUCCESS, payload: transformOffers(offers)},
+      {type: CityActionTypes.CHANGE_CITY, payload: {
+        name: offers[0].city.name,
+        coords: [offers[0].city.location.latitude, offers[0].city.location.longitude],
+        zoom: offers[0].city.location.zoom,
+      }}
     ];
 
     apiMock
@@ -127,7 +110,7 @@ describe(`ApiCalls work correctly`, () => {
         expect(dispatch).toHaveBeenCalledTimes(3);
         expect(dispatch.mock.calls[0][0]).toEqual(expectedActions[0]);
         expect(dispatch.mock.calls[1][0]).toEqual(expectedActions[1]);
-        expect(callback).toHaveBeenCalledTimes(1);
+        expect(dispatch.mock.calls[2][0]).toEqual(expectedActions[2]);
       });
   });
 

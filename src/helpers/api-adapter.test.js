@@ -17,6 +17,7 @@ it(`Should transform data correctly`, () => {
         `https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/1.jpg`
       ],
       objectType: `room`,
+      bedrooms: 1,
       isPremium: false,
       isFavorite: false,
       rating: 2.5,

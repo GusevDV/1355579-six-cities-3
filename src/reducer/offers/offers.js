@@ -1,4 +1,5 @@
 import {transformOffers} from '../../helpers/api-adapters.js';
+import {ActionCreators as CityActions} from "../city/city.js";
 
 const initialState = {
   data: [],
@@ -26,14 +27,16 @@ const ActionCreators = {
 };
 
 const ApiCalls = {
-  fetchOffers: (callbackAction) => (dispatch, getState, api) => {
+  fetchOffers: () => (dispatch, getState, api) => {
     dispatch(ActionCreators.fetchOffersStart());
     return api.get(`/hotels`)
       .then((response) => {
         dispatch(ActionCreators.fetchOffersSuccess(transformOffers(response.data)));
-        if (callbackAction) {
-          dispatch(callbackAction());
-        }
+        dispatch(CityActions.changeCity({
+          name: response.data[0].city.name,
+          coords: [response.data[0].city.location.latitude, response.data[0].city.location.longitude],
+          zoom: response.data[0].city.location.zoom,
+        }));
       })
       .catch(() => {
         dispatch(ActionCreators.fetchOffersFailure());
