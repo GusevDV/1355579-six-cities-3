@@ -3,14 +3,21 @@ import renderer from "react-test-renderer";
 import Main from "./main.jsx";
 import configureStore from "redux-mock-store";
 import {Provider} from "react-redux";
-import {CityNames} from '../../../const.js';
-import Offers from '../../mocks/offers.js';
+import Offers from '../../test-mocks/offers.js';
 
 const mockStore = configureStore([]);
 
 const store = mockStore({
-  offers: Offers,
-  city: CityNames.AMSTERDAM
+  offers: {
+    data: Offers,
+    isLoading: false,
+    isError: false,
+  },
+  city: {
+    currentCity: Offers[0].city,
+    coords: Offers[0].cityCoords,
+    zoom: Offers[0].cityZoom,
+  }
 });
 
 it(`Should Main component render correctly`, () => {

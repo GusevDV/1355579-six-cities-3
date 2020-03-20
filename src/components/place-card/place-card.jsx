@@ -4,7 +4,8 @@ import {offerType} from '../../types/offers-types.js';
 
 const PlaceCard = (props) => {
   const {offer, onTitleLinkClick, onMouseEnter, onMouseLeave} = props;
-  const {title, price, pricePeriod, thumnnailUrl, objectType, isPremium, rating} = offer;
+  const {title, price, pricePeriod, thumnnailUrl, objectType, isPremium} = offer;
+  const rating = 100 * Math.round(offer.rating) / 5;
   return (
     <article
       className="cities__place-card place-card"

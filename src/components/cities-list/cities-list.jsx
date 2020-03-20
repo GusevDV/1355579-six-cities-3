@@ -5,22 +5,22 @@ const CitiesList = (props) => {
   let {cities} = props;
   const {currentCity, maxCitiesCount} = props;
   cities.slice(0, maxCitiesCount - 1);
-  const handleCityLinkClick = (e, city) => {
+  const handleCityLinkClick = (e, name, coords, zoom) => {
     e.preventDefault();
-    props.onCityChange(city);
+    props.onCityChange({name, coords, zoom});
   };
   return (
     <div className="tabs">
       <section className="locations container">
         <ul className="locations__list tabs__list">
           {cities.map((city, index) => (
-            <li key={`${city}-${index}`} className="locations__item">
+            <li key={`${city.name}-${index}`} className="locations__item">
               <a
-                className={`locations__item-link ${city === currentCity ? `tabs__item--active` : `tabs__item`}`}
+                className={`locations__item-link ${city.name === currentCity ? `tabs__item--active` : `tabs__item`}`}
                 href="#"
-                onClick={(e) => handleCityLinkClick(e, city)}
+                onClick={(e) => handleCityLinkClick(e, city.name, city.coords, city.zoom)}
               >
-                <span>{city}</span>
+                <span>{city.name}</span>
               </a>
             </li>
           ))}
@@ -31,8 +31,12 @@ const CitiesList = (props) => {
 };
 
 CitiesList.propTypes = {
-  cities: PropTypes.array.isRequired,
-  currentCity: PropTypes.string.isRequired,
+  cities: PropTypes.arrayOf(PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    coords: PropTypes.array.isRequired,
+    zoom: PropTypes.number.isRequired
+  })),
+  currentCity: PropTypes.string,
   onCityChange: PropTypes.func.isRequired,
   maxCitiesCount: PropTypes.number.isRequired
 };

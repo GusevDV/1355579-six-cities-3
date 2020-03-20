@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import {OfferTypes, CityNames} from '../../const.js';
+import {OfferTypes} from '../../const.js';
 
 export const offerType = PropTypes.shape({
   id: PropTypes.number.isRequired,
@@ -14,8 +14,8 @@ export const offerType = PropTypes.shape({
     OfferTypes.ROOM]
   ).isRequired,
   isPremium: PropTypes.bool.isRequired,
-  rating: createRatingPropType(true, 0, 100),
-  city: PropTypes.oneOf([CityNames.AMSTERDAM, CityNames.PARIS]),
+  rating: createRatingPropType(true, 0, 5),
+  city: PropTypes.string.isRequired,
   coords: PropTypes.arrayOf(PropTypes.number).isRequired
 }).isRequired;
 

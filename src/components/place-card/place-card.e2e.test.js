@@ -1,32 +1,19 @@
-/* eslint-disable no-console */
 import React from "react";
 import Enzyme, {mount} from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 import PlaceCard from "./place-card.jsx";
+import Offers from '../../test-mocks/offers.js';
 
 Enzyme.configure({
   adapter: new Adapter(),
 });
-
-const offer = {
-  id: 1,
-  title: `Apartment 2`,
-  price: 200,
-  pricePeriod: `night`,
-  thumnnailUrl: `/img/apartment-02.jpg`,
-  objectType: `apartment`,
-  isPremium: true,
-  rating: 80,
-  cityId: 1,
-  coords: [52.3909553943508, 4.85309666406198],
-};
 
 it(`Should title link be clicked`, () => {
   const onTitleLinkClick = jest.fn();
 
   const main = mount(
       <PlaceCard
-        offer={offer}
+        offer={Offers[0]}
         onTitleLinkClick={onTitleLinkClick}
         onMouseEnter={() => {}}
         onMouseLeave={() => {}}
@@ -45,7 +32,7 @@ it(`Should onCardHover be called with offer.id argument`, () => {
 
   const main = mount(
       <PlaceCard
-        offer={offer}
+        offer={Offers[0]}
         onTitleLinkClick={() => {}}
         onMouseEnter={onMouseEnter}
         onMouseLeave={() => {}}
@@ -56,7 +43,7 @@ it(`Should onCardHover be called with offer.id argument`, () => {
 
   card.simulate(`mouseover`);
 
-  expect(onMouseEnter).toHaveBeenCalledWith(offer.id);
+  expect(onMouseEnter).toHaveBeenCalledWith(Offers[0].id);
 });
 
 it(`Should onCardMouseLeave be called`, () => {
@@ -64,7 +51,7 @@ it(`Should onCardMouseLeave be called`, () => {
 
   const main = mount(
       <PlaceCard
-        offer={offer}
+        offer={Offers[0]}
         onTitleLinkClick={() => {}}
         onMouseEnter={() => {}}
         onMouseLeave={onMouseLeave}

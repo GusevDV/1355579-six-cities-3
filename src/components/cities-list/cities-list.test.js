@@ -1,11 +1,10 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import CitiesList from "./cities-list.jsx";
-import {CityNames} from '../../../const.js';
 
 const Cities = [
-  `Paris`,
-  `Amsterdam`
+  {name: `Paris`, coords: [48.85661, 2.351499], zoom: 13},
+  {name: `Amsterdam`, coords: [52.37454, 4.897976], zoom: 13},
 ];
 
 it(`Should CitiesList render correctly`, () => {
@@ -13,7 +12,7 @@ it(`Should CitiesList render correctly`, () => {
     .create(<CitiesList
       cities={Cities}
       onCityChange = {() => {}}
-      currentCity={CityNames.AMSTERDAM}
+      currentCity={`Amsterdam`}
       maxCitiesCount={6}
     />)
     .toJSON();
