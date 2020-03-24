@@ -28,7 +28,7 @@ it(`Should Main component render correctly`, () => {
         <Provider store={store}>
           <BrowserRouter>
             <OfferDetail
-              offer={Offers[1]}
+              match={{params: {id: 1}}}
             />
           </BrowserRouter>
         </Provider>,

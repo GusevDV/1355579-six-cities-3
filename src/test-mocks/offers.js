@@ -27,6 +27,12 @@ export default [
       `Baby seat`,
       `Laptop friendly workspace`,
     ],
+    host: {
+      id: 25,
+      name: `Angelina`,
+      isPro: true,
+      avatarUrl: `img/avatar-angelina.jpg`
+    },
     cityZoom: 13,
     coords: [52.3909553943508, 4.85309666406198],
   },
@@ -53,6 +59,12 @@ export default [
       `Baby seat`,
       `Laptop friendly workspace`,
     ],
+    host: {
+      id: 25,
+      name: `Angelina`,
+      isPro: true,
+      avatarUrl: `img/avatar-angelina.jpg`
+    },
     cityZoom: 13,
     coords: [52.369553943508, 4.85309666406198],
   },

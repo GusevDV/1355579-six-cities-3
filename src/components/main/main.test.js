@@ -49,9 +49,7 @@ it(`Should Main component empty content render correctly`, () => {
     .create(
         <Provider store={store}>
           <BrowserRouter>
-            <Main
-              offers={[]}
-            />
+            <Main />
           </BrowserRouter>
         </Provider>,
         {
