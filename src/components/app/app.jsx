@@ -11,7 +11,7 @@ import OfferDetail from '../offer-detail/offer-detail.jsx';
 const App = (props) => {
 
   if (props.isLoading) {
-    return <Throbber />;
+    return <Throbber mods={{position: `center-page`}} />;
   } else if (props.isError) {
     return <ErrorArea message={ErrorMessages.NETWROK_ERROR} />;
   }
