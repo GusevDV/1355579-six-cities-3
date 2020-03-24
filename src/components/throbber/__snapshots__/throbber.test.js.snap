@@ -1,11 +1,29 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Should Throbber component render correctly 1`] = `
-<img
-  alt="throbber"
-  className="throbber"
-  height={100}
-  src="/img/throbber.svg"
-  width={100}
-/>
+exports[`Should Throbber component render correctly with throbber--centered class 1`] = `
+<div
+  className="throbber "
+>
+  <img
+    alt="throbber"
+    className="throbber__img"
+    height={100}
+    src="/img/throbber.svg"
+    width={100}
+  />
+</div>
+`;
+
+exports[`Should Throbber component render correctly without throbber--centered class 1`] = `
+<div
+  className="throbber "
+>
+  <img
+    alt="throbber"
+    className="throbber__img"
+    height={100}
+    src="/img/throbber.svg"
+    width={100}
+  />
+</div>
 `;

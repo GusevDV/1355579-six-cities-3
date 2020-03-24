@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Should Throbber component render 1`] = `
+<div
+  className="throbber "
+>
+  <img
+    alt="throbber"
+    className="throbber__img"
+    height={100}
+    src="/img/throbber.svg"
+    width={100}
+  />
+</div>
+`;
+
+exports[`Should loaded render 1`] = `
+<div>
+  Loaded
+</div>
+`;

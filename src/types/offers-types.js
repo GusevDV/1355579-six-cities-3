@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import {OfferTypes} from '../../const.js';
+import {createRatingPropType} from './rating-types.js';
 
 export const offerType = PropTypes.shape({
   id: PropTypes.number.isRequired,
@@ -27,19 +28,3 @@ export const offerType = PropTypes.shape({
   coords: PropTypes.arrayOf(PropTypes.number).isRequired,
   images: PropTypes.arrayOf(PropTypes.string).isRequired,
 }).isRequired;
-
-function createRatingPropType(isRequired, min, max) {
-  return function (props, propName) {
-    const prop = props[propName];
-    if (prop === null) {
-      if (isRequired) {
-        return new Error(`The prop ${propName} is marked as required`);
-      }
-    } else {
-      if (props[propName] < min || props[propName] > max) {
-        return new Error(`The ${propName} must be between ${min} and ${max}`);
-      }
-    }
-    return null;
-  };
-}
