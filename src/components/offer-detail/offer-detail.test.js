@@ -1,6 +1,6 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import Main from "./main.jsx";
+import OfferDetail from "./offer-detail.jsx";
 import {BrowserRouter} from 'react-router-dom';
 import configureStore from "redux-mock-store";
 import {Provider} from "react-redux";
@@ -27,9 +27,8 @@ it(`Should Main component render correctly`, () => {
     .create(
         <Provider store={store}>
           <BrowserRouter>
-            <Main
-              offers={Offers}
-              onTitleLinkClick={() => {}}
+            <OfferDetail
+              offer={Offers[1]}
             />
           </BrowserRouter>
         </Provider>,
@@ -43,23 +42,3 @@ it(`Should Main component render correctly`, () => {
   expect(tree).toMatchSnapshot();
 });
 
-it(`Should Main component empty content render correctly`, () => {
-
-  const tree = renderer
-    .create(
-        <Provider store={store}>
-          <BrowserRouter>
-            <Main
-              offers={[]}
-            />
-          </BrowserRouter>
-        </Provider>,
-        {
-          createNodeMock: () => {
-            return document.createElement(`section`);
-          }
-        })
-    .toJSON();
-
-  expect(tree).toMatchSnapshot();
-});
