@@ -6,6 +6,8 @@ import Header from '../header/header.jsx';
 import {convertRatingToProcent} from '../../helpers/transform-helpers';
 import ReviewsList from '../reviews-list/reviews-list.jsx';
 import ThrobberSwitcher from '../throbber-switcher/throbber-switcher.jsx';
+import {mapDisplayType} from '../../../const.js';
+import Map from '../map/map.jsx';
 
 const OfferDetail = (props) => {
 
@@ -153,7 +155,9 @@ const OfferDetail = (props) => {
               </section>
             </div>
           </div>
-          <section className="property__map map"></section>
+          <ThrobberSwitcher isLoading={false} render={() => (
+            <Map mapType={mapDisplayType.PROPERTY} city={props.offer.cityCoords} zoom={props.offer.cityZoom} offers={[props.offer]} />
+          )}/>
         </section>
         <div className="container">
           <section className="near-places places">
@@ -264,11 +268,23 @@ const OfferDetail = (props) => {
 
 OfferDetail.propTypes = {
   offer: offerType,
+<<<<<<< HEAD
   offerId: PropTypes.string.isRequired
 };
 
 const mapStateToProps = (state, ownProps) => ({
   offer: state.offers.data.find((offer) => offer.id === Number.parseInt(ownProps.offerId, 10))
+=======
+  match: PropTypes.object,
+};
+
+const mapStateToProps = (state, ownProps) => ({
+  offer: (function () {
+    return state.offers.data.filter((offer) => {
+      return offer.id === Number.parseInt(ownProps.match.params.id, 10);
+    })[0];
+  })(),
+>>>>>>> Added display variability in map component
 });
 
 

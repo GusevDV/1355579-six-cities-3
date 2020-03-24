@@ -423,7 +423,8 @@ exports[`Should Main component render correctly 1`] = `
         </div>
       </div>
       <section
-        className="property__map map"
+        className="map property__map"
+        id="map"
       />
     </section>
     <div
