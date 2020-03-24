@@ -602,7 +602,7 @@ exports[`Should Main component empty content render correctly 1`] = `
           className="cities__right-section"
         >
           <section
-            className="cities__map map"
+            className="map cities__map"
             id="map"
           />
         </div>
@@ -1214,7 +1214,7 @@ exports[`Should Main component render correctly 1`] = `
           className="cities__right-section"
         >
           <section
-            className="cities__map map"
+            className="map cities__map"
             id="map"
           />
         </div>

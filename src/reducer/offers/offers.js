@@ -1,5 +1,5 @@
 import {transformOffers} from '../../helpers/api-adapters.js';
-import {ActionCreators as CityActions} from "../city/city.js";
+import {ActionCreator as CityActions} from "../city/city.js";
 
 const initialState = {
   data: [],
@@ -7,31 +7,31 @@ const initialState = {
   isError: false,
 };
 
-const ActionTypes = {
+const ActionType = {
   FETCH_OFFERS_START: `FETCH_OFFERS_START`,
   FETCH_OFFERS_SUCCESS: `FETCH_OFFERS_SUCCESS`,
   FETCH_OFFERS_FAILURE: `FETCH_OFFERS_FAILURE`,
 };
 
-const ActionCreators = {
+const ActionCreator = {
   fetchOffersStart: () => ({
-    type: ActionTypes.FETCH_OFFERS_START,
+    type: ActionType.FETCH_OFFERS_START,
   }),
   fetchOffersSuccess: (content) => ({
-    type: ActionTypes.FETCH_OFFERS_SUCCESS,
+    type: ActionType.FETCH_OFFERS_SUCCESS,
     payload: content,
   }),
   fetchOffersFailure: () => ({
-    type: ActionTypes.FETCH_OFFERS_FAILURE,
+    type: ActionType.FETCH_OFFERS_FAILURE,
   })
 };
 
-const ApiCalls = {
+const ApiCall = {
   fetchOffers: () => (dispatch, getState, api) => {
-    dispatch(ActionCreators.fetchOffersStart());
+    dispatch(ActionCreator.fetchOffersStart());
     return api.get(`/hotels`)
       .then((response) => {
-        dispatch(ActionCreators.fetchOffersSuccess(transformOffers(response.data)));
+        dispatch(ActionCreator.fetchOffersSuccess(transformOffers(response.data)));
         dispatch(CityActions.changeCity({
           name: response.data[0].city.name,
           coords: [response.data[0].city.location.latitude, response.data[0].city.location.longitude],
@@ -39,22 +39,22 @@ const ApiCalls = {
         }));
       })
       .catch(() => {
-        dispatch(ActionCreators.fetchOffersFailure());
+        dispatch(ActionCreator.fetchOffersFailure());
       });
   },
 };
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case ActionTypes.FETCH_OFFERS_START:
+    case ActionType.FETCH_OFFERS_START:
       return Object.assign({}, state, {isLoading: true, isError: false});
-    case ActionTypes.FETCH_OFFERS_SUCCESS:
+    case ActionType.FETCH_OFFERS_SUCCESS:
       return Object.assign({}, state, {data: action.payload, isError: false, isLoading: false});
-    case ActionTypes.FETCH_OFFERS_FAILURE:
+    case ActionType.FETCH_OFFERS_FAILURE:
       return Object.assign({}, state, {data: [], isError: true, isLoading: false});
   }
 
   return state;
 };
 
-export {ActionCreators, ActionTypes, ApiCalls, reducer};
+export {ActionCreator, ActionType, ApiCall, reducer};

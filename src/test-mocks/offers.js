@@ -1,5 +1,5 @@
 
-const CityNames = {
+const CityName = {
   AMSTERDAM: `Amsterdam`,
   PARIS: `Paris`
 };
@@ -14,7 +14,7 @@ export default [
     maxAdults: 4,
     isPremium: false,
     rating: 3.5,
-    city: CityNames.AMSTERDAM,
+    city: CityName.AMSTERDAM,
     images: [
       `https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/14.jpg`,
       `https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/1.jpg`,
@@ -46,7 +46,7 @@ export default [
     maxAdults: 7,
     isPremium: true,
     rating: 4,
-    city: CityNames.AMSTERDAM,
+    city: CityName.AMSTERDAM,
     images: [
       `https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/14.jpg`,
       `https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/1.jpg`,
@@ -78,7 +78,7 @@ export default [
     maxAdults: 5,
     isPremium: true,
     rating: 2,
-    city: CityNames.AMSTERDAM,
+    city: CityName.AMSTERDAM,
     images: [
       `https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/14.jpg`,
       `https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/1.jpg`,
@@ -110,7 +110,7 @@ export default [
     maxAdults: 2,
     isPremium: false,
     rating: 3,
-    city: CityNames.AMSTERDAM,
+    city: CityName.AMSTERDAM,
     images: [
       `https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/14.jpg`,
       `https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/1.jpg`,
@@ -142,7 +142,7 @@ export default [
     maxAdults: 1,
     isPremium: false,
     rating: 5,
-    city: CityNames.PARIS,
+    city: CityName.PARIS,
     images: [
       `https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/14.jpg`,
       `https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/1.jpg`,

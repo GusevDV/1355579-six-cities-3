@@ -3,7 +3,7 @@ import renderer from "react-test-renderer";
 import configureStore from "redux-mock-store";
 import App from "./app.jsx";
 import {Provider} from "react-redux";
-import Offers from '../../test-mocks/offers.js';
+import offers from '../../test-mocks/offers.js';
 
 const mockStore = configureStore([]);
 
@@ -11,14 +11,14 @@ it(`Should App component render correctly when offers is loaded with success`, (
 
   const store = mockStore({
     offers: {
-      data: Offers,
+      data: offers,
       isLoading: false,
       isError: false,
     },
     city: {
-      currentCity: Offers[0].city,
-      coords: Offers[0].cityCoords,
-      zoom: Offers[0].cityZoom,
+      currentCity: offers[0].city,
+      coords: offers[0].cityCoords,
+      zoom: offers[0].cityZoom,
     }
   });
 
@@ -38,14 +38,14 @@ it(`Should App component render correctly when offers is fetching`, () => {
 
   const store = mockStore({
     offers: {
-      data: Offers,
+      data: offers,
       isLoading: true,
       isError: false,
     },
     city: {
-      currentCity: Offers[0].city,
-      coords: Offers[0].cityCoords,
-      zoom: Offers[0].cityZoom,
+      currentCity: offers[0].city,
+      coords: offers[0].cityCoords,
+      zoom: offers[0].cityZoom,
     }
   });
 
@@ -70,9 +70,9 @@ it(`Should App component render correctly when offers is loaded with error`, () 
       isError: true,
     },
     city: {
-      currentCity: Offers[0].city,
-      coords: Offers[0].cityCoords,
-      zoom: Offers[0].cityZoom,
+      currentCity: offers[0].city,
+      coords: offers[0].cityCoords,
+      zoom: offers[0].cityZoom,
     }
   });
 

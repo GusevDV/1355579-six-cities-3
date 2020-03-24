@@ -2,7 +2,7 @@ import React from "react";
 import Enzyme, {mount} from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 import PlaceCard from "./place-card.jsx";
-import Offers from '../../test-mocks/offers.js';
+import offers from '../../test-mocks/offers.js';
 import {BrowserRouter} from 'react-router-dom';
 
 Enzyme.configure({
@@ -15,7 +15,7 @@ it(`Should onCardHover be called with offer.id argument`, () => {
   const main = mount(
       <BrowserRouter>
         <PlaceCard
-          offer={Offers[0]}
+          offer={offers[0]}
           onMouseEnter={onMouseEnter}
           onMouseLeave={() => {}}
         />
@@ -26,7 +26,7 @@ it(`Should onCardHover be called with offer.id argument`, () => {
 
   card.simulate(`mouseover`);
 
-  expect(onMouseEnter).toHaveBeenCalledWith(Offers[0].id);
+  expect(onMouseEnter).toHaveBeenCalledWith(offers[0].id);
 });
 
 it(`Should onCardMouseLeave be called`, () => {
@@ -35,7 +35,7 @@ it(`Should onCardMouseLeave be called`, () => {
   const main = mount(
       <BrowserRouter>
         <PlaceCard
-          offer={Offers[0]}
+          offer={offers[0]}
           onMouseEnter={() => {}}
           onMouseLeave={onMouseLeave}
         />

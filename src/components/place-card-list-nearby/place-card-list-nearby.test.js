@@ -1,17 +1,15 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import PlaceCardList from "./place-card-list.jsx";
 import offers from '../../test-mocks/offers.js';
+import PlaceCardListNearby from "./place-card-list-nearby.jsx";
 import {BrowserRouter} from 'react-router-dom';
 
-it(`Should PlaceCardList component render correctly`, () => {
+it(`Should PlaceCardListNearby component render correctly`, () => {
 
   const render = renderer.create(
       <BrowserRouter>
-        <PlaceCardList
-          offers={offers}
-          onMouseEnter={() => {}}
-          onMouseLeave={() => {}}
+        <PlaceCardListNearby
+          nearbyOffers={offers.slice(0, 3)}
         />
       </BrowserRouter>
   )

@@ -4,20 +4,30 @@ import Main from "./main.jsx";
 import {BrowserRouter} from 'react-router-dom';
 import configureStore from "redux-mock-store";
 import {Provider} from "react-redux";
-import Offers from '../../test-mocks/offers.js';
+import offers from '../../test-mocks/offers.js';
 
 const mockStore = configureStore([]);
 
 const store = mockStore({
   offers: {
-    data: Offers,
+    data: offers,
+    isLoading: false,
+    isError: false,
+  },
+  nearbyOffers: {
+    data: offers,
     isLoading: false,
     isError: false,
   },
   city: {
-    currentCity: Offers[0].city,
-    coords: Offers[0].cityCoords,
-    zoom: Offers[0].cityZoom,
+    currentCity: offers[0].city,
+    coords: offers[0].cityCoords,
+    zoom: offers[0].cityZoom,
+  },
+  reviews: {
+    data: [],
+    isLoading: true,
+    isError: false,
   }
 });
 
@@ -27,9 +37,7 @@ it(`Should Main component render correctly`, () => {
     .create(
         <Provider store={store}>
           <BrowserRouter>
-            <Main
-              offers={Offers}
-            />
+            <Main />
           </BrowserRouter>
         </Provider>,
         {

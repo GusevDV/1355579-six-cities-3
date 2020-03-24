@@ -1,5 +1,5 @@
-import {reducer, ActionTypes} from "./city.js";
-import Offers from '../../test-mocks/offers';
+import {reducer, ActionType} from "./city.js";
+import offers from '../../test-mocks/offers';
 
 const initialState = {
   currentCity: null,
@@ -15,17 +15,17 @@ describe(`City reducers`, () => {
 
   it(`CHANGE_CITY`, () => {
     const action = {
-      type: ActionTypes.CHANGE_CITY,
+      type: ActionType.CHANGE_CITY,
       payload: {
-        name: Offers[0].city,
-        coords: Offers[0].cityCoords,
-        zoom: Offers[0].cityZoom
+        name: offers[0].city,
+        coords: offers[0].cityCoords,
+        zoom: offers[0].cityZoom
       }
     };
     expect(reducer(initialState, action)).toEqual({
-      currentCity: Offers[0].city,
-      coords: Offers[0].cityCoords,
-      zoom: Offers[0].cityZoom
+      currentCity: offers[0].city,
+      coords: offers[0].cityCoords,
+      zoom: offers[0].cityZoom
     });
   });
 

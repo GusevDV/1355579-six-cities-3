@@ -2,13 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import leaflet from 'leaflet';
 import {offerType} from '../../types/offers-types.js';
-import {MapSettings} from '../../../const.js';
+import {MapSetting, mapDisplayType} from '../../../const.js';
 
 class Map extends React.PureComponent {
   constructor(props) {
     super(props);
     this.mapRef = React.createRef();
-
     this.mapConfig = {
       center: this.props.city,
       zoom: props.zoom,
@@ -17,8 +16,13 @@ class Map extends React.PureComponent {
     };
 
     this.icon = leaflet.icon({
-      iconUrl: MapSettings.ICON_URL,
-      iconSize: MapSettings.ICON_SIZE,
+      iconUrl: MapSetting.ICON_URL,
+      iconSize: MapSetting.ICON_SIZE,
+    });
+
+    this.activeIcon = leaflet.icon({
+      iconUrl: MapSetting.ICON_URL_ACTIVE,
+      iconSize: MapSetting.ICON_SIZE,
     });
 
     this.markers = [];
@@ -47,9 +51,11 @@ class Map extends React.PureComponent {
 
   addMarkers() {
     this.props.offers.forEach((offer) => {
-      const marker = leaflet
-        .marker(offer.coords, this.icon)
-        .addTo(this.map);
+      let icon = this.icon;
+      if (this.props.currentOffer) {
+        icon = offer.id === this.props.currentOffer.id ? this.activeIcon : this.icon;
+      }
+      const marker = leaflet.marker(offer.coords, {icon}).addTo(this.map);
       this.markers.push(marker);
     });
   }
@@ -64,16 +70,28 @@ class Map extends React.PureComponent {
   }
 
   render() {
+    let mapClass = ``;
+    if (this.props.mapType === mapDisplayType.CITIES) {
+      mapClass = `cities__map`;
+    } else if (this.props.mapType === mapDisplayType.PROPERTY) {
+      mapClass = `property__map`;
+    }
     return (
-      <section className="cities__map map" id="map" ref={this.mapRef}></section>
+      <section className={`map ${mapClass}`} id="map" ref={this.mapRef}></section>
     );
   }
 }
 
 Map.propTypes = {
-  offers: PropTypes.arrayOf(offerType).isRequired,
+  offers: PropTypes.arrayOf(offerType.isRequired).isRequired,
+  currentOffer: offerType,
   city: PropTypes.arrayOf(PropTypes.number).isRequired,
   zoom: PropTypes.number.isRequired,
+  mapType: PropTypes.oneOf([mapDisplayType.CITIES, mapDisplayType.PROPERTY])
+};
+
+Map.defaultProps = {
+  mapType: mapDisplayType.CITIES,
 };
 
 export default Map;
