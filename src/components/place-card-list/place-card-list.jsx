@@ -11,7 +11,6 @@ const PlaceCardList = React.memo(function PlaceCardList(props) {
         <PlaceCard
           key={offer.id}
           offer={offer}
-          onTitleLinkClick={props.onTitleLinkClick}
           onMouseEnter={props.onMouseEnter}
           onMouseLeave={props.onMouseLeave}
         />
@@ -22,7 +21,6 @@ const PlaceCardList = React.memo(function PlaceCardList(props) {
 });
 PlaceCardList.propTypes = {
   offers: PropTypes.arrayOf(offerType).isRequired,
-  onTitleLinkClick: PropTypes.func.isRequired,
   onMouseEnter: PropTypes.func.isRequired,
   onMouseLeave: PropTypes.func.isRequired
 };

@@ -23,7 +23,7 @@ it(`Should App component render correctly when offers is loaded with success`, (
   });
 
   const render = renderer.create(
-      <Provider store={store}><App onTitleLinkClick={() => {}}/></Provider>,
+      <Provider store={store}><App /></Provider>,
       {
         createNodeMock: () => {
           return document.createElement(`section`);

@@ -91,7 +91,7 @@ exports[`Should PlaceCardList component render correctly 1`] = `
       >
         <a
           className="place-card__name-link"
-          href="#"
+          href="/offer/1"
           onClick={[Function]}
         >
           Apartment 1
@@ -198,7 +198,7 @@ exports[`Should PlaceCardList component render correctly 1`] = `
       >
         <a
           className="place-card__name-link"
-          href="#"
+          href="/offer/2"
           onClick={[Function]}
         >
           Apartment 2
@@ -305,7 +305,7 @@ exports[`Should PlaceCardList component render correctly 1`] = `
       >
         <a
           className="place-card__name-link"
-          href="#"
+          href="/offer/3"
           onClick={[Function]}
         >
           Apartment 3
@@ -405,7 +405,7 @@ exports[`Should PlaceCardList component render correctly 1`] = `
       >
         <a
           className="place-card__name-link"
-          href="#"
+          href="/offer/4"
           onClick={[Function]}
         >
           Apartment 4
@@ -505,7 +505,7 @@ exports[`Should PlaceCardList component render correctly 1`] = `
       >
         <a
           className="place-card__name-link"
-          href="#"
+          href="/offer/5"
           onClick={[Function]}
         >
           Apartment 5

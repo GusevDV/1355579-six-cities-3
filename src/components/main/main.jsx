@@ -58,7 +58,7 @@ const Main = (props) => {
                   </li>
                 </ul>
               </form>
-              <PlaceCardListWrapped offers={currentOffers} onTitleLinkClick={props.onTitleLinkClick} />
+              <PlaceCardListWrapped offers={currentOffers} />
             </section>
             <div className="cities__right-section">
               {props.currentCity ? (
@@ -74,7 +74,6 @@ const Main = (props) => {
 
 Main.propTypes = {
   offers: PropTypes.arrayOf(offerType).isRequired,
-  onTitleLinkClick: PropTypes.func.isRequired,
   currentCity: PropTypes.string,
   cityCoords: PropTypes.array,
   cityZoom: PropTypes.number,

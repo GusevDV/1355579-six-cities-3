@@ -1,5 +1,6 @@
 import axios from 'axios';
 import {BASE_API_URL} from '../const.js';
+import {transformFieldsToCamelCase} from './helpers/transform-helpers.js';
 
 const Error = {
   BAD_REQUEST: 400,
@@ -10,14 +11,29 @@ const createAPI = (onUnauthorized, onBadRequest) => {
   const api = axios.create({
     baseURL: BASE_API_URL,
     timeout: 5000,
-    withCredentials: true
+    withCredentials: true,
+    transformResponse: [
+      (data) => {
+        let dataObject;
+        try {
+          dataObject = JSON.parse(data);
+        } catch (error) {
+          return data;
+        }
+
+        if (Array.isArray(dataObject)) {
+          return dataObject.map((item) => transformFieldsToCamelCase(item));
+        } else {
+          return transformFieldsToCamelCase(dataObject);
+        }
+      }
+    ]
   });
 
   const onSuccess = (response) => response;
 
   const onFail = (err) => {
     const {response} = err;
-
     if (response.status === Error.UNAUTHORIZED && typeof onUnauthorized === `function`) {
       onUnauthorized();
       throw err;

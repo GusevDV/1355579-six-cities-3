@@ -1,11 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {Link} from 'react-router-dom';
 import {offerType} from '../../types/offers-types.js';
+import {convertRatingToProcent} from '../../helpers/transform-helpers.js';
 
 const PlaceCard = (props) => {
-  const {offer, onTitleLinkClick, onMouseEnter, onMouseLeave} = props;
+  const {offer, onMouseEnter, onMouseLeave} = props;
   const {title, price, pricePeriod, thumnnailUrl, objectType, isPremium} = offer;
-  const rating = 100 * Math.round(offer.rating) / 5;
+  const rating = convertRatingToProcent(offer.rating);
   return (
     <article
       className="cities__place-card place-card"
@@ -52,7 +54,7 @@ const PlaceCard = (props) => {
           </div>
         </div>
         <h2 className="place-card__name">
-          <a className="place-card__name-link" href="#" onClick={onTitleLinkClick}>{title}</a>
+          <Link className="place-card__name-link" to={`offer/${offer.id}`} >{title}</Link>
         </h2>
         <p className="place-card__type">{objectType}</p>
       </div>
@@ -62,7 +64,6 @@ const PlaceCard = (props) => {
 
 PlaceCard.propTypes = {
   offer: offerType,
-  onTitleLinkClick: PropTypes.func.isRequired,
   onMouseEnter: PropTypes.func.isRequired,
   onMouseLeave: PropTypes.func.isRequired
 };
