@@ -11,17 +11,16 @@ const Throbber = (props) => {
   );
 };
 
-Throbber.defaultProps = {
-  mods: {
-    position: `default`
-  }
-};
-
 Throbber.propTypes = {
   mods: PropTypes.shape({
     position: PropTypes.oneOf([`center-page`, `default`])
   })
 };
 
+Throbber.defaultProps = {
+  mods: {
+    position: `default`
+  }
+};
 
 export default Throbber;

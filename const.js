@@ -14,5 +14,10 @@ export const ErrorMessages = {
   NETWROK_ERROR: `Нам не удалось получить данные с сервера 😢`
 };
 
+export const mapDisplayType = {
+  CITIES: `cities`,
+  PROPERTY: `propery`,
+};
+
 export const MAX_CITIES_COUNT = 6;
 export const BASE_API_URL = `https://htmlacademy-react-3.appspot.com/six-cities`;
