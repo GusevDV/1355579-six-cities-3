@@ -7,7 +7,7 @@ import {Provider} from 'react-redux';
 import reducer from './reducer/reducer.js';
 import thunk from 'redux-thunk';
 import createAPI from './api.js';
-import {ApiCalls as offerApi} from "./reducer/offers/offers.js";
+import {ApiCall as OfferApiCall} from "./reducer/offers/offers.js";
 
 const api = createAPI();
 
@@ -18,7 +18,7 @@ const store = createStore(
     )
 );
 
-store.dispatch(offerApi.fetchOffers());
+store.dispatch(OfferApiCall.fetchOffers());
 
 ReactDOM.render(
     <Provider store={store}>

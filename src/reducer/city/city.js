@@ -5,20 +5,20 @@ const initialState = {
   zoom: 0
 };
 
-const ActionTypes = {
+const ActionType = {
   CHANGE_CITY: `CHANGE_CITY`,
 };
 
-const ActionCreators = {
+const ActionCreator = {
   changeCity: (payload) => ({
-    type: ActionTypes.CHANGE_CITY,
+    type: ActionType.CHANGE_CITY,
     payload,
   })
 };
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case ActionTypes.CHANGE_CITY:
+    case ActionType.CHANGE_CITY:
       return Object.assign({}, state, {
         currentCity: action.payload.name,
         coords: action.payload.coords,
@@ -29,4 +29,4 @@ const reducer = (state = initialState, action) => {
   return state;
 };
 
-export {ActionCreators, ActionTypes, reducer};
+export {ActionCreator, ActionType, reducer};

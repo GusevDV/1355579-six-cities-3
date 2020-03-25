@@ -1,16 +1,16 @@
-export const OfferTypes = {
+export const OfferType = {
   APARTMENT: `apartment`,
   ROOM: `room`,
   HOUSE: `house`,
   HOTEL: `hotel`,
 };
-export const MapSettings = {
+export const MapSetting = {
   ZOOM: 12,
   ICON_URL: `img/pin.svg`,
   ICON_SIZE: [30, 30]
 };
 
-export const ErrorMessages = {
+export const ErrorMessage = {
   NETWROK_ERROR: `Нам не удалось получить данные с сервера 😢`
 };
 

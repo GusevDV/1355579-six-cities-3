@@ -1,7 +1,7 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import PlaceCardList from "./place-card-list.jsx";
-import Offers from '../../test-mocks/offers.js';
+import offers from '../../test-mocks/offers.js';
 import {BrowserRouter} from 'react-router-dom';
 
 it(`Should PlaceCardList component render correctly`, () => {
@@ -9,7 +9,7 @@ it(`Should PlaceCardList component render correctly`, () => {
   const render = renderer.create(
       <BrowserRouter>
         <PlaceCardList
-          offers={Offers}
+          offers={offers}
           onMouseEnter={() => {}}
           onMouseLeave={() => {}}
         />
