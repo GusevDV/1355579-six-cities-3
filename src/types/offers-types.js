@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import {OfferTypes} from '../../const.js';
+import {OfferType} from '../../const.js';
 import {createRatingPropType} from './rating-types.js';
 
 export const offerType = PropTypes.shape({
@@ -9,10 +9,10 @@ export const offerType = PropTypes.shape({
   pricePeriod: PropTypes.string.isRequired,
   thumnnailUrl: PropTypes.string.isRequired,
   objectType: PropTypes.oneOf([
-    OfferTypes.APARTMENT,
-    OfferTypes.HOTEL,
-    OfferTypes.HOUSE,
-    OfferTypes.ROOM]
+    OfferType.APARTMENT,
+    OfferType.HOTEL,
+    OfferType.HOUSE,
+    OfferType.ROOM]
   ).isRequired,
   isPremium: PropTypes.bool.isRequired,
   maxAdults: PropTypes.number.isRequired,

@@ -4,15 +4,23 @@ import OfferDetail from "./offer-detail.jsx";
 import {BrowserRouter} from 'react-router-dom';
 import configureStore from "redux-mock-store";
 import {Provider} from "react-redux";
-import Offers from '../../test-mocks/offers.js';
+import offers from '../../test-mocks/offers.js';
 
 const mockStore = configureStore([]);
 
 const store = mockStore({
   offers: {
-    data: Offers,
+    data: offers,
     isLoading: false,
     isError: false,
+<<<<<<< HEAD
+=======
+  },
+  city: {
+    currentCity: offers[0].city,
+    coords: offers[0].cityCoords,
+    zoom: offers[0].cityZoom,
+>>>>>>> Criterion b8, b9
   }
 });
 

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import leaflet from 'leaflet';
 import {offerType} from '../../types/offers-types.js';
-import {MapSettings, mapDisplayType} from '../../../const.js';
+import {MapSetting, mapDisplayType} from '../../../const.js';
 
 class Map extends React.PureComponent {
   constructor(props) {
@@ -17,8 +17,8 @@ class Map extends React.PureComponent {
     };
 
     this.icon = leaflet.icon({
-      iconUrl: MapSettings.ICON_URL,
-      iconSize: MapSettings.ICON_SIZE,
+      iconUrl: MapSetting.ICON_URL,
+      iconSize: MapSetting.ICON_SIZE,
     });
 
     this.markers = [];

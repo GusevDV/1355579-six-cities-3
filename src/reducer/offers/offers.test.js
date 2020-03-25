@@ -1,7 +1,7 @@
 import MockAdapter from "axios-mock-adapter";
 import createAPI from "../../api.js";
-import {reducer, ActionTypes, ApiCalls} from "./offers.js";
-import {ActionTypes as CityActionTypes} from "../city/city.js";
+import {reducer, ActionType, ApiCall} from "./offers.js";
+import {ActionType as CityActionType} from "../city/city.js";
 import offers from '../../test-mocks/server-offers.js';
 import {transformOffers} from '../../helpers/api-adapters.js';
 
@@ -24,7 +24,7 @@ describe(`Offers reducers`, () => {
       isError: false,
     };
     const action = {
-      type: ActionTypes.FETCH_OFFERS_START,
+      type: ActionType.FETCH_OFFERS_START,
     };
     expect(reducer(initialState, action)).toEqual({
       data: [],
@@ -40,7 +40,7 @@ describe(`Offers reducers`, () => {
       isError: true,
     };
     const action = {
-      type: ActionTypes.FETCH_OFFERS_START,
+      type: ActionType.FETCH_OFFERS_START,
     };
     expect(reducer(initialState, action)).toEqual({
       data: [],
@@ -56,7 +56,7 @@ describe(`Offers reducers`, () => {
       isError: false,
     };
     const action = {
-      type: ActionTypes.FETCH_OFFERS_SUCCESS,
+      type: ActionType.FETCH_OFFERS_SUCCESS,
       payload: offers
     };
     expect(reducer(initialState, action)).toEqual({
@@ -73,7 +73,7 @@ describe(`Offers reducers`, () => {
       isError: false,
     };
     const action = {
-      type: ActionTypes.FETCH_OFFERS_FAILURE,
+      type: ActionType.FETCH_OFFERS_FAILURE,
     };
     expect(reducer(initialState, action)).toEqual({
       data: [],
@@ -84,17 +84,17 @@ describe(`Offers reducers`, () => {
 
 });
 
-describe(`ApiCalls work correctly`, () => {
+describe(`ApiCall work correctly`, () => {
 
   it(`Should API call to /hotels finished successfully`, function () {
     const apiMock = new MockAdapter(api);
     const dispatch = jest.fn();
-    const offersLoader = ApiCalls.fetchOffers();
+    const offersLoader = ApiCall.fetchOffers();
 
     const expectedActions = [
-      {type: ActionTypes.FETCH_OFFERS_START},
-      {type: ActionTypes.FETCH_OFFERS_SUCCESS, payload: transformOffers(offers)},
-      {type: CityActionTypes.CHANGE_CITY, payload: {
+      {type: ActionType.FETCH_OFFERS_START},
+      {type: ActionType.FETCH_OFFERS_SUCCESS, payload: transformOffers(offers)},
+      {type: CityActionType.CHANGE_CITY, payload: {
         name: offers[0].city.name,
         coords: [offers[0].city.location.latitude, offers[0].city.location.longitude],
         zoom: offers[0].city.location.zoom,
@@ -118,11 +118,11 @@ describe(`ApiCalls work correctly`, () => {
     const apiMock = new MockAdapter(api);
     const dispatch = jest.fn();
     const callback = jest.fn();
-    const offersLoader = ApiCalls.fetchOffers(callback);
+    const offersLoader = ApiCall.fetchOffers(callback);
 
     const expectedActions = [
-      {type: ActionTypes.FETCH_OFFERS_START},
-      {type: ActionTypes.FETCH_OFFERS_FAILURE}
+      {type: ActionType.FETCH_OFFERS_START},
+      {type: ActionType.FETCH_OFFERS_FAILURE}
     ];
 
     apiMock

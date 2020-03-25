@@ -2,20 +2,20 @@ import {convertRatingToProcent, transformFieldsToCamelCase} from './transform-he
 
 describe(`transform rating tests`, () => {
   it(`Should transform rating correctly`, () => {
-    const data = [0, 2.75, 5, 3.21, 3.8, 4.5];
-    const expectedData = [0, 60, 100, 60, 80, 100];
+    const ratings = [0, 2.75, 5, 3.21, 3.8, 4.5];
+    const expectedRatings = [0, 60, 100, 60, 80, 100];
 
-    const converted = data.map((rating) => convertRatingToProcent(rating));
+    const convertedRatings = ratings.map((rating) => convertRatingToProcent(rating));
 
-    expect(converted).toEqual(expectedData);
+    expect(convertedRatings).toEqual(expectedRatings);
   });
 
   it(`Should convertRatingToProcent return 100`, () => {
-    const data = [7, 5.3, 5.1, 10, 100];
+    const ratings = [7, 5.3, 5.1, 10, 100];
 
-    const converted = data.map((rating) => convertRatingToProcent(rating));
+    const convertedRatings = ratings.map((rating) => convertRatingToProcent(rating));
 
-    expect(converted).toEqual(data.map(() => 100));
+    expect(convertedRatings).toEqual(ratings.map(() => 100));
   });
 
 });
