@@ -6,7 +6,7 @@ import Review from '../review/review.jsx';
 const ReviewsList = (props) => {
   return (
     <>
-      <h2 classnName="reviews__title">Reviews &middot; <span className="reviews__amount">{props.reviews.length}</span></h2>
+      <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{props.reviews.length}</span></h2>
       <ul className="reviews__list">
         {props.reviews.map((review) => (
           <Review key={review.id} review={review} />
@@ -17,7 +17,7 @@ const ReviewsList = (props) => {
 };
 
 ReviewsList.propTypes = {
-  reviews: PropTypes.shape(reviewType).isRequired
+  reviews: PropTypes.arrayOf(reviewType).isRequired
 };
 
 export default ReviewsList;
