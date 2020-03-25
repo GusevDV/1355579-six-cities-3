@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import {createRatingPropType} from './rating-types.js';
 
-export const reviewType = {
+export const reviewType = PropTypes.shape({
   user: PropTypes.shape({
     id: PropTypes.isRequired,
     isPro: PropTypes.bool,
@@ -10,6 +10,6 @@ export const reviewType = {
   }).isRequired,
   rating: createRatingPropType(true, 0, 5),
   comment: PropTypes.string.isRequired,
-  date: PropTypes.instanceOf(Date),
-};
+  date: PropTypes.string.isRequired
+});
 
