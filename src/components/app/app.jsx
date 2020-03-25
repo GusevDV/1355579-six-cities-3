@@ -22,7 +22,9 @@ const App = (props) => {
         <Route exact path="/">
           <Main />;
         </Route>
-        <Route exact path='/offer/:id' component={OfferDetail} />
+        <Route exact path='/offer/:id' render={(routeProps) => (
+          <OfferDetail offerId={routeProps.match.params.id} />
+        )} />
       </Switch>
     </BrowserRouter>
   );

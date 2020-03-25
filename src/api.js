@@ -15,17 +15,14 @@ const createAPI = (onUnauthorized, onBadRequest) => {
     transformResponse: [
       (data) => {
         let dataObject;
+
         try {
           dataObject = JSON.parse(data);
         } catch (error) {
           return data;
         }
 
-        if (Array.isArray(dataObject)) {
-          return dataObject.map((item) => transformFieldsToCamelCase(item));
-        } else {
-          return transformFieldsToCamelCase(dataObject);
-        }
+        return transformFieldsToCamelCase(dataObject);
       }
     ]
   });

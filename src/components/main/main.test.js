@@ -29,7 +29,6 @@ it(`Should Main component render correctly`, () => {
           <BrowserRouter>
             <Main
               offers={Offers}
-              onTitleLinkClick={() => {}}
             />
           </BrowserRouter>
         </Provider>,

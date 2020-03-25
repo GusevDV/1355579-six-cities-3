@@ -1,4 +1,3 @@
-/* eslint-disable camelcase */
 import {convertRatingToProcent, transformFieldsToCamelCase} from './transform-helpers.js';
 
 describe(`transform rating tests`, () => {
@@ -23,39 +22,51 @@ describe(`transform rating tests`, () => {
 
 describe(`transformFieldsToCamelCase tests`, () => {
 
+  const object = {
+    field: `param`,
+    field_name: `param`, /* eslint-disable-line camelcase */
+    field_name_one_two: `param`, /* eslint-disable-line camelcase */
+    fieldObject: {
+      field: `param`,
+      fieldObject_type: { /* eslint-disable-line camelcase */
+        field: `param`
+      },
+      field_object: { /* eslint-disable-line camelcase */
+        field: `param`,
+        field_array: [1, 2, 3], /* eslint-disable-line camelcase */
+      },
+    },
+    field_array_one: [1, 2, 3], /* eslint-disable-line camelcase */
+  };
+
+  const expectedObject = {
+    field: `param`,
+    fieldName: `param`,
+    fieldNameOneTwo: `param`,
+    fieldObject: {
+      field: `param`,
+      fieldObjectType: {field: `param`},
+      fieldObject: {field: `param`, fieldArray: [1, 2, 3]}
+    },
+    fieldArrayOne: [1, 2, 3]
+  };
+
   it(`Should transform fields to CamelCase correctly`, () => {
+    expect(transformFieldsToCamelCase(object)).toEqual(expectedObject);
+  });
+
+  it(`Should transform fields to CamelCase correctly in array of objects`, () => {
     // eslint-disable-next-line camelcase
 
-    const data = {
-      field: `param`,
-      field_name: `param`,
-      field_name_one_two: `param`,
-      fieldObject: {
-        field: `param`,
-        fieldObject_type: {
-          field: `param`
-        },
-        field_object: {
-          field: `param`,
-          field_array: [1, 2, 3],
-        },
-      },
-      field_array_one: [1, 2, 3],
-    };
+    let objects = [];
+    let expectedObjects = [];
 
-    const expectedData = {
-      field: `param`,
-      fieldName: `param`,
-      fieldNameOneTwo: `param`,
-      fieldObject: {
-        field: `param`,
-        fieldObjectType: {field: `param`},
-        fieldObject: {field: `param`, fieldArray: [1, 2, 3]}
-      },
-      fieldArrayOne: [1, 2, 3]
-    };
+    for (let i = 0; i < 10; i++) {
+      objects[i] = Object.assign({}, object);
+      expectedObjects[i] = Object.assign({}, expectedObject);
+    }
 
-    expect(transformFieldsToCamelCase(data)).toEqual(expectedData);
+    expect(transformFieldsToCamelCase(objects)).toEqual(expectedObjects);
   });
 
 });

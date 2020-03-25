@@ -7,6 +7,10 @@ export function convertRatingToProcent(rating) {
 
 export function transformFieldsToCamelCase(object) {
 
+  if (Array.isArray(object)) {
+    return object.map((item) => transformFieldsToCamelCase(item));
+  }
+
   const newObject = {};
 
   const checkIsObject = function (o) {
@@ -30,3 +34,5 @@ export function transformFieldsToCamelCase(object) {
 
   return newObject;
 }
+
+

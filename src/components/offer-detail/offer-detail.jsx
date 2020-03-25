@@ -20,7 +20,6 @@ const OfferDetail = (props) => {
     isPremium,
     host
   } = props.offer;
-
   const rating = convertRatingToProcent(props.offer.rating);
 
   return (
@@ -285,15 +284,11 @@ const OfferDetail = (props) => {
 
 OfferDetail.propTypes = {
   offer: offerType,
-  match: PropTypes.object
+  offerId: PropTypes.string.isRequired
 };
 
 const mapStateToProps = (state, ownProps) => ({
-  offer: (function () {
-    return state.offers.data.filter((offer) => {
-      return offer.id === Number.parseInt(ownProps.match.params.id, 10);
-    })[0];
-  })()
+  offer: state.offers.data.find((offer) => offer.id === Number.parseInt(ownProps.offerId, 10))
 });
 
 

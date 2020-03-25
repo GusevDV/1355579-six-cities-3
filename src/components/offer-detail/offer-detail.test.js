@@ -13,30 +13,24 @@ const store = mockStore({
     data: Offers,
     isLoading: false,
     isError: false,
-  },
-  city: {
-    currentCity: Offers[0].city,
-    coords: Offers[0].cityCoords,
-    zoom: Offers[0].cityZoom,
   }
 });
 
 it(`Should Main component render correctly`, () => {
 
-  const tree = renderer
-    .create(
-        <Provider store={store}>
-          <BrowserRouter>
-            <OfferDetail
-              match={{params: {id: 1}}}
-            />
-          </BrowserRouter>
-        </Provider>,
-        {
-          createNodeMock: () => {
-            return document.createElement(`section`);
-          }
-        })
+  const tree = renderer.create(
+      <Provider store={store}>
+        <BrowserRouter>
+          <OfferDetail
+            offerId={`1`}
+          />
+        </BrowserRouter>
+      </Provider>,
+      {
+        createNodeMock: () => {
+          return document.createElement(`section`);
+        }
+      })
     .toJSON();
 
   expect(tree).toMatchSnapshot();
