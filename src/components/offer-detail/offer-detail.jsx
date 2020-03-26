@@ -11,7 +11,7 @@ import ThrobberSwitcher from '../throbber-switcher/throbber-switcher.jsx';
 import {mapDisplayType} from '../../../const.js';
 import {ApiCall as ReviewsApiCall} from '../../reducer/reviews/reviews.js';
 import Map from '../map/map.jsx';
-import {ErrorMessage} from '../../../const.js';
+import {ErrorMessage, MAX_REVIEWS_COUNT} from '../../../const.js';
 
 class OfferDetail extends React.PureComponent {
   constructor(props) {
@@ -117,7 +117,7 @@ class OfferDetail extends React.PureComponent {
                 <section className="property__reviews reviews">
                   <ThrobberSwitcher isLoading={this.props.reviews.isLoading} render={() => {
                     if (!this.props.reviews.isError) {
-                      return <ReviewsList reviews={this.props.reviews.data} />;
+                      return <ReviewsList reviews={this.props.reviews.data} maxReviewsCount={MAX_REVIEWS_COUNT} />;
                     } else {
                       return <ErrorArea message={ErrorMessage.NETWROK_ERROR} />;
                     }

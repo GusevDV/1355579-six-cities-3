@@ -4,11 +4,12 @@ import {reviewType} from '../../types/reviews-types.js';
 import Review from '../review/review.jsx';
 
 const ReviewsList = (props) => {
+  const reviews = props.reviews.slice(0, props.maxReviewsCount - 1);
   return (
     <>
       <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{props.reviews.length}</span></h2>
       <ul className="reviews__list">
-        {props.reviews.map((review) => (
+        {reviews.map((review) => (
           <Review key={review.id} review={review} />
         ))}
       </ul>
@@ -17,7 +18,8 @@ const ReviewsList = (props) => {
 };
 
 ReviewsList.propTypes = {
-  reviews: PropTypes.arrayOf(reviewType).isRequired
+  reviews: PropTypes.arrayOf(reviewType).isRequired,
+  maxReviewsCount: PropTypes.number.isRequired,
 };
 
 export default ReviewsList;
