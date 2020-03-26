@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 const CitiesList = (props) => {
   let {cities} = props;
   const {currentCity, maxCitiesCount} = props;
-  cities = cities.slice(0, maxCitiesCount - 1);
+  cities = cities.slice(0, maxCitiesCount);
   const handleCityLinkClick = (e, name, coords, zoom) => {
     e.preventDefault();
     props.onCityChange({name, coords, zoom});

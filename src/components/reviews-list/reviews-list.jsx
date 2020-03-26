@@ -4,7 +4,9 @@ import {reviewType} from '../../types/reviews-types.js';
 import Review from '../review/review.jsx';
 
 const ReviewsList = (props) => {
-  const reviews = props.reviews.slice(0, props.maxReviewsCount - 1);
+  let reviews = props.reviews;
+  reviews.sort((a, b) => new Date(b.date) - new Date(a.date));
+  reviews = props.reviews.slice(0, props.maxReviewsCount);
   return (
     <>
       <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{props.reviews.length}</span></h2>
