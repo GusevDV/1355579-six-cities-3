@@ -22,4 +22,5 @@ export const mapDisplayType = {
 export const monthNames = [`January`, `February`, `March`, `April`, `May`, `June`, `July`, `August`, `September`, `October`, `November`, `December`];
 
 export const MAX_CITIES_COUNT = 6;
+export const MAX_REVIEWS_COUNT = 10;
 export const BASE_API_URL = `https://htmlacademy-react-3.appspot.com/six-cities`;

@@ -8,6 +8,7 @@ it(`Should ReviewList component render correctly`, () => {
   const render = renderer.create(
       <ReviewsList
         reviews={reviews}
+        maxReviewsCount={10}
       />
   )
   .toJSON();
