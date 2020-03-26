@@ -17,7 +17,13 @@ it(`Should Main component render correctly with reviews`, () => {
             isLoading: false,
             isError: false,
           }}
+          nearbyOffers={{
+            data: offers.slice(0, 3),
+            isLoading: false,
+            isError: false,
+          }}
           fetchReviews={()=>{}}
+          fetchNearbyOffers={()=>{}}
         />
       </BrowserRouter>,
       {
@@ -30,7 +36,7 @@ it(`Should Main component render correctly with reviews`, () => {
   expect(tree).toMatchSnapshot();
 });
 
-it(`Should Main component render correctly with loading reviews`, () => {
+it(`Should Main component render correctly with loading reviews and nearby offers`, () => {
 
   const tree = renderer.create(
       <BrowserRouter>
@@ -42,7 +48,13 @@ it(`Should Main component render correctly with loading reviews`, () => {
             isLoading: true,
             isError: false,
           }}
+          nearbyOffers={{
+            data: offers.slice(0, 3),
+            isLoading: true,
+            isError: false,
+          }}
           fetchReviews={()=>{}}
+          fetchNearbyOffers={()=>{}}
         />
       </BrowserRouter>,
       {
@@ -55,7 +67,7 @@ it(`Should Main component render correctly with loading reviews`, () => {
   expect(tree).toMatchSnapshot();
 });
 
-it(`Should Main component render correctly with reviews error`, () => {
+it(`Should Main component render correctly with reviews and nearby offers error`, () => {
 
   const tree = renderer.create(
       <BrowserRouter>s
@@ -67,7 +79,13 @@ it(`Should Main component render correctly with reviews error`, () => {
             isLoading: false,
             isError: true,
           }}
+          nearbyOffers={{
+            data: offers.slice(0, 3),
+            isLoading: false,
+            isError: true,
+          }}
           fetchReviews={()=>{}}
+          fetchNearbyOffers={()=>{}}
         />
       </BrowserRouter>,
       {

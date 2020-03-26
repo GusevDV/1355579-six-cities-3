@@ -1,11 +1,12 @@
 import MockAdapter from "axios-mock-adapter";
 import createAPI from "../../api.js";
-import {reducer, ActionType, ApiCall} from "./reviews.js";
-import reviews from '../../test-mocks/reviews.js';
+import {reducer, ActionType, ApiCall} from "./nearby-offers.js";
+import offers from '../../test-mocks/server-offers.js';
+import {transformOffers} from '../../helpers/api-adapters.js';
 
 const api = createAPI(() => {});
 
-describe(`Reviews reducers`, () => {
+describe(`Nearby offers reducers`, () => {
 
   it(`Reducer without additional parameters should return initial state`, () => {
     expect(reducer(void 0, {})).toEqual({
@@ -15,14 +16,14 @@ describe(`Reviews reducers`, () => {
     });
   });
 
-  it(`FETCH_REVIEWS_START after situation without error`, () => {
+  it(`FETCH_NEARBY_OFFERS_START after situation without error`, () => {
     const initialState = {
       data: [],
       isLoading: false,
       isError: false,
     };
     const action = {
-      type: ActionType.FETCH_REVIEWS_START,
+      type: ActionType.FETCH_NEARBY_OFFERS_START,
     };
     expect(reducer(initialState, action)).toEqual({
       data: [],
@@ -31,14 +32,14 @@ describe(`Reviews reducers`, () => {
     });
   });
 
-  it(`FETCH_REVIEWS_START after situation with error`, () => {
+  it(`FETCH_NEARBY_OFFERS_START after situation with error`, () => {
     const initialState = {
       data: [],
       isLoading: false,
       isError: true,
     };
     const action = {
-      type: ActionType.FETCH_REVIEWS_START,
+      type: ActionType.FETCH_NEARBY_OFFERS_START,
     };
     expect(reducer(initialState, action)).toEqual({
       data: [],
@@ -47,31 +48,31 @@ describe(`Reviews reducers`, () => {
     });
   });
 
-  it(`FETCH_REVIEWS_SUCCESS`, () => {
+  it(`FETCH_NEARBY_OFFERS_SUCCESS`, () => {
     const initialState = {
       data: [],
       isLoading: true,
       isError: false,
     };
     const action = {
-      type: ActionType.FETCH_REVIEWS_SUCCESS,
-      payload: reviews
+      type: ActionType.FETCH_NEARBY_OFFERS_SUCCESS,
+      payload: offers
     };
     expect(reducer(initialState, action)).toEqual({
-      data: reviews,
+      data: offers,
       isLoading: false,
       isError: false,
     });
   });
 
-  it(`FETCH_REVIEWS_FAILURE`, () => {
+  it(`FETCH_NEARBY_OFFERS_FAILURE`, () => {
     const initialState = {
       data: [],
       isLoading: true,
       isError: false,
     };
     const action = {
-      type: ActionType.FETCH_REVIEWS_FAILURE,
+      type: ActionType.FETCH_NEARBY_OFFERS_FAILURE,
     };
     expect(reducer(initialState, action)).toEqual({
       data: [],
@@ -84,21 +85,21 @@ describe(`Reviews reducers`, () => {
 
 describe(`ApiCall work correctly`, () => {
 
-  it(`Should API call to /comments/1 finished successfully`, function () {
+  it(`Should API call to /hotels/1/nearby finished successfully`, function () {
     const apiMock = new MockAdapter(api);
     const dispatch = jest.fn();
-    const reviewsLoader = ApiCall.fetchReviews(1);
+    const nearbyOffersLoader = ApiCall.fetchNearbyOffers(1);
 
     const expectedActions = [
-      {type: ActionType.FETCH_REVIEWS_START},
-      {type: ActionType.FETCH_REVIEWS_SUCCESS, payload: reviews}
+      {type: ActionType.FETCH_NEARBY_OFFERS_START},
+      {type: ActionType.FETCH_NEARBY_OFFERS_SUCCESS, payload: transformOffers(offers)}
     ];
 
     apiMock
-      .onGet(`/comments/1`)
-      .reply(200, reviews);
+      .onGet(`hotels/1/nearby`)
+      .reply(200, offers);
 
-    return reviewsLoader(dispatch, () => {}, api)
+    return nearbyOffersLoader(dispatch, () => {}, api)
       .then(() => {
         expect(dispatch).toHaveBeenCalledTimes(2);
         expect(dispatch.mock.calls[0][0]).toEqual(expectedActions[0]);
@@ -106,21 +107,21 @@ describe(`ApiCall work correctly`, () => {
       });
   });
 
-  it(`Should API call to /comments/1 finished failure`, function () {
+  it(`Should API call to /hotels/1/nearby finished failure`, function () {
     const apiMock = new MockAdapter(api);
     const dispatch = jest.fn();
-    const reviewsLoader = ApiCall.fetchReviews(1);
+    const nearbyOffersLoader = ApiCall.fetchNearbyOffers(1);
 
     const expectedActions = [
-      {type: ActionType.FETCH_REVIEWS_START},
-      {type: ActionType.FETCH_REVIEWS_FAILURE}
+      {type: ActionType.FETCH_NEARBY_OFFERS_START},
+      {type: ActionType.FETCH_NEARBY_OFFERS_FAILURE}
     ];
 
     apiMock
-      .onGet(`/comments/1`)
+      .onGet(`hotels/1/nearby`)
       .reply(500);
 
-    return reviewsLoader(dispatch, () => {}, api)
+    return nearbyOffersLoader(dispatch, () => {}, api)
       .then(() => {
         expect(dispatch).toHaveBeenCalledTimes(2);
         expect(dispatch.mock.calls[0][0]).toEqual(expectedActions[0]);
