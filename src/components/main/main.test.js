@@ -18,6 +18,11 @@ const store = mockStore({
     currentCity: offers[0].city,
     coords: offers[0].cityCoords,
     zoom: offers[0].cityZoom,
+  },
+  reviews: {
+    data: [],
+    isLoading: true,
+    isError: false,
   }
 });
 
@@ -28,12 +33,7 @@ it(`Should Main component render correctly`, () => {
         <Provider store={store}>
           <BrowserRouter>
             <Main
-<<<<<<< HEAD
-              offers={Offers}
-=======
               offers={offers}
-              onTitleLinkClick={() => {}}
->>>>>>> Criterion b8, b9
             />
           </BrowserRouter>
         </Provider>,
