@@ -73,7 +73,7 @@ const Main = (props) => {
 };
 
 Main.propTypes = {
-  offers: PropTypes.arrayOf(offerType).isRequired,
+  offers: PropTypes.arrayOf(offerType.isRequired).isRequired,
   currentCity: PropTypes.string,
   cityCoords: PropTypes.array,
   cityZoom: PropTypes.number,

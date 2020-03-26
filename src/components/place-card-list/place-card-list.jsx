@@ -20,7 +20,7 @@ const PlaceCardList = React.memo(function PlaceCardList(props) {
 
 });
 PlaceCardList.propTypes = {
-  offers: PropTypes.arrayOf(offerType).isRequired,
+  offers: PropTypes.arrayOf(offerType.isRequired).isRequired,
   onMouseEnter: PropTypes.func.isRequired,
   onMouseLeave: PropTypes.func.isRequired
 };

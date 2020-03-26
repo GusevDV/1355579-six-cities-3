@@ -27,4 +27,4 @@ export const offerType = PropTypes.shape({
   city: PropTypes.string.isRequired,
   coords: PropTypes.arrayOf(PropTypes.number).isRequired,
   images: PropTypes.arrayOf(PropTypes.string).isRequired,
-}).isRequired;
+});

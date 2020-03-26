@@ -28,6 +28,7 @@ it(`Should Map property component render correctly`, () => {
       offers={offers}
       zoom={13}
       mapType={mapDisplayType.PROPERTY}
+      currentOffer={offers[0]}
     />,
     {
       createNodeMock: () => {

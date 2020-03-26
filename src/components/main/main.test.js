@@ -14,6 +14,11 @@ const store = mockStore({
     isLoading: false,
     isError: false,
   },
+  nearbyOffers: {
+    data: offers,
+    isLoading: false,
+    isError: false,
+  },
   city: {
     currentCity: offers[0].city,
     coords: offers[0].cityCoords,
@@ -23,7 +28,7 @@ const store = mockStore({
     data: [],
     isLoading: true,
     isError: false,
-  }
+  },
 });
 
 it(`Should Main component render correctly`, () => {
@@ -32,9 +37,7 @@ it(`Should Main component render correctly`, () => {
     .create(
         <Provider store={store}>
           <BrowserRouter>
-            <Main
-              offers={offers}
-            />
+            <Main />
           </BrowserRouter>
         </Provider>,
         {

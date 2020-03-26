@@ -8,8 +8,10 @@ import {convertRatingToProcent} from '../../helpers/transform-helpers';
 import ReviewsList from '../reviews-list/reviews-list.jsx';
 import ErrorArea from '../error/error-area.jsx';
 import ThrobberSwitcher from '../throbber-switcher/throbber-switcher.jsx';
+import PlaceCardListNearby from '../place-card-list-nearby/place-card-list-nearby.jsx';
 import {mapDisplayType} from '../../../const.js';
 import {ApiCall as ReviewsApiCall} from '../../reducer/reviews/reviews.js';
+import {ApiCall as NearbyOffersApiCall} from '../../reducer/nearby-offers/nearby-offers.js';
 import Map from '../map/map.jsx';
 import {ErrorMessage, MAX_REVIEWS_COUNT} from '../../../const.js';
 
@@ -20,6 +22,7 @@ class OfferDetail extends React.PureComponent {
 
   componentDidMount() {
     this.props.fetchReviews(this.props.offerId);
+    this.props.fetchNearbyOffers(this.props.offerId);
   }
 
   render() {
@@ -171,112 +174,26 @@ class OfferDetail extends React.PureComponent {
                 </section>
               </div>
             </div>
-            <ThrobberSwitcher isLoading={false} render={() => (
-              <Map mapType={mapDisplayType.PROPERTY} city={this.props.offer.cityCoords} zoom={this.props.offer.cityZoom} offers={[this.props.offer]} />
-            )}/>
+            <ThrobberSwitcher isLoading={this.props.nearbyOffers.isLoading} render={() => {
+              if (!this.props.nearbyOffers.isError) {
+                return (
+                  <>
+                    <Map
+                      mapType={mapDisplayType.PROPERTY}
+                      city={this.props.offer.cityCoords}
+                      zoom={this.props.offer.cityZoom}
+                      offers={[this.props.offer].concat(this.props.nearbyOffers.data)}
+                      currentOffer={this.props.offer}
+                    />
+                    <PlaceCardListNearby nearbyOffers={this.props.nearbyOffers.data} />
+                  </>
+                );
+              } else {
+                return <ErrorArea message={ErrorMessage.NETWROK_ERROR} />;
+              }
+            }}/>
+
           </section>
-          <div className="container">
-            <section className="near-places places">
-              <h2 className="near-places__title">Other places in the neighbourhood</h2>
-              <div className="near-places__list places__list">
-                <article className="near-places__card place-card">
-                  <div className="near-places__image-wrapper place-card__image-wrapper">
-                    <a href="#">
-                      <img className="place-card__image" src="img/room.jpg" width="260" height="200" alt="Place image" />
-                    </a>
-                  </div>
-                  <div className="place-card__info">
-                    <div className="place-card__price-wrapper">
-                      <div className="place-card__price">
-                        <b className="place-card__price-value">&euro;80</b>
-                        <span className="place-card__price-text">&#47;&nbsp;night</span>
-                      </div>
-                      <button className="place-card__bookmark-button place-card__bookmark-button--active button" type="button">
-                        <svg className="place-card__bookmark-icon" width="18" height="19">
-                          <use xlinkHref="#icon-bookmark"></use>
-                        </svg>
-                        <span className="visually-hidden">In bookmarks</span>
-                      </button>
-                    </div>
-                    <div className="place-card__rating rating">
-                      <div className="place-card__stars rating__stars">
-                        <span style={{width: `80%`}}></span>
-                        <span className="visually-hidden">Rating</span>
-                      </div>
-                    </div>
-                    <h2 className="place-card__name">
-                      <a href="#">Wood and stone place</a>
-                    </h2>
-                    <p className="place-card__type">Private room</p>
-                  </div>
-                </article>
-
-                <article className="near-places__card place-card">
-                  <div className="near-places__image-wrapper place-card__image-wrapper">
-                    <a href="#">
-                      <img className="place-card__image" src="img/apartment-02.jpg" width="260" height="200" alt="Place image" />
-                    </a>
-                  </div>
-                  <div className="place-card__info">
-                    <div className="place-card__price-wrapper">
-                      <div className="place-card__price">
-                        <b className="place-card__price-value">&euro;132</b>
-                        <span className="place-card__price-text">&#47;&nbsp;night</span>
-                      </div>
-                      <button className="place-card__bookmark-button button" type="button" >
-                        <svg className="place-card__bookmark-icon" width="18" height="19">
-                          <use xlinkHref="#icon-bookmark"></use>
-                        </svg>
-                        <span className="visually-hidden">To bookmarks</span>
-                      </button>
-                    </div>
-                    <div className="place-card__rating rating">
-                      <div className="place-card__stars rating__stars">
-                        <span style={{width: `80%`}}></span>
-                        <span className="visually-hidden">Rating</span>
-                      </div>
-                    </div>
-                    <h2 className="place-card__name">
-                      <a href="#">Canal View Prinsengracht</a>
-                    </h2>
-                    <p className="place-card__type">Apartment</p>
-                  </div>
-                </article>
-
-                <article className="near-places__card place-card">
-                  <div className="near-places__image-wrapper place-card__image-wrapper">
-                    <a href="#">
-                      <img className="place-card__image" src="img/apartment-03.jpg" width="260" height="200" alt="Place image" />
-                    </a>
-                  </div>
-                  <div className="place-card__info">
-                    <div className="place-card__price-wrapper">
-                      <div className="place-card__price">
-                        <b className="place-card__price-value">&euro;180</b>
-                        <span className="place-card__price-text">&#47;&nbsp;night</span>
-                      </div>
-                      <button className="place-card__bookmark-button button" type="button">
-                        <svg className="place-card__bookmark-icon" width="18" height="19">
-                          <use xlinkHref="#icon-bookmark"></use>
-                        </svg>
-                        <span className="visually-hidden">To bookmarks</span>
-                      </button>
-                    </div>
-                    <div className="place-card__rating rating">
-                      <div className="place-card__stars rating__stars">
-                        <span style={{width: `100%`}}></span>
-                        <span className="visually-hidden">Rating</span>
-                      </div>
-                    </div>
-                    <h2 className="place-card__name">
-                      <a href="#">Nice, cozy, warm big bed apartment</a>
-                    </h2>
-                    <p className="place-card__type">Apartment</p>
-                  </div>
-                </article>
-              </div>
-            </section>
-          </div>
         </main>
       </div>
     );
@@ -284,23 +201,31 @@ class OfferDetail extends React.PureComponent {
 }
 
 OfferDetail.propTypes = {
-  offer: offerType,
+  offer: offerType.isRequired,
+  nearbyOffers: PropTypes.shape({
+    data: PropTypes.arrayOf(offerType.isRequired).isRequired,
+    isLoading: PropTypes.bool.isRequired,
+    isError: PropTypes.bool.isRequired
+  }),
   offerId: PropTypes.string.isRequired,
   reviews: PropTypes.shape({
     data: PropTypes.arrayOf(reviewType).isRequired,
     isLoading: PropTypes.bool.isRequired,
     isError: PropTypes.bool.isRequired
   }),
-  fetchReviews: PropTypes.func.isRequired
+  fetchReviews: PropTypes.func.isRequired,
+  fetchNearbyOffers: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state, ownProps) => ({
   offer: state.offers.data.find((offer) => offer.id === Number.parseInt(ownProps.offerId, 10)),
+  nearbyOffers: state.nearbyOffers,
   reviews: state.reviews
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchReviews: (offerId) => dispatch(ReviewsApiCall.fetchReviews(offerId))
+  fetchReviews: (offerId) => dispatch(ReviewsApiCall.fetchReviews(offerId)),
+  fetchNearbyOffers: (offerId) => dispatch(NearbyOffersApiCall.fetchNearbyOffers(offerId))
 });
 
 export {OfferDetail};

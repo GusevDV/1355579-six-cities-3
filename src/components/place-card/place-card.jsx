@@ -62,10 +62,15 @@ const PlaceCard = (props) => {
   );
 };
 
+PlaceCard.defaultProps = {
+  onMouseEnter: () => {},
+  onMouseLeave: () => {}
+};
+
 PlaceCard.propTypes = {
-  offer: offerType,
-  onMouseEnter: PropTypes.func.isRequired,
-  onMouseLeave: PropTypes.func.isRequired
+  offer: offerType.isRequired,
+  onMouseEnter: PropTypes.func,
+  onMouseLeave: PropTypes.func
 };
 
 export default React.memo(PlaceCard);
