@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from "react-redux";
 import {offerType} from '../../types/offers-types.js';
+import {reviewType} from '../../types/reviews-types.js';
 import Header from '../header/header.jsx';
 import {convertRatingToProcent} from '../../helpers/transform-helpers';
 import ReviewsList from '../reviews-list/reviews-list.jsx';
@@ -17,29 +18,11 @@ class OfferDetail extends React.PureComponent {
     super(props);
   }
 
-<<<<<<< HEAD
-  const {
-    title,
-    description,
-    price,
-    pricePeriod,
-    objectType,
-    images,
-    maxAdults,
-    bedrooms,
-    goods,
-    isPremium,
-    host
-  } = props.offer;
-  const rating = convertRatingToProcent(props.offer.rating);
-=======
   componentDidMount() {
-    this.props.fetchReviews(this.props.match.params.id);
+    this.props.fetchReviews(this.props.offerId);
   }
 
   render() {
->>>>>>> Added fetch reviews from server
-
     const {
       title,
       description,
@@ -302,34 +285,23 @@ class OfferDetail extends React.PureComponent {
 
 OfferDetail.propTypes = {
   offer: offerType,
-<<<<<<< HEAD
-  offerId: PropTypes.string.isRequired
-};
-
-const mapStateToProps = (state, ownProps) => ({
-  offer: state.offers.data.find((offer) => offer.id === Number.parseInt(ownProps.offerId, 10))
-=======
-  match: PropTypes.object,
+  offerId: PropTypes.string.isRequired,
+  reviews: PropTypes.shape({
+    data: PropTypes.arrayOf(reviewType).isRequired,
+    isLoading: PropTypes.bool.isRequired,
+    isError: PropTypes.bool.isRequired
+  }),
   fetchReviews: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state, ownProps) => ({
-  offer: (function () {
-    return state.offers.data.filter((offer) => {
-      return offer.id === Number.parseInt(ownProps.match.params.id, 10);
-    })[0];
-  })(),
-<<<<<<< HEAD
->>>>>>> Added display variability in map component
-=======
+  offer: state.offers.data.find((offer) => offer.id === Number.parseInt(ownProps.offerId, 10)),
   reviews: state.reviews
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchReviews: (hotelId) => dispatch(ReviewsApiCall.fetchReviews(hotelId))
->>>>>>> Added fetch reviews from server
+  fetchReviews: (offerId) => dispatch(ReviewsApiCall.fetchReviews(offerId))
 });
-
 
 export {OfferDetail};
 export default connect(mapStateToProps, mapDispatchToProps)(OfferDetail);

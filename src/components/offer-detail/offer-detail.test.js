@@ -13,18 +13,17 @@ const store = mockStore({
     data: offers,
     isLoading: false,
     isError: false,
-<<<<<<< HEAD
-=======
   },
-  city: {
-    currentCity: offers[0].city,
-    coords: offers[0].cityCoords,
-    zoom: offers[0].cityZoom,
->>>>>>> Criterion b8, b9
+  reviews: {
+    data: [],
+    isLoading: true,
+    isError: false,
   }
 });
 
 it(`Should Main component render correctly`, () => {
+
+  store.dispatch = jest.fn();
 
   const tree = renderer.create(
       <Provider store={store}>
