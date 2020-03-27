@@ -1,6 +1,7 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import Main from "./main.jsx";
+import {BrowserRouter} from 'react-router-dom';
 import configureStore from "redux-mock-store";
 import {Provider} from "react-redux";
 import Offers from '../../test-mocks/offers.js';
@@ -25,10 +26,11 @@ it(`Should Main component render correctly`, () => {
   const tree = renderer
     .create(
         <Provider store={store}>
-          <Main
-            offers={Offers}
-            onTitleLinkClick={() => {}}
-          />
+          <BrowserRouter>
+            <Main
+              offers={Offers}
+            />
+          </BrowserRouter>
         </Provider>,
         {
           createNodeMock: () => {
@@ -45,10 +47,9 @@ it(`Should Main component empty content render correctly`, () => {
   const tree = renderer
     .create(
         <Provider store={store}>
-          <Main
-            offers={[]}
-            onTitleLinkClick={() => {}}
-          />
+          <BrowserRouter>
+            <Main />
+          </BrowserRouter>
         </Provider>,
         {
           createNodeMock: () => {

@@ -88,7 +88,7 @@ exports[`Should PlaceCard component render correctly 1`] = `
     >
       <a
         className="place-card__name-link"
-        href="#"
+        href="/offer/1"
         onClick={[Function]}
       >
         Apartment 1

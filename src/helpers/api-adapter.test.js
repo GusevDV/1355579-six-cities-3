@@ -18,6 +18,7 @@ it(`Should transform data correctly`, () => {
       ],
       objectType: `room`,
       bedrooms: 1,
+      maxAdults: 2,
       isPremium: false,
       isFavorite: false,
       rating: 2.5,
@@ -28,8 +29,8 @@ it(`Should transform data correctly`, () => {
       host: {
         "id": 25,
         "name": `Angelina`,
-        "is_pro": true,
-        "avatar_url": `img/avatar-angelina.jpg`
+        "isPro": true,
+        "avatarUrl": `img/avatar-angelina.jpg`
       },
       coords: [
         50.869557,

@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Main from '../main/main.jsx';
+import {BrowserRouter, Switch, Route} from 'react-router-dom';
 import {connect} from "react-redux";
 import Throbber from '../throbber/throbber.jsx';
 import ErrorArea from '../error/error-area.jsx';
 import {ErrorMessages} from '../../../const.js';
-
-const onTitleLinkClick = () => {};
+import OfferDetail from '../offer-detail/offer-detail.jsx';
 
 const App = (props) => {
 
@@ -15,7 +15,20 @@ const App = (props) => {
   } else if (props.isError) {
     return <ErrorArea message={ErrorMessages.NETWROK_ERROR} />;
   }
-  return <Main onTitleLinkClick={onTitleLinkClick} />;
+
+  return (
+    <BrowserRouter>
+      <Switch>
+        <Route exact path="/">
+          <Main />;
+        </Route>
+        <Route exact path='/offer/:id' render={(routeProps) => (
+          <OfferDetail offerId={routeProps.match.params.id} />
+        )} />
+      </Switch>
+    </BrowserRouter>
+  );
+
 
 };
 
