@@ -13,21 +13,22 @@ const store = mockStore({
     data: offers,
     isLoading: false,
     isError: false,
+    sortType: 0
   },
   nearbyOffers: {
     data: offers,
     isLoading: false,
-    isError: false,
+    isError: false
   },
   city: {
     currentCity: offers[0].city,
     coords: offers[0].cityCoords,
-    zoom: offers[0].cityZoom,
+    zoom: offers[0].cityZoom
   },
   reviews: {
     data: [],
     isLoading: true,
-    isError: false,
+    isError: false
   }
 });
 

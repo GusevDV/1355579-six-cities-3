@@ -129,6 +129,7 @@ exports[`Should Main component empty content render correctly 1`] = `
             action="#"
             className="places__sorting"
             method="get"
+            onClick={[Function]}
           >
             <span
               className="places__sorting-caption"
@@ -151,29 +152,33 @@ exports[`Should Main component empty content render correctly 1`] = `
               </svg>
             </span>
             <ul
-              className="places__options places__options--custom places__options--opened"
+              className="places__options places__options--custom "
             >
               <li
                 className="places__option places__option--active"
-                tabIndex="0"
+                onClick={[Function]}
+                tabIndex={0}
               >
                 Popular
               </li>
               <li
-                className="places__option"
-                tabIndex="0"
+                className="places__option "
+                onClick={[Function]}
+                tabIndex={1}
               >
                 Price: low to high
               </li>
               <li
-                className="places__option"
-                tabIndex="0"
+                className="places__option "
+                onClick={[Function]}
+                tabIndex={2}
               >
                 Price: high to low
               </li>
               <li
-                className="places__option"
-                tabIndex="0"
+                className="places__option "
+                onClick={[Function]}
+                tabIndex={3}
               >
                 Top rated first
               </li>
@@ -741,6 +746,7 @@ exports[`Should Main component render correctly 1`] = `
             action="#"
             className="places__sorting"
             method="get"
+            onClick={[Function]}
           >
             <span
               className="places__sorting-caption"
@@ -763,29 +769,33 @@ exports[`Should Main component render correctly 1`] = `
               </svg>
             </span>
             <ul
-              className="places__options places__options--custom places__options--opened"
+              className="places__options places__options--custom "
             >
               <li
                 className="places__option places__option--active"
-                tabIndex="0"
+                onClick={[Function]}
+                tabIndex={0}
               >
                 Popular
               </li>
               <li
-                className="places__option"
-                tabIndex="0"
+                className="places__option "
+                onClick={[Function]}
+                tabIndex={1}
               >
                 Price: low to high
               </li>
               <li
-                className="places__option"
-                tabIndex="0"
+                className="places__option "
+                onClick={[Function]}
+                tabIndex={2}
               >
                 Price: high to low
               </li>
               <li
-                className="places__option"
-                tabIndex="0"
+                className="places__option "
+                onClick={[Function]}
+                tabIndex={3}
               >
                 Top rated first
               </li>

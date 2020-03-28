@@ -1,7 +1,7 @@
 import React from 'react';
 
-const withActiveItem = (Component) => {
-  class WithActiveItem extends React.PureComponent {
+const withActiveItemMouse = (Component) => {
+  class WithActiveItemMouse extends React.PureComponent {
     constructor(props) {
       super(props);
       this.state = {
@@ -28,19 +28,19 @@ const withActiveItem = (Component) => {
     render() {
       return (
         <Component
-          {...this.props}
           activeItemId={this.state.itemId}
           onMouseEnter={this.handleMouseEnter}
           onMouseLeave={this.handleMouseLeave}
+          {...this.props}
         >
         </Component>
       );
     }
   }
 
-  WithActiveItem.propTypes = {};
+  WithActiveItemMouse.propTypes = {};
 
-  return WithActiveItem;
+  return WithActiveItemMouse;
 };
 
-export default withActiveItem;
+export default withActiveItemMouse;

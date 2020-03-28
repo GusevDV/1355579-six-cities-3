@@ -21,6 +21,7 @@ export const mapDisplayType = {
 };
 
 export const monthNames = [`January`, `February`, `March`, `April`, `May`, `June`, `July`, `August`, `September`, `October`, `November`, `December`];
+export const sortTypes = [`Popular`, `Price: low to high`, `Price: high to low`, `Top rated first`];
 
 export const MAX_CITIES_COUNT = 6;
 export const MAX_REVIEWS_COUNT = 10;
