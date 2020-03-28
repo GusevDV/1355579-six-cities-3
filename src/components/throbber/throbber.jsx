@@ -1,7 +1,26 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-const Throbber = () => {
-  return <img className="throbber" src='/img/throbber.svg' width={100} height={100} alt='throbber' />;
+const Throbber = (props) => {
+  const {position} = props.mods;
+
+  return (
+    <div className={`throbber ${position === `center-page` ? `throbber--centered` : ``}`}>
+      <img className="throbber__img" src='/img/throbber.svg' width={100} height={100} alt='throbber' />
+    </div>
+  );
+};
+
+Throbber.propTypes = {
+  mods: PropTypes.shape({
+    position: PropTypes.oneOf([`center-page`, `default`])
+  })
+};
+
+Throbber.defaultProps = {
+  mods: {
+    position: `default`
+  }
 };
 
 export default Throbber;

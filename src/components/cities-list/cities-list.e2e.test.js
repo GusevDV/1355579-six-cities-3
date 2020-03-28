@@ -7,7 +7,7 @@ Enzyme.configure({
   adapter: new Adapter(),
 });
 
-const Cities = [
+const cities = [
   {name: `Paris`, coords: [48.85661, 2.351499], zoom: 13},
   {name: `Amsterdam`, coords: [52.37454, 4.897976], zoom: 13},
 ];
@@ -17,7 +17,7 @@ it(`Should city link be clicked`, () => {
 
   const main = mount(
       <CitiesList
-        cities={Cities}
+        cities={cities}
         onCityChange = {onCityLinkClick}
         currentCity={`Amsterdam`}
         maxCitiesCount={6}
@@ -29,5 +29,5 @@ it(`Should city link be clicked`, () => {
   titleLink.simulate(`click`);
 
   expect(onCityLinkClick).toHaveBeenCalledTimes(1);
-  expect(onCityLinkClick).toHaveBeenCalledWith(Cities[0]);
+  expect(onCityLinkClick).toHaveBeenCalledWith(cities[0]);
 });

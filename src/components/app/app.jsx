@@ -5,15 +5,15 @@ import {BrowserRouter, Switch, Route} from 'react-router-dom';
 import {connect} from "react-redux";
 import Throbber from '../throbber/throbber.jsx';
 import ErrorArea from '../error/error-area.jsx';
-import {ErrorMessages} from '../../../const.js';
+import {ErrorMessage} from '../../../const.js';
 import OfferDetail from '../offer-detail/offer-detail.jsx';
 
 const App = (props) => {
 
   if (props.isLoading) {
-    return <Throbber />;
+    return <Throbber mods={{position: `center-page`}} />;
   } else if (props.isError) {
-    return <ErrorArea message={ErrorMessages.NETWROK_ERROR} />;
+    return <ErrorArea message={ErrorMessage.NETWROK_ERROR} />;
   }
 
   return (

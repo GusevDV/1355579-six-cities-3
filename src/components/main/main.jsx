@@ -6,7 +6,7 @@ import Map from '../map/map.jsx';
 import Header from '../header/header.jsx';
 import CitiesList from '../cities-list/cities-list.jsx';
 import {offerType} from '../../types/offers-types.js';
-import {ActionCreators} from "../../reducer/city/city.js";
+import {ActionCreator} from "../../reducer/city/city.js";
 import {MAX_CITIES_COUNT} from '../../../const.js';
 import withActiveItem from '../../hocs/with-active-item/with-active-item.js';
 
@@ -73,7 +73,7 @@ const Main = (props) => {
 };
 
 Main.propTypes = {
-  offers: PropTypes.arrayOf(offerType).isRequired,
+  offers: PropTypes.arrayOf(offerType.isRequired).isRequired,
   currentCity: PropTypes.string,
   cityCoords: PropTypes.array,
   cityZoom: PropTypes.number,
@@ -99,7 +99,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  changeCity: (city) => dispatch(ActionCreators.changeCity(city))
+  changeCity: (city) => dispatch(ActionCreator.changeCity(city))
 });
 
 export {Main};

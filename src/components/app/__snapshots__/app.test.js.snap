@@ -1,13 +1,17 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Should App component render correctly when offers is fetching 1`] = `
-<img
-  alt="throbber"
-  className="throbber"
-  height={100}
-  src="/img/throbber.svg"
-  width={100}
-/>
+<div
+  className="throbber throbber--centered"
+>
+  <img
+    alt="throbber"
+    className="throbber__img"
+    height={100}
+    src="/img/throbber.svg"
+    width={100}
+  />
+</div>
 `;
 
 exports[`Should App component render correctly when offers is loaded with error 1`] = `
@@ -621,7 +625,7 @@ Array [
             className="cities__right-section"
           >
             <section
-              className="cities__map map"
+              className="map cities__map"
               id="map"
             />
           </div>

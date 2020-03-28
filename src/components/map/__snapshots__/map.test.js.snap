@@ -1,8 +1,15 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Should Map component render correctly 1`] = `
+exports[`Should Map city component render correctly 1`] = `
 <section
-  className="cities__map map"
+  className="map cities__map"
+  id="map"
+/>
+`;
+
+exports[`Should Map property component render correctly 1`] = `
+<section
+  className="map property__map"
   id="map"
 />
 `;
