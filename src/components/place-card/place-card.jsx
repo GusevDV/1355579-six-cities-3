@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom';
 import {offerType} from '../../types/offers-types.js';
 import {convertRatingToProcent} from '../../helpers/transform-helpers.js';
 
-const PlaceCard = (props) => {
+const PlaceCard = React.memo(function PlaceCard(props) {
   const {offer, onMouseEnter, onMouseLeave} = props;
   const {title, price, pricePeriod, thumnnailUrl, objectType, isPremium} = offer;
   const rating = convertRatingToProcent(offer.rating);
@@ -60,7 +60,7 @@ const PlaceCard = (props) => {
       </div>
     </article>
   );
-};
+});
 
 PlaceCard.defaultProps = {
   onMouseEnter: () => {},

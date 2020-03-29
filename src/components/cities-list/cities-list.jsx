@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const CitiesList = (props) => {
+const CitiesList = React.memo(function CitiesList(props) {
   let {cities} = props;
   const {currentCity, maxCitiesCount} = props;
   cities = cities.slice(0, maxCitiesCount);
@@ -28,7 +28,7 @@ const CitiesList = (props) => {
       </section>
     </div>
   );
-};
+});
 
 CitiesList.propTypes = {
   cities: PropTypes.arrayOf(PropTypes.shape({

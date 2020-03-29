@@ -3,7 +3,7 @@ import {reviewType} from '../../types/reviews-types.js';
 import {convertRatingToProcent} from '../../helpers/transform-helpers.js';
 import {monthNames} from '../../../const.js';
 
-const Review = (props) => {
+const Review = React.memo(function Review(props) {
   let date = new Date(props.review.date);
   date = `${monthNames[date.getMonth()]} ${date.getFullYear()}`;
   const {user, comment} = props.review;
@@ -30,7 +30,7 @@ const Review = (props) => {
       </div>
     </li>
   );
-};
+});
 
 
 Review.propTypes = {
