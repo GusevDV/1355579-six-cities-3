@@ -6,17 +6,20 @@ import {reviewType} from '../../types/reviews-types.js';
 import Header from '../header/header.jsx';
 import {convertRatingToProcent} from '../../helpers/transform-helpers';
 import ReviewsList from '../reviews-list/reviews-list.jsx';
+import ReviewForm from '../review-form/review-form.jsx';
 import ErrorArea from '../error/error-area.jsx';
 import ThrobberSwitcher from '../throbber-switcher/throbber-switcher.jsx';
 import PlaceCardListNearby from '../place-card-list-nearby/place-card-list-nearby.jsx';
-import {mapDisplayType} from '../../../const.js';
+import {MapDisplayType} from '../../../const.js';
 import {ApiCall as ReviewsApiCall} from '../../reducer/reviews/reviews.js';
 import {ApiCall as NearbyOffersApiCall} from '../../reducer/nearby-offers/nearby-offers.js';
 import {getCurrentOffer} from '../../reducer/offers/selectors.js';
 import {getNearbyOffers} from '../../reducer/nearby-offers/selectors.js';
+import {getAuthStatus} from '../../reducer/user/selectors.js';
 import {getReviews} from '../../reducer/reviews/selectors.js';
+import {authType} from '../../types/user-types.js';
 import Map from '../map/map.jsx';
-import {ErrorMessage, MAX_REVIEWS_COUNT} from '../../../const.js';
+import {ErrorMessage, MAX_REVIEWS_COUNT, AuthStatus} from '../../../const.js';
 
 class OfferDetail extends React.PureComponent {
   constructor(props) {
@@ -128,52 +131,9 @@ class OfferDetail extends React.PureComponent {
                       return <ErrorArea message={ErrorMessage.NETWROK_ERROR} />;
                     }
                   }}/>
-                  <form className="reviews__form form" action="#" method="post">
-                    <label className="reviews__label form__label" htmlFor="review">Your review</label>
-                    <div className="reviews__rating-form form__rating">
-                      <input className="form__rating-input visually-hidden" name="rating" value="5" id="5-stars" type="radio" />
-                      <label htmlFor="5-stars" className="reviews__rating-label form__rating-label" title="perfect">
-                        <svg className="form__star-image" width="37" height="33">
-                          <use xlinkHref="#icon-star"></use>
-                        </svg>
-                      </label>
-
-                      <input className="form__rating-input visually-hidden" name="rating" value="4" id="4-stars" type="radio" />
-                      <label htmlFor="4-stars" className="reviews__rating-label form__rating-label" title="good">
-                        <svg className="form__star-image" width="37" height="33">
-                          <use xlinkHref="#icon-star"></use>
-                        </svg>
-                      </label>
-
-                      <input className="form__rating-input visually-hidden" name="rating" value="3" id="3-stars" type="radio" />
-                      <label htmlFor="3-stars" className="reviews__rating-label form__rating-label" title="not bad">
-                        <svg className="form__star-image" width="37" height="33">
-                          <use xlinkHref="#icon-star"></use>
-                        </svg>
-                      </label>
-
-                      <input className="form__rating-input visually-hidden" name="rating" value="2" id="2-stars" type="radio" />
-                      <label htmlFor="2-stars" className="reviews__rating-label form__rating-label" title="badly">
-                        <svg className="form__star-image" width="37" height="33">
-                          <use xlinkHref="#icon-star"></use>
-                        </svg>
-                      </label>
-
-                      <input className="form__rating-input visually-hidden" name="rating" value="1" id="1-star" type="radio" />
-                      <label htmlFor="1-star" className="reviews__rating-label form__rating-label" title="terribly">
-                        <svg className="form__star-image" width="37" height="33">
-                          <use xlinkHref="#icon-star"></use>
-                        </svg>
-                      </label>
-                    </div>
-                    <textarea className="reviews__textarea form__textarea" id="review" name="review" placeholder="Tell how was your stay, what you like and what can be improved"></textarea>
-                    <div className="reviews__button-wrapper">
-                      <p className="reviews__help">
-                        To submit review please make sure to set <span className="reviews__star">rating</span> and describe your stay with at least <b className="reviews__text-amount">50 characters</b>.
-                      </p>
-                      <button className="reviews__submit form__submit button" type="submit" disabled="">Submit</button>
-                    </div>
-                  </form>
+                  {this.props.auth === AuthStatus.AUTH ? (
+                    <ReviewForm />
+                  ) : null}
                 </section>
               </div>
             </div>
@@ -182,7 +142,7 @@ class OfferDetail extends React.PureComponent {
                 return (
                   <>
                     <Map
-                      mapType={mapDisplayType.PROPERTY}
+                      mapType={MapDisplayType.PROPERTY}
                       city={this.props.offer.cityCoords}
                       zoom={this.props.offer.cityZoom}
                       offers={[this.props.offer].concat(this.props.nearbyOffers.data)}
@@ -195,7 +155,6 @@ class OfferDetail extends React.PureComponent {
                 return <ErrorArea message={ErrorMessage.NETWROK_ERROR} />;
               }
             }}/>
-
           </section>
         </main>
       </div>
@@ -217,13 +176,15 @@ OfferDetail.propTypes = {
     isError: PropTypes.bool.isRequired
   }),
   fetchReviews: PropTypes.func.isRequired,
-  fetchNearbyOffers: PropTypes.func.isRequired
+  fetchNearbyOffers: PropTypes.func.isRequired,
+  auth: authType.isRequired
 };
 
 const mapStateToProps = (state, ownProps) => ({
   offer: getCurrentOffer(state, ownProps),
   nearbyOffers: getNearbyOffers(state),
-  reviews: getReviews(state)
+  reviews: getReviews(state),
+  auth: getAuthStatus(state)
 });
 
 const mapDispatchToProps = (dispatch) => ({

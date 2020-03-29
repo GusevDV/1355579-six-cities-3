@@ -2,12 +2,7 @@ import axios from 'axios';
 import {BASE_API_URL} from '../const.js';
 import {transformFieldsToCamelCase} from './helpers/transform-helpers.js';
 
-const Error = {
-  BAD_REQUEST: 400,
-  UNAUTHORIZED: 401,
-};
-
-const createAPI = (onUnauthorized, onBadRequest) => {
+const createAPI = (onUnauthorized) => {
   const api = axios.create({
     baseURL: BASE_API_URL,
     timeout: 5000,
@@ -31,12 +26,8 @@ const createAPI = (onUnauthorized, onBadRequest) => {
 
   const onFail = (err) => {
     const {response} = err;
-    if (response.status === Error.UNAUTHORIZED && typeof onUnauthorized === `function`) {
+    if (response.status === 401 && typeof onUnauthorized === `function`) {
       onUnauthorized();
-      throw err;
-    }
-    if (response.status === Error.BAD_REQUEST && typeof onBadRequest === `function`) {
-      onBadRequest();
       throw err;
     }
 

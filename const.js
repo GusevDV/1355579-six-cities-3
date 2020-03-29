@@ -15,9 +15,20 @@ export const ErrorMessage = {
   NETWROK_ERROR: `Нам не удалось получить данные с сервера 😢`
 };
 
-export const mapDisplayType = {
+export const MapDisplayType = {
   CITIES: `cities`,
   PROPERTY: `propery`,
+};
+
+export const AuthStatus = {
+  AUTH: `AUTH`,
+  NO_AUTH: `NO_AUTH`,
+};
+
+export const Route = {
+  OFFER_DETALIS: `/offer/:id`,
+  LOGIN: `/login/`,
+  FAVORITES: `/favorites/`
 };
 
 export const monthNames = [`January`, `February`, `March`, `April`, `May`, `June`, `July`, `August`, `September`, `October`, `November`, `December`];
