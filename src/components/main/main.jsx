@@ -10,18 +10,15 @@ import SortOptions from '../sort-options/sort-options.jsx';
 import {offerType} from '../../types/offers-types.js';
 import {ActionCreator as CityActionCreator} from "../../reducer/city/city.js";
 import {ActionCreator as OffersActionCreator} from "../../reducer/offers/offers.js";
-import {getOffersWithSort, getHoverOffer} from "../../reducer/offers/selectors.js";
+import {getOffersWithSort, getHoverOffer, getCurrentSort} from "../../reducer/offers/selectors.js";
 import * as citySelectors from "../../reducer/city/selectors.js";
 import {MAX_CITIES_COUNT, sortTypes} from '../../../const.js';
-import withActiveItemMouse from '../../hocs/with-active-item-mouse/with-active-item-mouse.js';
-import withActiveItemClick from '../../hocs/with-active-item-click/with-active-item-click.js';
 import withToggle from '../../hocs/with-toggle/with-toggle.js';
 
-const PlaceCardListWrapped = withActiveItemMouse(PlaceCardList);
-const SortOptionsWrapped = withActiveItemClick(withToggle(SortOptions));
+const SortOptionsWrapped = withToggle(SortOptions);
 
 const Main = (props) => {
-  const {offers, hoverOffer, onChangeCity, onChangeSortType, onChangeHoverOffer} = props;
+  const {offers, hoverOffer, currentSort, onChangeCity, onChangeSortType, onChangeHoverOffer} = props;
   return (
     <div className={`page page--gray page--main ${offers.length ? `page__main--index-empty` : ``}`}>
       <Header />
@@ -70,7 +67,8 @@ Main.propTypes = {
   hoverOffer: offerType,
   onChangeCity: PropTypes.func.isRequired,
   onChangeSortType: PropTypes.func.isRequired,
-  onChangeHoverOffer: PropTypes.func.isRequired
+  onChangeHoverOffer: PropTypes.func.isRequired,
+  currentSort: PropTypes.number.isRequired
 };
 
 const mapStateToProps = (state) => ({
@@ -79,7 +77,8 @@ const mapStateToProps = (state) => ({
   cityCoords: citySelectors.getCurrentCityCoords(state),
   cityZoom: citySelectors.getCurrentCityZoom(state),
   uniqCities: citySelectors.getCities(state),
-  hoverOffer: getHoverOffer(state)
+  hoverOffer: getHoverOffer(state),
+  currentSort: getCurrentSort(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
