@@ -7,30 +7,27 @@ const initialState = {
 
 const ActionType = {
   SIGN_IN: `SIGN_IN`,
-  CHECK_AUTH_STATUS: `CHECK_AUTH_STATUS`,
-  CHANGE_AUTH_STATUS: `CHANGE_AUTH_STATUS`
+  SIGN_OUT: `SIGN_OUT`,
 };
 
 const ActionCreator = {
-  checkAuthStatus: (data) => ({
-    type: ActionType.CHECK_AUTH_STATUS,
-    payload: data,
-  }),
-  changeAuthStatus: (status) => ({
-    type: ActionType.CHANGE_AUTH_STATUS,
-    payload: status,
-  }),
   signIn: (data) => ({
     type: ActionType.SIGN_IN,
     payload: data
   }),
+  signOut: () => ({
+    type: ActionType.SIGN_OUT,
+  })
 };
 
 const ApiCall = {
-  checkAuthStatus: () => (dispatch, getState, api) => {
+  getAuthStatus: () => (dispatch, getState, api) => {
     return api.get(`/login/`)
       .then((response) => {
-        dispatch(ActionCreator.checkAuthStatus(response.data));
+        dispatch(ActionCreator.signIn(response.data));
+      })
+      .catch(() => {
+        dispatch(ActionCreator.signOut());
       });
   },
   signIn: (email, password) => (dispatch, getState, api) => {
@@ -43,14 +40,10 @@ const ApiCall = {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case ActionType.CHECK_AUTH_STATUS:
+    case ActionType.SIGN_OUT:
       return Object.assign({}, state, {
-        authorizationStatus: AuthStatus.AUTH,
-        data: action.payload
-      });
-    case ActionType.CHANGE_AUTH_STATUS:
-      return Object.assign({}, state, {
-        authorizationStatus: action.payload
+        authorizationStatus: AuthStatus.NO_AUTH,
+        data: {}
       });
     case ActionType.SIGN_IN:
       return Object.assign({}, state, {

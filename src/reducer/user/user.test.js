@@ -32,35 +32,16 @@ describe(`User reducers`, () => {
     });
   });
 
-  it(`CHECK_AUTH_STATUS`, () => {
+  it(`SIGN_OUT`, () => {
     const initialState = {
-      authorizationStatus: AuthStatus.NO_AUTH,
-      data: {}
-    };
-    const payload = {
-      test: true,
+      authorizationStatus: AuthStatus.AUTH,
+      data: {test: true}
     };
     const action = {
-      type: ActionType.CHECK_AUTH_STATUS,
-      payload
+      type: ActionType.SIGN_OUT
     };
     expect(reducer(initialState, action)).toEqual({
-      authorizationStatus: AuthStatus.AUTH,
-      data: payload
-    });
-  });
-
-  it(`CHANGE_AUTH_STATUS`, () => {
-    const initialState = {
       authorizationStatus: AuthStatus.NO_AUTH,
-      data: {}
-    };
-    const action = {
-      type: ActionType.CHANGE_AUTH_STATUS,
-      payload: AuthStatus.AUTH,
-    };
-    expect(reducer(initialState, action)).toEqual({
-      authorizationStatus: AuthStatus.AUTH,
       data: {}
     });
   });
@@ -93,11 +74,11 @@ describe(`ApiCall work correctly`, () => {
   it(`Should API call to GET /login finished successfully`, function () {
     const apiMock = new MockAdapter(api);
     const dispatch = jest.fn();
-    const userLoader = ApiCall.checkAuthStatus();
+    const userLoader = ApiCall.getAuthStatus();
 
     const payload = {test: true};
     const expectedActions = [
-      {type: ActionType.CHECK_AUTH_STATUS, payload}
+      {type: ActionType.SIGN_IN, payload}
     ];
 
     apiMock

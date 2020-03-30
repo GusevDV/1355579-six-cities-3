@@ -2,12 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
-import {AuthStatus, Route} from '../../../const.js';
+import {Route} from '../../../const.js';
 import {authType} from '../../types/user-types.js';
-import {getUserEmail, getAuthStatus} from '../../reducer/user/selectors.js';
+import {getAuthStatus} from '../../reducer/user/selectors.js';
 
 const Header = React.memo(function Header(props) {
-  const {auth, email} = props;
+  const {isAuthorized, email} = props;
   return (
     <header className="header">
       <div className="container">
@@ -26,8 +26,8 @@ const Header = React.memo(function Header(props) {
           <nav className="header__nav">
             <ul className="header__nav-list">
               <li className="header__nav-item user">
-                <Link className="header__nav-link header__nav-link--profile" to={auth === AuthStatus.AUTH ? Route.FAVORITES : Route.LOGIN}>
-                  {auth === AuthStatus.AUTH ? (
+                <Link className="header__nav-link header__nav-link--profile" to={isAuthorized ? Route.FAVORITES : Route.LOGIN}>
+                  {isAuthorized ? (
                     <>
                       <div className="header__avatar-wrapper user__avatar-wrapper"></div>
                       <span className="header__user-name user__name">{email}</span>
@@ -46,13 +46,13 @@ const Header = React.memo(function Header(props) {
 });
 
 Header.propTypes = {
-  auth: authType.isRequired,
+  isAuthorized: authType.isRequired,
   email: PropTypes.string
 };
 
 const mapStateToProps = (state) => ({
-  auth: getAuthStatus(state),
-  email: getUserEmail(state)
+  isAuthorized: getAuthStatus(state),
+  email: state.user.data.email
 });
 
 export {Header};
