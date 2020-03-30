@@ -1,16 +1,7 @@
 import {createSelector} from 'reselect';
-
-export const getUserData = createSelector(
-    (state) => state.user.data,
-    (user) => Object.assign({}, user)
-);
-
-export const getUserEmail = createSelector(
-    getUserData,
-    (user) => user.email
-);
+import {AuthStatus} from '../../../const.js';
 
 export const getAuthStatus = createSelector(
     (state) => state.user.authorizationStatus,
-    (status) => status
+    (status) => status === AuthStatus.AUTH ? true : false
 );

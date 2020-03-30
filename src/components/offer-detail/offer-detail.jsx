@@ -19,7 +19,7 @@ import {getAuthStatus} from '../../reducer/user/selectors.js';
 import {getReviews} from '../../reducer/reviews/selectors.js';
 import {authType} from '../../types/user-types.js';
 import Map from '../map/map.jsx';
-import {ErrorMessage, MAX_REVIEWS_COUNT, AuthStatus} from '../../../const.js';
+import {ErrorMessage, MAX_REVIEWS_COUNT} from '../../../const.js';
 
 class OfferDetail extends React.PureComponent {
   constructor(props) {
@@ -131,7 +131,7 @@ class OfferDetail extends React.PureComponent {
                       return <ErrorArea message={ErrorMessage.NETWROK_ERROR} />;
                     }
                   }}/>
-                  {this.props.auth === AuthStatus.AUTH ? (
+                  {this.props.isAuthorized ? (
                     <ReviewForm />
                   ) : null}
                 </section>
@@ -177,14 +177,14 @@ OfferDetail.propTypes = {
   }),
   fetchReviews: PropTypes.func.isRequired,
   fetchNearbyOffers: PropTypes.func.isRequired,
-  auth: authType.isRequired
+  isAuthorized: authType.isRequired
 };
 
 const mapStateToProps = (state, ownProps) => ({
   offer: getCurrentOffer(state, ownProps),
   nearbyOffers: getNearbyOffers(state),
   reviews: getReviews(state),
-  auth: getAuthStatus(state)
+  isAuthorized: getAuthStatus(state)
 });
 
 const mapDispatchToProps = (dispatch) => ({

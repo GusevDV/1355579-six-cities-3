@@ -37,7 +37,7 @@ it(`Should Main component render correctly with reviews AUTH`, () => {
             }}
             fetchReviews={()=>{}}
             fetchNearbyOffers={()=>{}}
-            auth={AuthStatus.AUTH}
+            isAuthorized={true}
           />
         </BrowserRouter>
       </Provider>,
@@ -71,7 +71,7 @@ it(`Should Main component render correctly with reviews NO_AUTH`, () => {
             }}
             fetchReviews={()=>{}}
             fetchNearbyOffers={()=>{}}
-            auth={AuthStatus.NO_AUTH}
+            isAuthorized={false}
           />
         </BrowserRouter>
       </Provider>,
@@ -105,7 +105,7 @@ it(`Should Main component render correctly with loading reviews and nearby offer
             }}
             fetchReviews={()=>{}}
             fetchNearbyOffers={()=>{}}
-            auth={AuthStatus.AUTH}
+            isAuthorized={true}
           />
         </BrowserRouter></Provider>,
       {
@@ -137,7 +137,7 @@ it(`Should Main component render correctly with reviews and nearby offers error`
           }}
           fetchReviews={()=>{}}
           fetchNearbyOffers={()=>{}}
-          auth={AuthStatus.AUTH}
+          isAuthorized={true}
         />
       </BrowserRouter>
       </Provider>,

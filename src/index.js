@@ -9,11 +9,8 @@ import thunk from 'redux-thunk';
 import createAPI from './api.js';
 import {ActionCreator as UserActionCreator, ApiCall as UserApiCall} from './reducer/user/user.js';
 import {ApiCall as OfferApiCall} from "./reducer/offers/offers.js";
-import {AuthStatus} from '../const.js';
 
-const api = createAPI(() => {
-  store.dispatch(UserActionCreator.changeAuthStatus(AuthStatus.NO_AUTH));
-});
+const api = createAPI(() => store.dispatch(UserActionCreator.signOut()));
 
 const store = createStore(
     reducer,
@@ -23,8 +20,7 @@ const store = createStore(
 );
 
 store.dispatch(OfferApiCall.fetchOffers());
-store.dispatch(UserApiCall.checkAuthStatus());
-/* store.dispatch(UserApiCall.signIn(`email@email.com`, `q12`)); */
+store.dispatch(UserApiCall.getAuthStatus());
 
 ReactDOM.render(
     <Provider store={store}>

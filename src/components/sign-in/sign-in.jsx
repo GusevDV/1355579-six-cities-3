@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import {AuthStatus} from '../../../const.js';
 import {authType} from '../../types/user-types.js';
 import {getAuthStatus} from '../../reducer/user/selectors.js';
 import {ApiCall as UserApiCall} from '../../reducer/user/user.js';
@@ -19,7 +18,7 @@ class SignIn extends React.PureComponent {
   }
 
   componentDidUpdate() {
-    if (this.props.auth === AuthStatus.AUTH) {
+    if (this.props.isAuthorized) {
       history.push(`/`);
     }
   }
@@ -63,12 +62,12 @@ class SignIn extends React.PureComponent {
 }
 
 SignIn.propTypes = {
-  auth: authType.isRequired,
+  isAuthorized: authType.isRequired,
   onSignIn: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state) => ({
-  auth: getAuthStatus(state)
+  isAuthorized: getAuthStatus(state)
 });
 
 const mapDispatchToProps = (dispatch) => ({

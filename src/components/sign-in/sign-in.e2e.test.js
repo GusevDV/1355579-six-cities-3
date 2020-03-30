@@ -25,7 +25,7 @@ it(`Should onSignIn be called`, () => {
   const main = mount(
       <Provider store={store}>
         <BrowserRouter>
-          <SignIn auth={AuthStatus.NO_AUTH} onSignIn={onSignIn} />
+          <SignIn isAuthorized={false} onSignIn={onSignIn} />
         </BrowserRouter>
       </Provider>
   );
