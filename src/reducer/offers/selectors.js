@@ -1,4 +1,5 @@
 import {createSelector} from 'reselect';
+import {SortIndex} from '../../../const.js';
 
 const getOffers = (state) => state.offers.data;
 const getCurrentCity = (state) => state.city.currentCity;
@@ -18,11 +19,11 @@ export const getCurrentSort = createSelector(
 
 const getSortedOffers = (offers, sortType) => {
   switch (sortType) {
-    case 1:
+    case SortIndex.PRICE_LOW_TO_HIGH:
       return offers.slice().sort((a, b) => b.price - a.price);
-    case 2:
+    case SortIndex.PRICE_HIGH_TO_LOW:
       return offers.slice().sort((a, b) => a.price - b.price);
-    case 3:
+    case SortIndex.TOP_RATED_FIRST:
       return offers.slice().sort((a, b) => b.rating - a.rating);
     default:
       return offers;
@@ -34,11 +35,11 @@ export const getOffersWithSort = createSelector(
     (offers, sortType) => getSortedOffers(offers, sortType)
 );
 
-const getOfferById = (state, props) => props.offerId;
+const getOfferId = (state, props) => props.offerId;
 
 export const getCurrentOffer = createSelector(
     getOffers,
-    getOfferById,
+    getOfferId,
     (offers, offerId) => offers.find((offer) => offer.id === Number.parseInt(offerId, 10))
 );
 

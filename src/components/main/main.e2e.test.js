@@ -37,6 +37,7 @@ it(`Should onChangeCity be called`, () => {
           onChangeCity={(city) => handleChangeCity(city)}
           onChangeSortType={()=>{}}
           onChangeHoverOffer={()=>{}}
+          currentSort={1}
         />
       </BrowserRouter>
   );
@@ -65,6 +66,7 @@ it(`Should onChangeSortType be called`, () => {
           onChangeCity={() => {}}
           onChangeSortType={(sort) => handleChangeSortType(sort)}
           onChangeHoverOffer={()=>{}}
+          currentSort={1}
         />
       </BrowserRouter>
   );
@@ -94,6 +96,7 @@ it(`Should onChangeHoverOffer be called`, () => {
           onChangeCity={() => {}}
           onChangeSortType={() => {}}
           onChangeHoverOffer={(offer) => handleChangeHoverOffer(offer)}
+          currentSort={1}
         />
       </BrowserRouter>
   );
