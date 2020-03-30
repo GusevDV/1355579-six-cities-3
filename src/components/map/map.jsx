@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import leaflet from 'leaflet';
 import {offerType} from '../../types/offers-types.js';
-import {MapSetting, mapDisplayType} from '../../../const.js';
+import {MapSetting, MapDisplayType} from '../../../const.js';
 
 class Map extends React.PureComponent {
   constructor(props) {
@@ -69,9 +69,9 @@ class Map extends React.PureComponent {
 
   render() {
     let mapClass = ``;
-    if (this.props.mapType === mapDisplayType.CITIES) {
+    if (this.props.mapType === MapDisplayType.CITIES) {
       mapClass = `cities__map`;
-    } else if (this.props.mapType === mapDisplayType.PROPERTY) {
+    } else if (this.props.mapType === MapDisplayType.PROPERTY) {
       mapClass = `property__map`;
     }
     return (
@@ -85,11 +85,11 @@ Map.propTypes = {
   currentOffer: offerType,
   city: PropTypes.arrayOf(PropTypes.number).isRequired,
   zoom: PropTypes.number.isRequired,
-  mapType: PropTypes.oneOf([mapDisplayType.CITIES, mapDisplayType.PROPERTY])
+  mapType: PropTypes.oneOf([MapDisplayType.CITIES, MapDisplayType.PROPERTY])
 };
 
 Map.defaultProps = {
-  mapType: mapDisplayType.CITIES,
+  mapType: MapDisplayType.CITIES,
 };
 
 export default Map;

@@ -4,6 +4,7 @@ import configureStore from "redux-mock-store";
 import App from "./app.jsx";
 import {Provider} from "react-redux";
 import offers from '../../test-mocks/offers.js';
+import {AuthStatus} from '../../../const.js';
 
 const mockStore = configureStore([]);
 
@@ -31,6 +32,10 @@ it(`Should App component render correctly when offers is loaded with success`, (
       isLoading: true,
       isError: false,
     },
+    user: {
+      authorizationStatus: AuthStatus.NO_AUTH,
+      data: []
+    }
   });
 
   const render = renderer.create(

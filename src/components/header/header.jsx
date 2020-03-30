@@ -1,7 +1,13 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
+import {Route} from '../../../const.js';
+import {authType} from '../../types/user-types.js';
+import {getAuthStatus} from '../../reducer/user/selectors.js';
 
-const Header = React.memo(function Header() {
+const Header = React.memo(function Header(props) {
+  const {isAuthorized, email} = props;
   return (
     <header className="header">
       <div className="container">
@@ -20,15 +26,16 @@ const Header = React.memo(function Header() {
           <nav className="header__nav">
             <ul className="header__nav-list">
               <li className="header__nav-item user">
-                <a
-                  className="header__nav-link header__nav-link--profile"
-                  href="#"
-                >
-                  <div className="header__avatar-wrapper user__avatar-wrapper"></div>
-                  <span className="header__user-name user__name">
-                  Oliver.conner@gmail.com
-                  </span>
-                </a>
+                <Link className="header__nav-link header__nav-link--profile" to={isAuthorized ? Route.FAVORITES : Route.LOGIN}>
+                  {isAuthorized ? (
+                    <>
+                      <div className="header__avatar-wrapper user__avatar-wrapper"></div>
+                      <span className="header__user-name user__name">{email}</span>
+                    </>
+                  ) : (
+                    <span className="header__user-name user__name">Sign In</span>
+                  )}
+                </Link>
               </li>
             </ul>
           </nav>
@@ -38,4 +45,15 @@ const Header = React.memo(function Header() {
   );
 });
 
-export default Header;
+Header.propTypes = {
+  isAuthorized: authType.isRequired,
+  email: PropTypes.string
+};
+
+const mapStateToProps = (state) => ({
+  isAuthorized: getAuthStatus(state),
+  email: state.user.data.email
+});
+
+export {Header};
+export default connect(mapStateToProps)(Header);

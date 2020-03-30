@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import {reviewType} from '../../types/reviews-types.js';
 import Review from '../review/review.jsx';
 
-const ReviewsList = (props) => {
+const ReviewsList = React.memo(function Header(props) {
   let reviews = props.reviews;
   reviews.sort((a, b) => new Date(b.date) - new Date(a.date));
   reviews = props.reviews.slice(0, props.maxReviewsCount);
@@ -17,7 +17,7 @@ const ReviewsList = (props) => {
       </ul>
     </>
   );
-};
+});
 
 ReviewsList.propTypes = {
   reviews: PropTypes.arrayOf(reviewType).isRequired,

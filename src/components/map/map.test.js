@@ -2,7 +2,7 @@ import React from "react";
 import renderer from "react-test-renderer";
 import Map from "./map.jsx";
 import offers from '../../test-mocks/offers.js';
-import {mapDisplayType} from '../../../const.js';
+import {MapDisplayType} from '../../../const.js';
 
 it(`Should Map city component render correctly`, () => {
   const tree = renderer
@@ -27,7 +27,7 @@ it(`Should Map property component render correctly`, () => {
       city={[52.38333, 4.9]}
       offers={offers}
       zoom={13}
-      mapType={mapDisplayType.PROPERTY}
+      mapType={MapDisplayType.PROPERTY}
       currentOffer={offers[0]}
     />,
     {
