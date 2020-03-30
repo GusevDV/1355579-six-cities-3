@@ -5,12 +5,16 @@ const initialState = {
   data: [],
   isLoading: false,
   isError: false,
+  sortType: 0,
+  hoverOffer: null,
 };
 
 const ActionType = {
   FETCH_OFFERS_START: `FETCH_OFFERS_START`,
   FETCH_OFFERS_SUCCESS: `FETCH_OFFERS_SUCCESS`,
   FETCH_OFFERS_FAILURE: `FETCH_OFFERS_FAILURE`,
+  CHANGE_SORT_TYPE: `CHANGE_SORT_TYPE`,
+  CHANGE_HOVER_OFFER: `CHANGE_HOVER_OFFER`,
 };
 
 const ActionCreator = {
@@ -23,6 +27,14 @@ const ActionCreator = {
   }),
   fetchOffersFailure: () => ({
     type: ActionType.FETCH_OFFERS_FAILURE,
+  }),
+  changeSortType: (type) => ({
+    type: ActionType.CHANGE_SORT_TYPE,
+    payload: type,
+  }),
+  changeHoverOffer: (offer) => ({
+    type: ActionType.CHANGE_HOVER_OFFER,
+    payload: offer,
   })
 };
 
@@ -52,6 +64,10 @@ const reducer = (state = initialState, action) => {
       return Object.assign({}, state, {data: action.payload, isError: false, isLoading: false});
     case ActionType.FETCH_OFFERS_FAILURE:
       return Object.assign({}, state, {data: [], isError: true, isLoading: false});
+    case ActionType.CHANGE_SORT_TYPE:
+      return Object.assign({}, state, {sortType: action.payload});
+    case ActionType.CHANGE_HOVER_OFFER:
+      return Object.assign({}, state, {hoverOffer: action.payload});
   }
 
   return state;

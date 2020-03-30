@@ -12,6 +12,9 @@ import PlaceCardListNearby from '../place-card-list-nearby/place-card-list-nearb
 import {mapDisplayType} from '../../../const.js';
 import {ApiCall as ReviewsApiCall} from '../../reducer/reviews/reviews.js';
 import {ApiCall as NearbyOffersApiCall} from '../../reducer/nearby-offers/nearby-offers.js';
+import {getCurrentOffer} from '../../reducer/offers/selectors.js';
+import {getNearbyOffers} from '../../reducer/nearby-offers/selectors.js';
+import {getReviews} from '../../reducer/reviews/selectors.js';
 import Map from '../map/map.jsx';
 import {ErrorMessage, MAX_REVIEWS_COUNT} from '../../../const.js';
 
@@ -26,7 +29,6 @@ class OfferDetail extends React.PureComponent {
   }
 
   render() {
-
     const {
       title,
       description,
@@ -219,9 +221,9 @@ OfferDetail.propTypes = {
 };
 
 const mapStateToProps = (state, ownProps) => ({
-  offer: state.offers.data.find((offer) => offer.id === Number.parseInt(ownProps.offerId, 10)),
-  nearbyOffers: state.nearbyOffers,
-  reviews: state.reviews
+  offer: getCurrentOffer(state, ownProps),
+  nearbyOffers: getNearbyOffers(state),
+  reviews: getReviews(state)
 });
 
 const mapDispatchToProps = (dispatch) => ({

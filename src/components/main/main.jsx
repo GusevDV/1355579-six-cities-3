@@ -5,24 +5,28 @@ import PlaceCardList from "../place-card-list/place-card-list.jsx";
 import Map from '../map/map.jsx';
 import Header from '../header/header.jsx';
 import CitiesList from '../cities-list/cities-list.jsx';
+import SortOptions from '../sort-options/sort-options.jsx';
 import {offerType} from '../../types/offers-types.js';
-import {ActionCreator} from "../../reducer/city/city.js";
-import {MAX_CITIES_COUNT} from '../../../const.js';
-import withActiveItem from '../../hocs/with-active-item/with-active-item.js';
+import {ActionCreator as CityActionCreator} from "../../reducer/city/city.js";
+import {ActionCreator as OffersActionCreator} from "../../reducer/offers/offers.js";
+import {getOffersWithSort, getHoverOffer, getCurrentSort} from "../../reducer/offers/selectors.js";
+import * as citySelectors from "../../reducer/city/selectors.js";
+import {MAX_CITIES_COUNT, sortTypes} from '../../../const.js';
+import withToggle from '../../hocs/with-toggle/with-toggle.js';
 
-const PlaceCardListWrapped = withActiveItem(PlaceCardList);
+const SortOptionsWrapped = withToggle(SortOptions);
 
 const Main = (props) => {
-  const currentOffers = props.offers.filter((offer) => (offer.city === props.currentCity));
+  const {offers, hoverOffer, currentSort, onChangeCity, onChangeSortType, onChangeHoverOffer} = props;
   return (
-    <div className={`page page--gray page--main ${currentOffers.length ? `page__main--index-empty` : ``}`}>
+    <div className={`page page--gray page--main ${offers.length ? `page__main--index-empty` : ``}`}>
       <Header />
       <main className="page__main page__main--index">
         <h1 className="visually-hidden">Cities</h1>
         <CitiesList
           cities={props.uniqCities}
           currentCity={props.currentCity}
-          onCityChange={props.changeCity}
+          onCityChange={onChangeCity}
           maxCitiesCount={MAX_CITIES_COUNT}
         />
         <div className="cities">
@@ -30,39 +34,18 @@ const Main = (props) => {
             <section className="cities__places places">
               <h2 className="visually-hidden">Places</h2>
               <b className="places__found">
-                {currentOffers.length} places to stay in {props.currentCity}
+                {offers.length} places to stay in {props.currentCity}
               </b>
-              <form className="places__sorting" action="#" method="get">
-                <span className="places__sorting-caption">Sort by</span>
-                <span className="places__sorting-type" tabIndex="0">
-                  Popular
-                  <svg className="places__sorting-arrow" width="7" height="4">
-                    <use xlinkHref="#icon-arrow-select"></use>
-                  </svg>
-                </span>
-                <ul className="places__options places__options--custom places__options--opened">
-                  <li
-                    className="places__option places__option--active"
-                    tabIndex="0"
-                  >
-                    Popular
-                  </li>
-                  <li className="places__option" tabIndex="0">
-                    Price: low to high
-                  </li>
-                  <li className="places__option" tabIndex="0">
-                    Price: high to low
-                  </li>
-                  <li className="places__option" tabIndex="0">
-                    Top rated first
-                  </li>
-                </ul>
-              </form>
-              <PlaceCardListWrapped offers={currentOffers} />
+              <SortOptionsWrapped sortTypes={sortTypes} activeItem={currentSort} onItemClick={(type) => onChangeSortType(type)} />
+              <PlaceCardList
+                onMouseEnter={(offer) => onChangeHoverOffer(offer)}
+                onMouseLeave={() => onChangeHoverOffer(null)}
+                offers={offers}
+              />
             </section>
             <div className="cities__right-section">
               {props.currentCity ? (
-                <Map city={props.cityCoords} zoom={props.cityZoom} offers={currentOffers} />
+                <Map city={props.cityCoords} zoom={props.cityZoom} offers={offers} currentOffer={hoverOffer} />
               ) : null}
             </div>
           </div>
@@ -77,29 +60,28 @@ Main.propTypes = {
   currentCity: PropTypes.string,
   cityCoords: PropTypes.array,
   cityZoom: PropTypes.number,
-  changeCity: PropTypes.func.isRequired,
-  uniqCities: PropTypes.array.isRequired
+  uniqCities: PropTypes.array.isRequired,
+  hoverOffer: offerType,
+  onChangeCity: PropTypes.func.isRequired,
+  onChangeSortType: PropTypes.func.isRequired,
+  onChangeHoverOffer: PropTypes.func.isRequired,
+  currentSort: PropTypes.number.isRequired
 };
 
 const mapStateToProps = (state) => ({
-  offers: state.offers.data,
-  currentCity: state.city.currentCity,
-  cityCoords: state.city.coords,
-  cityZoom: state.city.zoom,
-  uniqCities: (function () {
-    const cities = state.offers.data.map((offer) => ({
-      name: offer.city,
-      coords: offer.cityCoords,
-      zoom: offer.cityZoom
-    }));
-    return cities.filter((item, index, self) => (
-      index === self.findIndex((t) => (t.name === item.name))
-    ));
-  })(),
+  offers: getOffersWithSort(state),
+  currentCity: citySelectors.getCurrentCityName(state),
+  cityCoords: citySelectors.getCurrentCityCoords(state),
+  cityZoom: citySelectors.getCurrentCityZoom(state),
+  uniqCities: citySelectors.getCities(state),
+  hoverOffer: getHoverOffer(state),
+  currentSort: getCurrentSort(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  changeCity: (city) => dispatch(ActionCreator.changeCity(city))
+  onChangeCity: (city) => dispatch(CityActionCreator.changeCity(city)),
+  onChangeSortType: (sortType) => dispatch(OffersActionCreator.changeSortType(sortType)),
+  onChangeHoverOffer: (offer) => dispatch(OffersActionCreator.changeHoverOffer(offer))
 });
 
 export {Main};

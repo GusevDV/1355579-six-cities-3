@@ -2,25 +2,21 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const Throbber = (props) => {
-  const {position} = props.mods;
+  const {isCenterPage} = props;
 
   return (
-    <div className={`throbber ${position === `center-page` ? `throbber--centered` : ``}`}>
+    <div className={`throbber ${isCenterPage ? `throbber--centered` : ``}`}>
       <img className="throbber__img" src='/img/throbber.svg' width={100} height={100} alt='throbber' />
     </div>
   );
 };
 
 Throbber.propTypes = {
-  mods: PropTypes.shape({
-    position: PropTypes.oneOf([`center-page`, `default`])
-  })
+  isCenterPage: PropTypes.bool
 };
 
 Throbber.defaultProps = {
-  mods: {
-    position: `default`
-  }
+  isCenterPage: false
 };
 
 export default Throbber;

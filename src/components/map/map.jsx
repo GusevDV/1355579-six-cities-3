@@ -7,12 +7,19 @@ import {MapSetting, mapDisplayType} from '../../../const.js';
 class Map extends React.PureComponent {
   constructor(props) {
     super(props);
+
     this.mapRef = React.createRef();
     this.mapConfig = {
-      center: this.props.city,
+      center: props.city,
       zoom: props.zoom,
       zoomControl: false,
-      marker: true
+      marker: true,
+      layers: [
+        leaflet
+        .tileLayer(`https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`, {
+          attribution: `&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>`
+        })
+      ]
     };
 
     this.icon = leaflet.icon({
@@ -25,38 +32,29 @@ class Map extends React.PureComponent {
       iconSize: MapSetting.ICON_SIZE,
     });
 
-    this.markers = [];
   }
 
   componentDidMount() {
-    this.map = leaflet.map(this.mapRef.current, this.MapConfig);
-    this.map.setView(this.props.city, this.props.zoom);
-
-    leaflet
-    .tileLayer(`https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`, {
-      attribution: `&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>`
-    })
-    .addTo(this.map);
-    this.addMarkers();
-
+    this.map = leaflet.map(this.mapRef.current, this.mapConfig);
+    this.layer = leaflet.layerGroup().addTo(this.map);
+    this.addMarkers(this.props.offers);
   }
 
   componentDidUpdate(prevProps) {
     if (prevProps.city !== this.props.city) {
-      this.clearMarkers();
       this.map.setView(this.props.city, this.props.zoom);
-      this.addMarkers();
+    }
+    if (prevProps.offers !== this.props.offers || prevProps.currentOffer !== this.props.currentOffer) {
+      this.addMarkers(this.props.offers);
     }
   }
 
-  addMarkers() {
-    this.props.offers.forEach((offer) => {
-      let icon = this.icon;
-      if (this.props.currentOffer) {
-        icon = offer.id === this.props.currentOffer.id ? this.activeIcon : this.icon;
-      }
-      const marker = leaflet.marker(offer.coords, {icon}).addTo(this.map);
-      this.markers.push(marker);
+  addMarkers(offers) {
+    this.layer.clearLayers();
+    offers.forEach((offer) => {
+      leaflet.
+        marker(offer.coords, {icon: this.props.currentOffer && offer.id === this.props.currentOffer.id ? this.activeIcon : this.icon})
+        .addTo(this.layer);
     });
   }
 

@@ -14,6 +14,8 @@ describe(`Offers reducers`, () => {
       data: [],
       isLoading: false,
       isError: false,
+      sortType: 0,
+      hoverOffer: null,
     });
   });
 
@@ -22,6 +24,8 @@ describe(`Offers reducers`, () => {
       data: [],
       isLoading: false,
       isError: false,
+      sortType: 0,
+      hoverOffer: null,
     };
     const action = {
       type: ActionType.FETCH_OFFERS_START,
@@ -30,6 +34,8 @@ describe(`Offers reducers`, () => {
       data: [],
       isLoading: true,
       isError: false,
+      sortType: 0,
+      hoverOffer: null,
     });
   });
 
@@ -38,6 +44,8 @@ describe(`Offers reducers`, () => {
       data: [],
       isLoading: false,
       isError: true,
+      sortType: 0,
+      hoverOffer: null,
     };
     const action = {
       type: ActionType.FETCH_OFFERS_START,
@@ -46,6 +54,8 @@ describe(`Offers reducers`, () => {
       data: [],
       isLoading: true,
       isError: false,
+      sortType: 0,
+      hoverOffer: null,
     });
   });
 
@@ -54,6 +64,8 @@ describe(`Offers reducers`, () => {
       data: [],
       isLoading: true,
       isError: false,
+      sortType: 0,
+      hoverOffer: null,
     };
     const action = {
       type: ActionType.FETCH_OFFERS_SUCCESS,
@@ -63,6 +75,8 @@ describe(`Offers reducers`, () => {
       data: offers,
       isLoading: false,
       isError: false,
+      sortType: 0,
+      hoverOffer: null,
     });
   });
 
@@ -71,6 +85,8 @@ describe(`Offers reducers`, () => {
       data: [],
       isLoading: true,
       isError: false,
+      sortType: 0,
+      hoverOffer: null,
     };
     const action = {
       type: ActionType.FETCH_OFFERS_FAILURE,
@@ -79,6 +95,50 @@ describe(`Offers reducers`, () => {
       data: [],
       isLoading: false,
       isError: true,
+      sortType: 0,
+      hoverOffer: null,
+    });
+  });
+
+  it(`CHANGE_SORT_TYPE`, () => {
+    const initialState = {
+      data: [],
+      isLoading: false,
+      isError: false,
+      sortType: 0,
+      hoverOffer: null,
+    };
+    const action = {
+      type: ActionType.CHANGE_SORT_TYPE,
+      payload: 1,
+    };
+    expect(reducer(initialState, action)).toEqual({
+      data: [],
+      isLoading: false,
+      isError: false,
+      sortType: 1,
+      hoverOffer: null,
+    });
+  });
+
+  it(`CHANGE_HOVER_OFFER`, () => {
+    const initialState = {
+      data: [],
+      isLoading: false,
+      isError: false,
+      sortType: 0,
+      hoverOffer: null,
+    };
+    const action = {
+      type: ActionType.CHANGE_HOVER_OFFER,
+      payload: 1,
+    };
+    expect(reducer(initialState, action)).toEqual({
+      data: [],
+      isLoading: false,
+      isError: false,
+      sortType: 0,
+      hoverOffer: 1,
     });
   });
 
