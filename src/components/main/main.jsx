@@ -38,8 +38,8 @@ const Main = (props) => {
                 <b className="places__found">
                   {offers.length} places to stay in {props.currentCity}
                 </b>
-                <SortOptionsWrapped sortTypes={sortTypes} onChangeItem={(type) => onChangeSortType(type)} />
-                <PlaceCardListWrapped
+                <SortOptionsWrapped sortTypes={sortTypes} activeItem={currentSort} onItemClick={(type) => onChangeSortType(type)} />
+                <PlaceCardList
                   onMouseEnter={(offer) => onChangeHoverOffer(offer)}
                   onMouseLeave={() => onChangeHoverOffer(null)}
                   offers={offers}
