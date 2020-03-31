@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
+import MainEmpty from '../main-empty/main-empty.jsx';
 import PlaceCardList from "../place-card-list/place-card-list.jsx";
 import Map from '../map/map.jsx';
 import Header from '../header/header.jsx';
@@ -21,36 +22,38 @@ const Main = (props) => {
   return (
     <div className={`page page--gray page--main ${offers.length ? `page__main--index-empty` : ``}`}>
       <Header />
-      <main className="page__main page__main--index">
-        <h1 className="visually-hidden">Cities</h1>
-        <CitiesList
-          cities={props.uniqCities}
-          currentCity={props.currentCity}
-          onCityChange={onChangeCity}
-          maxCitiesCount={MAX_CITIES_COUNT}
-        />
-        <div className="cities">
-          <div className="cities__places-container container">
-            <section className="cities__places places">
-              <h2 className="visually-hidden">Places</h2>
-              <b className="places__found">
-                {offers.length} places to stay in {props.currentCity}
-              </b>
-              <SortOptionsWrapped sortTypes={sortTypes} activeItem={currentSort} onItemClick={(type) => onChangeSortType(type)} />
-              <PlaceCardList
-                onMouseEnter={(offer) => onChangeHoverOffer(offer)}
-                onMouseLeave={() => onChangeHoverOffer(null)}
-                offers={offers}
-              />
-            </section>
-            <div className="cities__right-section">
-              {props.currentCity ? (
-                <Map city={props.cityCoords} zoom={props.cityZoom} offers={offers} currentOffer={hoverOffer} />
-              ) : null}
+      {offers.length ? (
+        <main className="page__main page__main--index">
+          <h1 className="visually-hidden">Cities</h1>
+          <CitiesList
+            cities={props.uniqCities}
+            currentCity={props.currentCity}
+            onCityChange={onChangeCity}
+            maxCitiesCount={MAX_CITIES_COUNT}
+          />
+          <div className="cities">
+            <div className="cities__places-container container">
+              <section className="cities__places places">
+                <h2 className="visually-hidden">Places</h2>
+                <b className="places__found">
+                  {offers.length} places to stay in {props.currentCity}
+                </b>
+                <SortOptionsWrapped sortTypes={sortTypes} activeItem={currentSort} onItemClick={(type) => onChangeSortType(type)} />
+                <PlaceCardList
+                  onMouseEnter={(offer) => onChangeHoverOffer(offer)}
+                  onMouseLeave={() => onChangeHoverOffer(null)}
+                  offers={offers}
+                />
+              </section>
+              <div className="cities__right-section">
+                {props.currentCity ? (
+                  <Map city={props.cityCoords} zoom={props.cityZoom} offers={offers} currentOffer={hoverOffer} />
+                ) : null}
+              </div>
             </div>
           </div>
-        </div>
-      </main>
+        </main>
+      ) : (<MainEmpty />)}
     </div>
   );
 };
