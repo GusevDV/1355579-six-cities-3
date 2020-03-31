@@ -7,6 +7,7 @@ import Header from '../header/header.jsx';
 import {convertRatingToProcent} from '../../helpers/transform-helpers';
 import ReviewsList from '../reviews-list/reviews-list.jsx';
 import ReviewForm from '../review-form/review-form.jsx';
+import withReviewForm from '../../hocs/with-review-form/with-review-form.js';
 import ErrorArea from '../error/error-area.jsx';
 import ThrobberSwitcher from '../throbber-switcher/throbber-switcher.jsx';
 import PlaceCardListNearby from '../place-card-list-nearby/place-card-list-nearby.jsx';
@@ -20,6 +21,8 @@ import {getReviews} from '../../reducer/reviews/selectors.js';
 import {authType} from '../../types/user-types.js';
 import Map from '../map/map.jsx';
 import {ErrorMessage, MAX_REVIEWS_COUNT} from '../../../const.js';
+
+const ReviewFormWrapped = withReviewForm(ReviewForm);
 
 class OfferDetail extends React.PureComponent {
   constructor(props) {
@@ -125,14 +128,17 @@ class OfferDetail extends React.PureComponent {
                 </div>
                 <section className="property__reviews reviews">
                   <ThrobberSwitcher isLoading={this.props.reviews.isLoading} render={() => {
-                    if (!this.props.reviews.isError) {
+                    if (!this.props.reviews.isErrorFetchReview) {
                       return <ReviewsList reviews={this.props.reviews.data} maxReviewsCount={MAX_REVIEWS_COUNT} />;
                     } else {
                       return <ErrorArea message={ErrorMessage.NETWROK_ERROR} />;
                     }
                   }}/>
                   {this.props.isAuthorized ? (
-                    <ReviewForm />
+                    <ReviewFormWrapped
+                      isError={this.props.reviews.isErrorCreateReview}
+                      onSubmit={(e, data) => this.props.onCreateReview(this.props.offerId, data)}
+                    />
                   ) : null}
                 </section>
               </div>
@@ -173,11 +179,13 @@ OfferDetail.propTypes = {
   reviews: PropTypes.shape({
     data: PropTypes.arrayOf(reviewType).isRequired,
     isLoading: PropTypes.bool.isRequired,
-    isError: PropTypes.bool.isRequired
+    isErrorFetchReview: PropTypes.bool.isRequired,
+    isErrorCreateReview: PropTypes.bool.isRequired
   }),
   fetchReviews: PropTypes.func.isRequired,
   fetchNearbyOffers: PropTypes.func.isRequired,
-  isAuthorized: authType.isRequired
+  isAuthorized: authType.isRequired,
+  onCreateReview: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state, ownProps) => ({
@@ -189,7 +197,8 @@ const mapStateToProps = (state, ownProps) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   fetchReviews: (offerId) => dispatch(ReviewsApiCall.fetchReviews(offerId)),
-  fetchNearbyOffers: (offerId) => dispatch(NearbyOffersApiCall.fetchNearbyOffers(offerId))
+  fetchNearbyOffers: (offerId) => dispatch(NearbyOffersApiCall.fetchNearbyOffers(offerId)),
+  onCreateReview: (hotelId, data) => dispatch(ReviewsApiCall.createReview(hotelId, data))
 });
 
 export {OfferDetail};

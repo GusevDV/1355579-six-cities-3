@@ -28,7 +28,8 @@ it(`Should Main component render correctly with reviews AUTH`, () => {
             reviews={{
               data: reviews,
               isLoading: false,
-              isError: false,
+              isErrorFetchReview: false,
+              isErrorCreateReview: false,
             }}
             nearbyOffers={{
               data: offers.slice(0, 3),
@@ -38,6 +39,7 @@ it(`Should Main component render correctly with reviews AUTH`, () => {
             fetchReviews={()=>{}}
             fetchNearbyOffers={()=>{}}
             isAuthorized={true}
+            onCreateReview={()=>{}}
           />
         </BrowserRouter>
       </Provider>,
@@ -62,7 +64,8 @@ it(`Should Main component render correctly with reviews NO_AUTH`, () => {
             reviews={{
               data: reviews,
               isLoading: false,
-              isError: false,
+              isErrorFetchReview: false,
+              isErrorCreateReview: false,
             }}
             nearbyOffers={{
               data: offers.slice(0, 3),
@@ -72,6 +75,7 @@ it(`Should Main component render correctly with reviews NO_AUTH`, () => {
             fetchReviews={()=>{}}
             fetchNearbyOffers={()=>{}}
             isAuthorized={false}
+            onCreateReview={()=>{}}
           />
         </BrowserRouter>
       </Provider>,
@@ -96,7 +100,8 @@ it(`Should Main component render correctly with loading reviews and nearby offer
             reviews={{
               data: [],
               isLoading: true,
-              isError: false,
+              isErrorFetchReview: false,
+              isErrorCreateReview: false,
             }}
             nearbyOffers={{
               data: offers.slice(0, 3),
@@ -106,6 +111,7 @@ it(`Should Main component render correctly with loading reviews and nearby offer
             fetchReviews={()=>{}}
             fetchNearbyOffers={()=>{}}
             isAuthorized={true}
+            onCreateReview={()=>{}}
           />
         </BrowserRouter></Provider>,
       {
@@ -118,7 +124,7 @@ it(`Should Main component render correctly with loading reviews and nearby offer
   expect(tree).toMatchSnapshot();
 });
 
-it(`Should Main component render correctly with reviews and nearby offers error`, () => {
+it(`Should Main component render correctly with errors`, () => {
 
   const tree = renderer.create(
       <Provider store={store}> <BrowserRouter>
@@ -128,7 +134,8 @@ it(`Should Main component render correctly with reviews and nearby offers error`
           reviews={{
             data: [],
             isLoading: false,
-            isError: true,
+            isErrorFetchReview: true,
+            isErrorCreateReview: true,
           }}
           nearbyOffers={{
             data: offers.slice(0, 3),
@@ -138,6 +145,7 @@ it(`Should Main component render correctly with reviews and nearby offers error`
           fetchReviews={()=>{}}
           fetchNearbyOffers={()=>{}}
           isAuthorized={true}
+          onCreateReview={()=>{}}
         />
       </BrowserRouter>
       </Provider>,
