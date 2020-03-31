@@ -16,6 +16,7 @@ const PlaceCardListNearby = (props) => {
               key={offer.id}
               offer={offer}
               placeCardType={PlaceCardType.NEAR}
+              onFavoriteClick={props.onFavoriteClick}
             />
           ))}
         </div>
@@ -26,6 +27,7 @@ const PlaceCardListNearby = (props) => {
 
 PlaceCardListNearby.propTypes = {
   nearbyOffers: PropTypes.arrayOf(offerType.isRequired).isRequired,
+  onFavoriteClick: PropTypes.func.isRequired
 };
 
 export default PlaceCardListNearby;

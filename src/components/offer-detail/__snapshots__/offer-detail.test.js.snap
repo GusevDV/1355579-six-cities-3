@@ -105,7 +105,8 @@ Array [
                 Apartment 1
               </h1>
               <button
-                className="property__bookmark-button button"
+                className="property__bookmark-button button "
+                onClick={[Function]}
                 type="button"
               >
                 <svg
@@ -548,7 +549,8 @@ exports[`Should Main component render correctly with loading reviews and nearby 
               Apartment 1
             </h1>
             <button
-              className="property__bookmark-button button"
+              className="property__bookmark-button button "
+              onClick={[Function]}
               type="button"
             >
               <svg
@@ -997,7 +999,8 @@ exports[`Should Main component render correctly with reviews AUTH 1`] = `
               Apartment 1
             </h1>
             <button
-              className="property__bookmark-button button"
+              className="property__bookmark-button button "
+              onClick={[Function]}
               type="button"
             >
               <svg
@@ -1505,7 +1508,8 @@ exports[`Should Main component render correctly with reviews AUTH 1`] = `
                     </span>
                   </div>
                   <button
-                    className="place-card__bookmark-button button"
+                    className="button place-card__bookmark-button"
+                    onClick={[Function]}
                     type="button"
                   >
                     <svg
@@ -1604,7 +1608,8 @@ exports[`Should Main component render correctly with reviews AUTH 1`] = `
                     </span>
                   </div>
                   <button
-                    className="place-card__bookmark-button button"
+                    className="button place-card__bookmark-button"
+                    onClick={[Function]}
                     type="button"
                   >
                     <svg
@@ -1703,7 +1708,8 @@ exports[`Should Main component render correctly with reviews AUTH 1`] = `
                     </span>
                   </div>
                   <button
-                    className="place-card__bookmark-button button"
+                    className="button place-card__bookmark-button"
+                    onClick={[Function]}
                     type="button"
                   >
                     <svg
@@ -1867,7 +1873,8 @@ exports[`Should Main component render correctly with reviews NO_AUTH 1`] = `
               Apartment 1
             </h1>
             <button
-              className="property__bookmark-button button"
+              className="property__bookmark-button button "
+              onClick={[Function]}
               type="button"
             >
               <svg
@@ -2202,7 +2209,8 @@ exports[`Should Main component render correctly with reviews NO_AUTH 1`] = `
                     </span>
                   </div>
                   <button
-                    className="place-card__bookmark-button button"
+                    className="button place-card__bookmark-button"
+                    onClick={[Function]}
                     type="button"
                   >
                     <svg
@@ -2301,7 +2309,8 @@ exports[`Should Main component render correctly with reviews NO_AUTH 1`] = `
                     </span>
                   </div>
                   <button
-                    className="place-card__bookmark-button button"
+                    className="button place-card__bookmark-button"
+                    onClick={[Function]}
                     type="button"
                   >
                     <svg
@@ -2400,7 +2409,8 @@ exports[`Should Main component render correctly with reviews NO_AUTH 1`] = `
                     </span>
                   </div>
                   <button
-                    className="place-card__bookmark-button button"
+                    className="button place-card__bookmark-button"
+                    onClick={[Function]}
                     type="button"
                   >
                     <svg

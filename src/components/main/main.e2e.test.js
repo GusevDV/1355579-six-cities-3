@@ -50,6 +50,7 @@ it(`Should onChangeCity be called`, () => {
             onChangeCity={(city) => handleChangeCity(city)}
             onChangeSortType={()=>{}}
             onChangeHoverOffer={()=>{}}
+            onChangeFavoriteStatus={() => {}}
             currentSort={1}
           />
         </BrowserRouter>
@@ -81,6 +82,7 @@ it(`Should onChangeSortType be called`, () => {
             onChangeCity={() => {}}
             onChangeSortType={(sort) => handleChangeSortType(sort)}
             onChangeHoverOffer={()=>{}}
+            onChangeFavoriteStatus={() => {}}
             currentSort={1}
           />
         </BrowserRouter>
@@ -113,6 +115,7 @@ it(`Should onChangeHoverOffer be called`, () => {
             onChangeCity={() => {}}
             onChangeSortType={() => {}}
             onChangeHoverOffer={(offer) => handleChangeHoverOffer(offer)}
+            onChangeFavoriteStatus={() => {}}
             currentSort={1}
           />
         </BrowserRouter>
@@ -130,5 +133,38 @@ it(`Should onChangeHoverOffer be called`, () => {
 
   expect(handleChangeHoverOffer).toHaveBeenCalledTimes(2);
   expect(handleChangeHoverOffer).toHaveBeenCalledWith(null);
+
+});
+
+it(`Should onChangeHoverOffer be called`, () => {
+
+  const onChangeFavoriteStatus = jest.fn();
+
+  const main = mount(
+      <Provider store={store}>
+        <BrowserRouter>
+          <Main
+            offers={offers}
+            currentCity={cities[1].currentCity}
+            cityCoords={cities[1].cityCoords}
+            cityZoom={cities[1].cityZoom}
+            uniqCities={cities}
+            hoverOffer={offers[2]}
+            onChangeCity={() => {}}
+            onChangeSortType={() => {}}
+            onChangeHoverOffer={() => {}}
+            onChangeFavoriteStatus={onChangeFavoriteStatus}
+            currentSort={1}
+          />
+        </BrowserRouter>
+      </Provider>
+  );
+
+  const button = main.find(`.place-card__bookmark-button`).first();
+
+  button.simulate(`click`);
+
+  expect(onChangeFavoriteStatus).toHaveBeenCalledTimes(1);
+  expect(onChangeFavoriteStatus).toHaveBeenCalledWith(1, 1);
 
 });

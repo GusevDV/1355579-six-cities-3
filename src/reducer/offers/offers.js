@@ -1,4 +1,4 @@
-import {transformOffers} from '../../helpers/api-adapters.js';
+import {transformOffers, transformOffer} from '../../helpers/api-adapters.js';
 import {ActionCreator as CityActions} from "../city/city.js";
 
 const initialState = {
@@ -15,6 +15,7 @@ const ActionType = {
   FETCH_OFFERS_FAILURE: `FETCH_OFFERS_FAILURE`,
   CHANGE_SORT_TYPE: `CHANGE_SORT_TYPE`,
   CHANGE_HOVER_OFFER: `CHANGE_HOVER_OFFER`,
+  UPDATE_OFFER: `UPDATE_OFFER`,
 };
 
 const ActionCreator = {
@@ -35,6 +36,10 @@ const ActionCreator = {
   changeHoverOffer: (offer) => ({
     type: ActionType.CHANGE_HOVER_OFFER,
     payload: offer,
+  }),
+  updateOffer: (offer) => ({
+    type: ActionType.UPDATE_OFFER,
+    payload: offer,
   })
 };
 
@@ -54,6 +59,12 @@ const ApiCall = {
         dispatch(ActionCreator.fetchOffersFailure());
       });
   },
+  changeOfferFavoriteStatus: (offerId, status) => (dispatch, getState, api) => {
+    return api.post(`/favorite/${offerId}/${status}`)
+      .then((response) => {
+        dispatch(ActionCreator.updateOffer(transformOffer(response.data)));
+      });
+  }
 };
 
 const reducer = (state = initialState, action) => {
@@ -64,6 +75,10 @@ const reducer = (state = initialState, action) => {
       return Object.assign({}, state, {data: action.payload, isError: false, isLoading: false});
     case ActionType.FETCH_OFFERS_FAILURE:
       return Object.assign({}, state, {data: [], isError: true, isLoading: false});
+    case ActionType.UPDATE_OFFER:
+      return Object.assign({}, state, {
+        data: state.data.map((offer) => offer.id === action.payload.id ? action.payload : offer)
+      });
     case ActionType.CHANGE_SORT_TYPE:
       return Object.assign({}, state, {sortType: action.payload});
     case ActionType.CHANGE_HOVER_OFFER:

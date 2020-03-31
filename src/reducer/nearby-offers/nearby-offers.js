@@ -1,4 +1,5 @@
 import {transformOffers} from '../../helpers/api-adapters.js';
+import {ActionType as OffersActionType} from '../offers/offers.js';
 
 const initialState = {
   data: [],
@@ -46,6 +47,10 @@ const reducer = (state = initialState, action) => {
       return Object.assign({}, state, {data: action.payload, isError: false, isLoading: false});
     case ActionType.FETCH_NEARBY_OFFERS_FAILURE:
       return Object.assign({}, state, {data: [], isError: true, isLoading: false});
+    case OffersActionType.UPDATE_OFFER:
+      return Object.assign({}, state, {
+        data: state.data.map((offer) => offer.id === action.payload.id ? action.payload : offer)
+      });
   }
 
   return state;

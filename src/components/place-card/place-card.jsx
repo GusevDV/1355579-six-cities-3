@@ -5,8 +5,8 @@ import {offerType} from '../../types/offers-types.js';
 import {convertRatingToProcent} from '../../helpers/transform-helpers.js';
 import {PlaceCardType} from '../../../const.js';
 
-const PlaceCard = React.memo(function PlaceCard(props) {
-  const {offer, placeCardType, onMouseEnter, onMouseLeave} = props;
+const PlaceCard = (props) => {
+  const {offer, placeCardType, onMouseEnter, onMouseLeave, onFavoriteClick} = props;
   const {title, price, pricePeriod, thumnnailUrl, objectType, isPremium} = offer;
 
   const rating = convertRatingToProcent(offer.rating);
@@ -50,8 +50,12 @@ const PlaceCard = React.memo(function PlaceCard(props) {
               <span className="place-card__price-text">&#47;&nbsp;{pricePeriod}</span>
             </div>
             <button
-              className="place-card__bookmark-button button"
+              className={`button ${offer.isFavorite ? `place-card__bookmark-button--active` : `place-card__bookmark-button`}`}
               type="button"
+              onClick={(e) => {
+                e.preventDefault();
+                onFavoriteClick(offer.id, +!offer.isFavorite);
+              }}
             >
               <svg className="place-card__bookmark-icon" width="18" height="19">
                 <use xlinkHref="#icon-bookmark"></use>
@@ -98,7 +102,7 @@ const PlaceCard = React.memo(function PlaceCard(props) {
     </>
   );
 
-});
+};
 
 PlaceCard.defaultProps = {
   placeCardType: PlaceCardType.CITY,
@@ -109,6 +113,7 @@ PlaceCard.defaultProps = {
 PlaceCard.propTypes = {
   offer: offerType.isRequired,
   placeCardType: PropTypes.oneOf([PlaceCardType.CITY, PlaceCardType.NEAR]),
+  onFavoriteClick: PropTypes.func.isRequired,
   onMouseEnter: PropTypes.func,
   onMouseLeave: PropTypes.func
 };

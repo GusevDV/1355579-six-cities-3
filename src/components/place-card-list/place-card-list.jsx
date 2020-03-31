@@ -13,6 +13,7 @@ const PlaceCardList = React.memo(function PlaceCardList(props) {
           offer={offer}
           onMouseEnter={props.onMouseEnter}
           onMouseLeave={props.onMouseLeave}
+          onFavoriteClick={props.onFavoriteClick}
         />
       ))}
     </div>
@@ -22,7 +23,8 @@ const PlaceCardList = React.memo(function PlaceCardList(props) {
 PlaceCardList.propTypes = {
   offers: PropTypes.arrayOf(offerType.isRequired).isRequired,
   onMouseEnter: PropTypes.func.isRequired,
-  onMouseLeave: PropTypes.func.isRequired
+  onMouseLeave: PropTypes.func.isRequired,
+  onFavoriteClick: PropTypes.func.isRequired
 };
 
 export default PlaceCardList;

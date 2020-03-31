@@ -54,7 +54,8 @@ exports[`Should PlaceCardListNearby component render correctly 1`] = `
               </span>
             </div>
             <button
-              className="place-card__bookmark-button button"
+              className="button place-card__bookmark-button"
+              onClick={[Function]}
               type="button"
             >
               <svg
@@ -153,7 +154,8 @@ exports[`Should PlaceCardListNearby component render correctly 1`] = `
               </span>
             </div>
             <button
-              className="place-card__bookmark-button button"
+              className="button place-card__bookmark-button"
+              onClick={[Function]}
               type="button"
             >
               <svg
@@ -252,7 +254,8 @@ exports[`Should PlaceCardListNearby component render correctly 1`] = `
               </span>
             </div>
             <button
-              className="place-card__bookmark-button button"
+              className="button place-card__bookmark-button"
+              onClick={[Function]}
               type="button"
             >
               <svg

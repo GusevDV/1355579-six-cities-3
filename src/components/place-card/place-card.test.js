@@ -13,6 +13,7 @@ it(`Should PlaceCard component render correctly`, () => {
           onTitleLinkClick={() => {}}
           onMouseEnter={() => {}}
           onMouseLeave={() => {}}
+          onFavoriteClick={() => {}}
         />
       </BrowserRouter>
   )
