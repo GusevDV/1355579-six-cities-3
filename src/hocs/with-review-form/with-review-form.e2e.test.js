@@ -23,7 +23,7 @@ it(`should change rating correctly`, () => {
   expect(wrapper.props().rating).toBe(1);
 });
 
-it(`should change rating correctly`, () => {
+it(`should onSubmit work correctly`, () => {
   const onSubmit = jest.fn();
   const wrapper = shallow(<MockComponentWrapped onSubmit={onSubmit} />);
 
@@ -43,7 +43,7 @@ it(`should change rating correctly`, () => {
 
   expect(onSubmit).toHaveBeenCalled();
   expect(mockPreventDefault).toHaveBeenCalled();
-  expect(onSubmit).toHaveBeenCalledWith(mockEvent, data);
+  expect(onSubmit).toHaveBeenCalledWith(data);
 });
 
 it(`should isActive work correctly`, () => {

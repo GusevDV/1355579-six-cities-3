@@ -137,7 +137,7 @@ class OfferDetail extends React.PureComponent {
                   {this.props.isAuthorized ? (
                     <ReviewFormWrapped
                       isError={this.props.reviews.isErrorCreateReview}
-                      onSubmit={(e, data) => this.props.onCreateReview(this.props.offerId, data)}
+                      onSubmit={(data) => this.props.onCreateReview(this.props.offerId, data)}
                     />
                   ) : null}
                 </section>

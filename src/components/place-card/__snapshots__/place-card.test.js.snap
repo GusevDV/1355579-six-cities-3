@@ -1,25 +1,23 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Should PlaceCard component render correctly 1`] = `
-<article
+<a
   className="cities__place-card place-card"
+  href="/offer/1"
+  onClick={[Function]}
   onMouseLeave={[Function]}
   onMouseOver={[Function]}
 >
   <div
     className="cities__image-wrapper place-card__image-wrapper"
   >
-    <a
-      href="#"
-    >
-      <img
-        alt="Place image"
-        className="place-card__image"
-        height="200"
-        src="/img/apartment-01.jpg"
-        width="260"
-      />
-    </a>
+    <img
+      alt="Place image"
+      className="place-card__image"
+      height="200"
+      src="/img/apartment-01.jpg"
+      width="260"
+    />
   </div>
   <div
     className="place-card__info"
@@ -86,13 +84,9 @@ exports[`Should PlaceCard component render correctly 1`] = `
     <h2
       className="place-card__name"
     >
-      <a
-        className="place-card__name-link"
-        href="/offer/1"
-        onClick={[Function]}
-      >
+      <span>
         Apartment 1
-      </a>
+      </span>
     </h2>
     <p
       className="place-card__type"
@@ -100,5 +94,5 @@ exports[`Should PlaceCard component render correctly 1`] = `
       apartment
     </p>
   </div>
-</article>
+</a>
 `;

@@ -21,8 +21,7 @@ it(`Should onCardHover be called with offer.id argument`, () => {
         />
       </BrowserRouter>
   );
-
-  const card = main.find(`.cities__place-card`);
+  const card = main.find(`.cities__place-card`).first();
 
   card.simulate(`mouseover`);
 
@@ -42,7 +41,7 @@ it(`Should onCardMouseLeave be called`, () => {
       </BrowserRouter>
   );
 
-  const card = main.find(`.cities__place-card`);
+  const card = main.find(`.cities__place-card`).first();
 
   card.simulate(`mouseleave`);
 

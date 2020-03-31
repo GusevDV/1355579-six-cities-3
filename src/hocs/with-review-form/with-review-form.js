@@ -27,7 +27,7 @@ const withReviewForm = (Component) => {
 
     handleFormSubmit(e) {
       e.preventDefault();
-      this.props.onSubmit(e, {
+      this.props.onSubmit({
         rating: this.state.rating,
         comment: this.state.comment,
       });

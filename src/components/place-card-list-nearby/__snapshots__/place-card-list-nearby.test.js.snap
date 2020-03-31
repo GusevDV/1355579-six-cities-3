@@ -16,24 +16,20 @@ exports[`Should PlaceCardListNearby component render correctly 1`] = `
       className="near-places__list places__list"
     >
       <article
-        className="cities__place-card place-card"
+        className="near-places__card place-card"
         onMouseLeave={[Function]}
         onMouseOver={[Function]}
       >
         <div
-          className="cities__image-wrapper place-card__image-wrapper"
+          className="near-places__image-wrapper place-card__image-wrapper"
         >
-          <a
-            href="#"
-          >
-            <img
-              alt="Place image"
-              className="place-card__image"
-              height="200"
-              src="/img/apartment-01.jpg"
-              width="260"
-            />
-          </a>
+          <img
+            alt="Place image"
+            className="place-card__image"
+            height="200"
+            src="/img/apartment-01.jpg"
+            width="260"
+          />
         </div>
         <div
           className="place-card__info"
@@ -100,13 +96,9 @@ exports[`Should PlaceCardListNearby component render correctly 1`] = `
           <h2
             className="place-card__name"
           >
-            <a
-              className="place-card__name-link"
-              href="/offer/1"
-              onClick={[Function]}
-            >
+            <span>
               Apartment 1
-            </a>
+            </span>
           </h2>
           <p
             className="place-card__type"
@@ -116,7 +108,7 @@ exports[`Should PlaceCardListNearby component render correctly 1`] = `
         </div>
       </article>
       <article
-        className="cities__place-card place-card"
+        className="near-places__card place-card"
         onMouseLeave={[Function]}
         onMouseOver={[Function]}
       >
@@ -128,19 +120,15 @@ exports[`Should PlaceCardListNearby component render correctly 1`] = `
           </span>
         </div>
         <div
-          className="cities__image-wrapper place-card__image-wrapper"
+          className="near-places__image-wrapper place-card__image-wrapper"
         >
-          <a
-            href="#"
-          >
-            <img
-              alt="Place image"
-              className="place-card__image"
-              height="200"
-              src="/img/apartment-02.jpg"
-              width="260"
-            />
-          </a>
+          <img
+            alt="Place image"
+            className="place-card__image"
+            height="200"
+            src="/img/apartment-02.jpg"
+            width="260"
+          />
         </div>
         <div
           className="place-card__info"
@@ -207,13 +195,9 @@ exports[`Should PlaceCardListNearby component render correctly 1`] = `
           <h2
             className="place-card__name"
           >
-            <a
-              className="place-card__name-link"
-              href="/offer/2"
-              onClick={[Function]}
-            >
+            <span>
               Apartment 2
-            </a>
+            </span>
           </h2>
           <p
             className="place-card__type"
@@ -223,7 +207,7 @@ exports[`Should PlaceCardListNearby component render correctly 1`] = `
         </div>
       </article>
       <article
-        className="cities__place-card place-card"
+        className="near-places__card place-card"
         onMouseLeave={[Function]}
         onMouseOver={[Function]}
       >
@@ -235,19 +219,15 @@ exports[`Should PlaceCardListNearby component render correctly 1`] = `
           </span>
         </div>
         <div
-          className="cities__image-wrapper place-card__image-wrapper"
+          className="near-places__image-wrapper place-card__image-wrapper"
         >
-          <a
-            href="#"
-          >
-            <img
-              alt="Place image"
-              className="place-card__image"
-              height="200"
-              src="/img/apartment-01.jpg"
-              width="260"
-            />
-          </a>
+          <img
+            alt="Place image"
+            className="place-card__image"
+            height="200"
+            src="/img/apartment-01.jpg"
+            width="260"
+          />
         </div>
         <div
           className="place-card__info"
@@ -314,13 +294,9 @@ exports[`Should PlaceCardListNearby component render correctly 1`] = `
           <h2
             className="place-card__name"
           >
-            <a
-              className="place-card__name-link"
-              href="/offer/3"
-              onClick={[Function]}
-            >
+            <span>
               Apartment 3
-            </a>
+            </span>
           </h2>
           <p
             className="place-card__type"
