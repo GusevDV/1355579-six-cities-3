@@ -1469,8 +1469,10 @@ exports[`Should Main component render correctly with reviews AUTH 1`] = `
           <div
             className="near-places__list places__list"
           >
-            <article
+            <a
               className="near-places__card place-card"
+              href="/offer/1"
+              onClick={[Function]}
               onMouseLeave={[Function]}
               onMouseOver={[Function]}
             >
@@ -1561,9 +1563,11 @@ exports[`Should Main component render correctly with reviews AUTH 1`] = `
                   apartment
                 </p>
               </div>
-            </article>
-            <article
+            </a>
+            <a
               className="near-places__card place-card"
+              href="/offer/2"
+              onClick={[Function]}
               onMouseLeave={[Function]}
               onMouseOver={[Function]}
             >
@@ -1661,9 +1665,11 @@ exports[`Should Main component render correctly with reviews AUTH 1`] = `
                   apartment
                 </p>
               </div>
-            </article>
-            <article
+            </a>
+            <a
               className="near-places__card place-card"
+              href="/offer/3"
+              onClick={[Function]}
               onMouseLeave={[Function]}
               onMouseOver={[Function]}
             >
@@ -1761,7 +1767,7 @@ exports[`Should Main component render correctly with reviews AUTH 1`] = `
                   apartment
                 </p>
               </div>
-            </article>
+            </a>
           </div>
         </section>
       </div>
@@ -2170,8 +2176,10 @@ exports[`Should Main component render correctly with reviews NO_AUTH 1`] = `
           <div
             className="near-places__list places__list"
           >
-            <article
+            <a
               className="near-places__card place-card"
+              href="/offer/1"
+              onClick={[Function]}
               onMouseLeave={[Function]}
               onMouseOver={[Function]}
             >
@@ -2262,9 +2270,11 @@ exports[`Should Main component render correctly with reviews NO_AUTH 1`] = `
                   apartment
                 </p>
               </div>
-            </article>
-            <article
+            </a>
+            <a
               className="near-places__card place-card"
+              href="/offer/2"
+              onClick={[Function]}
               onMouseLeave={[Function]}
               onMouseOver={[Function]}
             >
@@ -2362,9 +2372,11 @@ exports[`Should Main component render correctly with reviews NO_AUTH 1`] = `
                   apartment
                 </p>
               </div>
-            </article>
-            <article
+            </a>
+            <a
               className="near-places__card place-card"
+              href="/offer/3"
+              onClick={[Function]}
               onMouseLeave={[Function]}
               onMouseOver={[Function]}
             >
@@ -2462,7 +2474,7 @@ exports[`Should Main component render correctly with reviews NO_AUTH 1`] = `
                   apartment
                 </p>
               </div>
-            </article>
+            </a>
           </div>
         </section>
       </div>

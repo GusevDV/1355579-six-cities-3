@@ -15,8 +15,10 @@ exports[`Should PlaceCardListNearby component render correctly 1`] = `
     <div
       className="near-places__list places__list"
     >
-      <article
+      <a
         className="near-places__card place-card"
+        href="/offer/1"
+        onClick={[Function]}
         onMouseLeave={[Function]}
         onMouseOver={[Function]}
       >
@@ -107,9 +109,11 @@ exports[`Should PlaceCardListNearby component render correctly 1`] = `
             apartment
           </p>
         </div>
-      </article>
-      <article
+      </a>
+      <a
         className="near-places__card place-card"
+        href="/offer/2"
+        onClick={[Function]}
         onMouseLeave={[Function]}
         onMouseOver={[Function]}
       >
@@ -207,9 +211,11 @@ exports[`Should PlaceCardListNearby component render correctly 1`] = `
             apartment
           </p>
         </div>
-      </article>
-      <article
+      </a>
+      <a
         className="near-places__card place-card"
+        href="/offer/3"
+        onClick={[Function]}
         onMouseLeave={[Function]}
         onMouseOver={[Function]}
       >
@@ -307,7 +313,7 @@ exports[`Should PlaceCardListNearby component render correctly 1`] = `
             apartment
           </p>
         </div>
-      </article>
+      </a>
     </div>
   </section>
 </div>
