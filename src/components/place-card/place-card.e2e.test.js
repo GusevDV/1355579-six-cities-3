@@ -69,6 +69,6 @@ it(`Should onFavoriteClick be called`, () => {
   button.simulate(`click`);
 
   expect(onFavoriteClick).toHaveBeenCalledTimes(1);
-  expect(onFavoriteClick).toHaveBeenCalledWith(1, 1);
+  expect(onFavoriteClick).toHaveBeenCalledWith(1, true);
 
 });

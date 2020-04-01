@@ -1,6 +1,6 @@
-/* eslint-disable camelcase */
 export default [
   {
+    id: 1,
     city: {
       name: `Brussels`,
       location: {
@@ -37,8 +37,7 @@ export default [
       latitude: 50.869557,
       longitude: 4.332697,
       zoom: 16
-    },
-    id: 1
+    }
   }
 ];
 

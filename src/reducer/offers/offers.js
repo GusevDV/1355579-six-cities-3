@@ -60,7 +60,8 @@ const ApiCall = {
       });
   },
   changeOfferFavoriteStatus: (offerId, status) => (dispatch, getState, api) => {
-    return api.post(`/favorite/${offerId}/${status}`)
+    const statusNumber = Number(status);
+    return api.post(`/favorite/${offerId}/${statusNumber}`)
       .then((response) => {
         dispatch(ActionCreator.updateOffer(transformOffer(response.data)));
       });

@@ -81,6 +81,23 @@ describe(`Nearby offers reducers`, () => {
     });
   });
 
+  it(`UPDATE_OFFER`, () => {
+    const initialState = {
+      data: offers,
+      isLoading: true,
+      isError: false,
+    };
+    const action = {
+      type: ActionType.UPDATE_OFFER,
+      payload: offers.find((offer) => offer.id === 1),
+    };
+    expect(reducer(initialState, action)).toEqual({
+      data: offers.map((offer) => offer.id === action.payload.id ? action.payload : offer),
+      isLoading: true,
+      isError: false,
+    });
+  });
+
 });
 
 describe(`ApiCall work correctly`, () => {

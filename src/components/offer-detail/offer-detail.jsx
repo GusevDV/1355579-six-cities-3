@@ -80,7 +80,7 @@ class OfferDetail extends React.PureComponent {
                   <button
                     className={`property__bookmark-button button ${isFavorite ? `property__bookmark-button--active` : ``}`}
                     type="button"
-                    onClick={() => onChangeFavoriteStatus(offerId, +!isFavorite)}
+                    onClick={() => onChangeFavoriteStatus(offerId, !isFavorite)}
                   >
                     <svg className="property__bookmark-icon" width="31" height="33">
                       <use xlinkHref="#icon-bookmark"></use>

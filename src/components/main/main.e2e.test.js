@@ -165,6 +165,6 @@ it(`Should onChangeHoverOffer be called`, () => {
   button.simulate(`click`);
 
   expect(onChangeFavoriteStatus).toHaveBeenCalledTimes(1);
-  expect(onChangeFavoriteStatus).toHaveBeenCalledWith(1, 1);
+  expect(onChangeFavoriteStatus).toHaveBeenCalledWith(1, true);
 
 });

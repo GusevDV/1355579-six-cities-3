@@ -142,6 +142,27 @@ describe(`Offers reducers`, () => {
     });
   });
 
+  it(`UPDATE_OFFER`, () => {
+    const initialState = {
+      data: offers,
+      isLoading: false,
+      isError: false,
+      sortType: 0,
+      hoverOffer: null,
+    };
+    const action = {
+      type: ActionType.UPDATE_OFFER,
+      payload: offers.find((offer) => offer.id === 1),
+    };
+    expect(reducer(initialState, action)).toEqual({
+      data: offers.map((offer) => offer.id === action.payload.id ? action.payload : offer),
+      isLoading: false,
+      isError: false,
+      sortType: 0,
+      hoverOffer: null,
+    });
+  });
+
 });
 
 describe(`ApiCall work correctly`, () => {
@@ -195,4 +216,5 @@ describe(`ApiCall work correctly`, () => {
         expect(dispatch.mock.calls[1][0]).toEqual(expectedActions[1]);
       });
   });
+
 });
