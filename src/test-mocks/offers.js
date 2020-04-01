@@ -13,6 +13,7 @@ export default [
     objectType: `apartment`,
     maxAdults: 4,
     isPremium: false,
+    isFavorite: false,
     rating: 3.5,
     city: CityName.AMSTERDAM,
     images: [
@@ -45,6 +46,7 @@ export default [
     objectType: `apartment`,
     maxAdults: 7,
     isPremium: true,
+    isFavorite: false,
     rating: 4,
     city: CityName.AMSTERDAM,
     images: [
@@ -77,6 +79,7 @@ export default [
     objectType: `apartment`,
     maxAdults: 5,
     isPremium: true,
+    isFavorite: false,
     rating: 2,
     city: CityName.AMSTERDAM,
     images: [
@@ -109,6 +112,7 @@ export default [
     objectType: `apartment`,
     maxAdults: 2,
     isPremium: false,
+    isFavorite: false,
     rating: 3,
     city: CityName.AMSTERDAM,
     images: [
@@ -141,6 +145,7 @@ export default [
     objectType: `apartment`,
     maxAdults: 1,
     isPremium: false,
+    isFavorite: true,
     rating: 5,
     city: CityName.PARIS,
     images: [

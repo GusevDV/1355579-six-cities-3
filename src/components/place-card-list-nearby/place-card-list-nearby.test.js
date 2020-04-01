@@ -10,6 +10,7 @@ it(`Should PlaceCardListNearby component render correctly`, () => {
       <BrowserRouter>
         <PlaceCardListNearby
           nearbyOffers={offers.slice(0, 3)}
+          onFavoriteClick={()=>{}}
         />
       </BrowserRouter>
   )

@@ -3,14 +3,32 @@ import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
 import {offerType} from '../../types/offers-types.js';
 import {convertRatingToProcent} from '../../helpers/transform-helpers.js';
+import {PlaceCardType} from '../../../const.js';
 
-const PlaceCard = React.memo(function PlaceCard(props) {
-  const {offer, onMouseEnter, onMouseLeave} = props;
+const PlaceCard = (props) => {
+  const {offer, placeCardType, onMouseEnter, onMouseLeave, onFavoriteClick} = props;
   const {title, price, pricePeriod, thumnnailUrl, objectType, isPremium} = offer;
+
   const rating = convertRatingToProcent(offer.rating);
+
+  let articleClass;
+  let imageWrapperClass;
+
+  switch (placeCardType) {
+    case PlaceCardType.CITY:
+      articleClass = `cities__place-card`;
+      imageWrapperClass = `cities__image-wrapper`;
+      break;
+    case PlaceCardType.NEAR:
+      articleClass = `near-places__card`;
+      imageWrapperClass = `near-places__image-wrapper`;
+      break;
+  }
+
   return (
-    <article
-      className="cities__place-card place-card"
+    <Link
+      to={`/offer/${offer.id}`}
+      className={`${articleClass} place-card`}
       onMouseOver={() => onMouseEnter(offer.id)}
       onMouseLeave={onMouseLeave}
     >
@@ -20,16 +38,14 @@ const PlaceCard = React.memo(function PlaceCard(props) {
         </div>
       )}
 
-      <div className="cities__image-wrapper place-card__image-wrapper">
-        <a href="#">
-          <img
-            className="place-card__image"
-            src={thumnnailUrl}
-            width="260"
-            height="200"
-            alt="Place image"
-          />
-        </a>
+      <div className={`${imageWrapperClass} place-card__image-wrapper`}>
+        <img
+          className="place-card__image"
+          src={thumnnailUrl}
+          width="260"
+          height="200"
+          alt="Place image"
+        />
       </div>
       <div className="place-card__info">
         <div className="place-card__price-wrapper">
@@ -38,8 +54,13 @@ const PlaceCard = React.memo(function PlaceCard(props) {
             <span className="place-card__price-text">&#47;&nbsp;{pricePeriod}</span>
           </div>
           <button
-            className="place-card__bookmark-button button"
+            className={`button ${offer.isFavorite ? `place-card__bookmark-button--active` : `place-card__bookmark-button`}`}
             type="button"
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              onFavoriteClick(offer.id, !offer.isFavorite);
+            }}
           >
             <svg className="place-card__bookmark-icon" width="18" height="19">
               <use xlinkHref="#icon-bookmark"></use>
@@ -54,23 +75,27 @@ const PlaceCard = React.memo(function PlaceCard(props) {
           </div>
         </div>
         <h2 className="place-card__name">
-          <Link className="place-card__name-link" to={`offer/${offer.id}`} >{title}</Link>
+          <span>{title}</span>
         </h2>
         <p className="place-card__type">{objectType}</p>
       </div>
-    </article>
+    </Link>
   );
-});
+
+};
 
 PlaceCard.defaultProps = {
+  placeCardType: PlaceCardType.CITY,
   onMouseEnter: () => {},
   onMouseLeave: () => {}
 };
 
 PlaceCard.propTypes = {
   offer: offerType.isRequired,
+  placeCardType: PropTypes.oneOf([PlaceCardType.CITY, PlaceCardType.NEAR]),
+  onFavoriteClick: PropTypes.func.isRequired,
   onMouseEnter: PropTypes.func,
   onMouseLeave: PropTypes.func
 };
 
-export default React.memo(PlaceCard);
+export default PlaceCard;

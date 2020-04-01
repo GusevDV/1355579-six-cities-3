@@ -9,7 +9,7 @@ import CitiesList from '../cities-list/cities-list.jsx';
 import SortOptions from '../sort-options/sort-options.jsx';
 import {offerType} from '../../types/offers-types.js';
 import {ActionCreator as CityActionCreator} from "../../reducer/city/city.js";
-import {ActionCreator as OffersActionCreator} from "../../reducer/offers/offers.js";
+import {ActionCreator as OffersActionCreator, ApiCall as OffersApiCall} from "../../reducer/offers/offers.js";
 import {getOffersWithSort, getHoverOffer, getCurrentSort} from "../../reducer/offers/selectors.js";
 import * as citySelectors from "../../reducer/city/selectors.js";
 import {MAX_CITIES_COUNT, sortTypes} from '../../../const.js';
@@ -18,7 +18,7 @@ import withToggle from '../../hocs/with-toggle/with-toggle.js';
 const SortOptionsWrapped = withToggle(SortOptions);
 
 const Main = (props) => {
-  const {offers, hoverOffer, currentSort, onChangeCity, onChangeSortType, onChangeHoverOffer} = props;
+  const {offers, hoverOffer, currentSort, onChangeCity, onChangeSortType, onChangeHoverOffer, onChangeFavoriteStatus} = props;
   return (
     <div className={`page page--gray page--main ${offers.length ? `page__main--index-empty` : ``}`}>
       <Header />
@@ -42,6 +42,7 @@ const Main = (props) => {
                 <PlaceCardList
                   onMouseEnter={(offer) => onChangeHoverOffer(offer)}
                   onMouseLeave={() => onChangeHoverOffer(null)}
+                  onFavoriteClick={onChangeFavoriteStatus}
                   offers={offers}
                 />
               </section>
@@ -68,6 +69,7 @@ Main.propTypes = {
   onChangeCity: PropTypes.func.isRequired,
   onChangeSortType: PropTypes.func.isRequired,
   onChangeHoverOffer: PropTypes.func.isRequired,
+  onChangeFavoriteStatus: PropTypes.func.isRequired,
   currentSort: PropTypes.number.isRequired
 };
 
@@ -84,7 +86,8 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   onChangeCity: (city) => dispatch(CityActionCreator.changeCity(city)),
   onChangeSortType: (sortType) => dispatch(OffersActionCreator.changeSortType(sortType)),
-  onChangeHoverOffer: (offer) => dispatch(OffersActionCreator.changeHoverOffer(offer))
+  onChangeHoverOffer: (offer) => dispatch(OffersActionCreator.changeHoverOffer(offer)),
+  onChangeFavoriteStatus: (hotelId, status) => dispatch(OffersApiCall.changeOfferFavoriteStatus(hotelId, status))
 });
 
 export {Main};

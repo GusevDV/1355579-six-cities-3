@@ -40,6 +40,7 @@ it(`Should Main component render correctly with reviews AUTH`, () => {
             fetchNearbyOffers={()=>{}}
             isAuthorized={true}
             onCreateReview={()=>{}}
+            onChangeFavoriteStatus={()=>{}}
           />
         </BrowserRouter>
       </Provider>,
@@ -76,6 +77,7 @@ it(`Should Main component render correctly with reviews NO_AUTH`, () => {
             fetchNearbyOffers={()=>{}}
             isAuthorized={false}
             onCreateReview={()=>{}}
+            onChangeFavoriteStatus={()=>{}}
           />
         </BrowserRouter>
       </Provider>,
@@ -112,6 +114,7 @@ it(`Should Main component render correctly with loading reviews and nearby offer
             fetchNearbyOffers={()=>{}}
             isAuthorized={true}
             onCreateReview={()=>{}}
+            onChangeFavoriteStatus={()=>{}}
           />
         </BrowserRouter></Provider>,
       {
@@ -146,6 +149,7 @@ it(`Should Main component render correctly with errors`, () => {
           fetchNearbyOffers={()=>{}}
           isAuthorized={true}
           onCreateReview={()=>{}}
+          onChangeFavoriteStatus={()=>{}}
         />
       </BrowserRouter>
       </Provider>,

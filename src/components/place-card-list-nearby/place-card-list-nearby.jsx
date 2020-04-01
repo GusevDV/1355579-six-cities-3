@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import PlaceCard from '../place-card/place-card.jsx';
 import {offerType} from '../../types/offers-types.js';
+import {PlaceCardType} from '../../../const.js';
 
 const PlaceCardListNearby = (props) => {
   const {nearbyOffers} = props;
@@ -14,6 +15,8 @@ const PlaceCardListNearby = (props) => {
             <PlaceCard
               key={offer.id}
               offer={offer}
+              placeCardType={PlaceCardType.NEAR}
+              onFavoriteClick={props.onFavoriteClick}
             />
           ))}
         </div>
@@ -24,6 +27,7 @@ const PlaceCardListNearby = (props) => {
 
 PlaceCardListNearby.propTypes = {
   nearbyOffers: PropTypes.arrayOf(offerType.isRequired).isRequired,
+  onFavoriteClick: PropTypes.func.isRequired
 };
 
 export default PlaceCardListNearby;

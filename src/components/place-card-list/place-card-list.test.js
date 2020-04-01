@@ -12,6 +12,7 @@ it(`Should PlaceCardList component render correctly`, () => {
           offers={offers}
           onMouseEnter={() => {}}
           onMouseLeave={() => {}}
+          onFavoriteClick={() => {}}
         />
       </BrowserRouter>
   )

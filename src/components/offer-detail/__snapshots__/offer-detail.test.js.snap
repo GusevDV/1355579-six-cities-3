@@ -105,7 +105,8 @@ Array [
                 Apartment 1
               </h1>
               <button
-                className="property__bookmark-button button"
+                className="property__bookmark-button button "
+                onClick={[Function]}
                 type="button"
               >
                 <svg
@@ -548,7 +549,8 @@ exports[`Should Main component render correctly with loading reviews and nearby 
               Apartment 1
             </h1>
             <button
-              className="property__bookmark-button button"
+              className="property__bookmark-button button "
+              onClick={[Function]}
               type="button"
             >
               <svg
@@ -997,7 +999,8 @@ exports[`Should Main component render correctly with reviews AUTH 1`] = `
               Apartment 1
             </h1>
             <button
-              className="property__bookmark-button button"
+              className="property__bookmark-button button "
+              onClick={[Function]}
               type="button"
             >
               <svg
@@ -1466,25 +1469,23 @@ exports[`Should Main component render correctly with reviews AUTH 1`] = `
           <div
             className="near-places__list places__list"
           >
-            <article
-              className="cities__place-card place-card"
+            <a
+              className="near-places__card place-card"
+              href="/offer/1"
+              onClick={[Function]}
               onMouseLeave={[Function]}
               onMouseOver={[Function]}
             >
               <div
-                className="cities__image-wrapper place-card__image-wrapper"
+                className="near-places__image-wrapper place-card__image-wrapper"
               >
-                <a
-                  href="#"
-                >
-                  <img
-                    alt="Place image"
-                    className="place-card__image"
-                    height="200"
-                    src="/img/apartment-01.jpg"
-                    width="260"
-                  />
-                </a>
+                <img
+                  alt="Place image"
+                  className="place-card__image"
+                  height="200"
+                  src="/img/apartment-01.jpg"
+                  width="260"
+                />
               </div>
               <div
                 className="place-card__info"
@@ -1509,7 +1510,8 @@ exports[`Should Main component render correctly with reviews AUTH 1`] = `
                     </span>
                   </div>
                   <button
-                    className="place-card__bookmark-button button"
+                    className="button place-card__bookmark-button"
+                    onClick={[Function]}
                     type="button"
                   >
                     <svg
@@ -1551,13 +1553,9 @@ exports[`Should Main component render correctly with reviews AUTH 1`] = `
                 <h2
                   className="place-card__name"
                 >
-                  <a
-                    className="place-card__name-link"
-                    href="/offer/1"
-                    onClick={[Function]}
-                  >
+                  <span>
                     Apartment 1
-                  </a>
+                  </span>
                 </h2>
                 <p
                   className="place-card__type"
@@ -1565,9 +1563,11 @@ exports[`Should Main component render correctly with reviews AUTH 1`] = `
                   apartment
                 </p>
               </div>
-            </article>
-            <article
-              className="cities__place-card place-card"
+            </a>
+            <a
+              className="near-places__card place-card"
+              href="/offer/2"
+              onClick={[Function]}
               onMouseLeave={[Function]}
               onMouseOver={[Function]}
             >
@@ -1579,19 +1579,15 @@ exports[`Should Main component render correctly with reviews AUTH 1`] = `
                 </span>
               </div>
               <div
-                className="cities__image-wrapper place-card__image-wrapper"
+                className="near-places__image-wrapper place-card__image-wrapper"
               >
-                <a
-                  href="#"
-                >
-                  <img
-                    alt="Place image"
-                    className="place-card__image"
-                    height="200"
-                    src="/img/apartment-02.jpg"
-                    width="260"
-                  />
-                </a>
+                <img
+                  alt="Place image"
+                  className="place-card__image"
+                  height="200"
+                  src="/img/apartment-02.jpg"
+                  width="260"
+                />
               </div>
               <div
                 className="place-card__info"
@@ -1616,7 +1612,8 @@ exports[`Should Main component render correctly with reviews AUTH 1`] = `
                     </span>
                   </div>
                   <button
-                    className="place-card__bookmark-button button"
+                    className="button place-card__bookmark-button"
+                    onClick={[Function]}
                     type="button"
                   >
                     <svg
@@ -1658,13 +1655,9 @@ exports[`Should Main component render correctly with reviews AUTH 1`] = `
                 <h2
                   className="place-card__name"
                 >
-                  <a
-                    className="place-card__name-link"
-                    href="/offer/2"
-                    onClick={[Function]}
-                  >
+                  <span>
                     Apartment 2
-                  </a>
+                  </span>
                 </h2>
                 <p
                   className="place-card__type"
@@ -1672,9 +1665,11 @@ exports[`Should Main component render correctly with reviews AUTH 1`] = `
                   apartment
                 </p>
               </div>
-            </article>
-            <article
-              className="cities__place-card place-card"
+            </a>
+            <a
+              className="near-places__card place-card"
+              href="/offer/3"
+              onClick={[Function]}
               onMouseLeave={[Function]}
               onMouseOver={[Function]}
             >
@@ -1686,19 +1681,15 @@ exports[`Should Main component render correctly with reviews AUTH 1`] = `
                 </span>
               </div>
               <div
-                className="cities__image-wrapper place-card__image-wrapper"
+                className="near-places__image-wrapper place-card__image-wrapper"
               >
-                <a
-                  href="#"
-                >
-                  <img
-                    alt="Place image"
-                    className="place-card__image"
-                    height="200"
-                    src="/img/apartment-01.jpg"
-                    width="260"
-                  />
-                </a>
+                <img
+                  alt="Place image"
+                  className="place-card__image"
+                  height="200"
+                  src="/img/apartment-01.jpg"
+                  width="260"
+                />
               </div>
               <div
                 className="place-card__info"
@@ -1723,7 +1714,8 @@ exports[`Should Main component render correctly with reviews AUTH 1`] = `
                     </span>
                   </div>
                   <button
-                    className="place-card__bookmark-button button"
+                    className="button place-card__bookmark-button"
+                    onClick={[Function]}
                     type="button"
                   >
                     <svg
@@ -1765,13 +1757,9 @@ exports[`Should Main component render correctly with reviews AUTH 1`] = `
                 <h2
                   className="place-card__name"
                 >
-                  <a
-                    className="place-card__name-link"
-                    href="/offer/3"
-                    onClick={[Function]}
-                  >
+                  <span>
                     Apartment 3
-                  </a>
+                  </span>
                 </h2>
                 <p
                   className="place-card__type"
@@ -1779,7 +1767,7 @@ exports[`Should Main component render correctly with reviews AUTH 1`] = `
                   apartment
                 </p>
               </div>
-            </article>
+            </a>
           </div>
         </section>
       </div>
@@ -1891,7 +1879,8 @@ exports[`Should Main component render correctly with reviews NO_AUTH 1`] = `
               Apartment 1
             </h1>
             <button
-              className="property__bookmark-button button"
+              className="property__bookmark-button button "
+              onClick={[Function]}
               type="button"
             >
               <svg
@@ -2187,25 +2176,23 @@ exports[`Should Main component render correctly with reviews NO_AUTH 1`] = `
           <div
             className="near-places__list places__list"
           >
-            <article
-              className="cities__place-card place-card"
+            <a
+              className="near-places__card place-card"
+              href="/offer/1"
+              onClick={[Function]}
               onMouseLeave={[Function]}
               onMouseOver={[Function]}
             >
               <div
-                className="cities__image-wrapper place-card__image-wrapper"
+                className="near-places__image-wrapper place-card__image-wrapper"
               >
-                <a
-                  href="#"
-                >
-                  <img
-                    alt="Place image"
-                    className="place-card__image"
-                    height="200"
-                    src="/img/apartment-01.jpg"
-                    width="260"
-                  />
-                </a>
+                <img
+                  alt="Place image"
+                  className="place-card__image"
+                  height="200"
+                  src="/img/apartment-01.jpg"
+                  width="260"
+                />
               </div>
               <div
                 className="place-card__info"
@@ -2230,7 +2217,8 @@ exports[`Should Main component render correctly with reviews NO_AUTH 1`] = `
                     </span>
                   </div>
                   <button
-                    className="place-card__bookmark-button button"
+                    className="button place-card__bookmark-button"
+                    onClick={[Function]}
                     type="button"
                   >
                     <svg
@@ -2272,13 +2260,9 @@ exports[`Should Main component render correctly with reviews NO_AUTH 1`] = `
                 <h2
                   className="place-card__name"
                 >
-                  <a
-                    className="place-card__name-link"
-                    href="/offer/1"
-                    onClick={[Function]}
-                  >
+                  <span>
                     Apartment 1
-                  </a>
+                  </span>
                 </h2>
                 <p
                   className="place-card__type"
@@ -2286,9 +2270,11 @@ exports[`Should Main component render correctly with reviews NO_AUTH 1`] = `
                   apartment
                 </p>
               </div>
-            </article>
-            <article
-              className="cities__place-card place-card"
+            </a>
+            <a
+              className="near-places__card place-card"
+              href="/offer/2"
+              onClick={[Function]}
               onMouseLeave={[Function]}
               onMouseOver={[Function]}
             >
@@ -2300,19 +2286,15 @@ exports[`Should Main component render correctly with reviews NO_AUTH 1`] = `
                 </span>
               </div>
               <div
-                className="cities__image-wrapper place-card__image-wrapper"
+                className="near-places__image-wrapper place-card__image-wrapper"
               >
-                <a
-                  href="#"
-                >
-                  <img
-                    alt="Place image"
-                    className="place-card__image"
-                    height="200"
-                    src="/img/apartment-02.jpg"
-                    width="260"
-                  />
-                </a>
+                <img
+                  alt="Place image"
+                  className="place-card__image"
+                  height="200"
+                  src="/img/apartment-02.jpg"
+                  width="260"
+                />
               </div>
               <div
                 className="place-card__info"
@@ -2337,7 +2319,8 @@ exports[`Should Main component render correctly with reviews NO_AUTH 1`] = `
                     </span>
                   </div>
                   <button
-                    className="place-card__bookmark-button button"
+                    className="button place-card__bookmark-button"
+                    onClick={[Function]}
                     type="button"
                   >
                     <svg
@@ -2379,13 +2362,9 @@ exports[`Should Main component render correctly with reviews NO_AUTH 1`] = `
                 <h2
                   className="place-card__name"
                 >
-                  <a
-                    className="place-card__name-link"
-                    href="/offer/2"
-                    onClick={[Function]}
-                  >
+                  <span>
                     Apartment 2
-                  </a>
+                  </span>
                 </h2>
                 <p
                   className="place-card__type"
@@ -2393,9 +2372,11 @@ exports[`Should Main component render correctly with reviews NO_AUTH 1`] = `
                   apartment
                 </p>
               </div>
-            </article>
-            <article
-              className="cities__place-card place-card"
+            </a>
+            <a
+              className="near-places__card place-card"
+              href="/offer/3"
+              onClick={[Function]}
               onMouseLeave={[Function]}
               onMouseOver={[Function]}
             >
@@ -2407,19 +2388,15 @@ exports[`Should Main component render correctly with reviews NO_AUTH 1`] = `
                 </span>
               </div>
               <div
-                className="cities__image-wrapper place-card__image-wrapper"
+                className="near-places__image-wrapper place-card__image-wrapper"
               >
-                <a
-                  href="#"
-                >
-                  <img
-                    alt="Place image"
-                    className="place-card__image"
-                    height="200"
-                    src="/img/apartment-01.jpg"
-                    width="260"
-                  />
-                </a>
+                <img
+                  alt="Place image"
+                  className="place-card__image"
+                  height="200"
+                  src="/img/apartment-01.jpg"
+                  width="260"
+                />
               </div>
               <div
                 className="place-card__info"
@@ -2444,7 +2421,8 @@ exports[`Should Main component render correctly with reviews NO_AUTH 1`] = `
                     </span>
                   </div>
                   <button
-                    className="place-card__bookmark-button button"
+                    className="button place-card__bookmark-button"
+                    onClick={[Function]}
                     type="button"
                   >
                     <svg
@@ -2486,13 +2464,9 @@ exports[`Should Main component render correctly with reviews NO_AUTH 1`] = `
                 <h2
                   className="place-card__name"
                 >
-                  <a
-                    className="place-card__name-link"
-                    href="/offer/3"
-                    onClick={[Function]}
-                  >
+                  <span>
                     Apartment 3
-                  </a>
+                  </span>
                 </h2>
                 <p
                   className="place-card__type"
@@ -2500,7 +2474,7 @@ exports[`Should Main component render correctly with reviews NO_AUTH 1`] = `
                   apartment
                 </p>
               </div>
-            </article>
+            </a>
           </div>
         </section>
       </div>

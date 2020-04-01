@@ -18,11 +18,11 @@ it(`Should onCardHover be called with offer.id argument`, () => {
           offer={offers[0]}
           onMouseEnter={onMouseEnter}
           onMouseLeave={() => {}}
+          onFavoriteClick={() => {}}
         />
       </BrowserRouter>
   );
-
-  const card = main.find(`.cities__place-card`);
+  const card = main.find(`.cities__place-card`).first();
 
   card.simulate(`mouseover`);
 
@@ -38,13 +38,37 @@ it(`Should onCardMouseLeave be called`, () => {
           offer={offers[0]}
           onMouseEnter={() => {}}
           onMouseLeave={onMouseLeave}
+          onFavoriteClick={() => {}}
         />
       </BrowserRouter>
   );
 
-  const card = main.find(`.cities__place-card`);
+  const card = main.find(`.cities__place-card`).first();
 
   card.simulate(`mouseleave`);
 
   expect(onMouseLeave).toHaveBeenCalledTimes(1);
+});
+
+it(`Should onFavoriteClick be called`, () => {
+  const onFavoriteClick = jest.fn();
+
+  const main = mount(
+      <BrowserRouter>
+        <PlaceCard
+          offer={offers[0]}
+          onMouseEnter={() => {}}
+          onMouseLeave={() => {}}
+          onFavoriteClick={onFavoriteClick}
+        />
+      </BrowserRouter>
+  );
+
+  const button = main.find(`.place-card__bookmark-button`).first();
+
+  button.simulate(`click`);
+
+  expect(onFavoriteClick).toHaveBeenCalledTimes(1);
+  expect(onFavoriteClick).toHaveBeenCalledWith(1, true);
+
 });

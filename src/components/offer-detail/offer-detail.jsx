@@ -12,6 +12,7 @@ import ErrorArea from '../error/error-area.jsx';
 import ThrobberSwitcher from '../throbber-switcher/throbber-switcher.jsx';
 import PlaceCardListNearby from '../place-card-list-nearby/place-card-list-nearby.jsx';
 import {MapDisplayType} from '../../../const.js';
+import {ApiCall as OffersApiCall} from '../../reducer/offers/offers.js';
 import {ApiCall as ReviewsApiCall} from '../../reducer/reviews/reviews.js';
 import {ApiCall as NearbyOffersApiCall} from '../../reducer/nearby-offers/nearby-offers.js';
 import {getCurrentOffer} from '../../reducer/offers/selectors.js';
@@ -46,8 +47,11 @@ class OfferDetail extends React.PureComponent {
       bedrooms,
       goods,
       isPremium,
+      isFavorite,
       host
     } = this.props.offer;
+
+    const {offerId, onChangeFavoriteStatus} = this.props;
 
     const rating = convertRatingToProcent(this.props.offer.rating);
     return (
@@ -73,7 +77,11 @@ class OfferDetail extends React.PureComponent {
                 )}
                 <div className="property__name-wrapper">
                   <h1 className="property__name">{title}</h1>
-                  <button className="property__bookmark-button button" type="button">
+                  <button
+                    className={`property__bookmark-button button ${isFavorite ? `property__bookmark-button--active` : ``}`}
+                    type="button"
+                    onClick={() => onChangeFavoriteStatus(offerId, !isFavorite)}
+                  >
                     <svg className="property__bookmark-icon" width="31" height="33">
                       <use xlinkHref="#icon-bookmark"></use>
                     </svg>
@@ -137,7 +145,7 @@ class OfferDetail extends React.PureComponent {
                   {this.props.isAuthorized ? (
                     <ReviewFormWrapped
                       isError={this.props.reviews.isErrorCreateReview}
-                      onSubmit={(e, data) => this.props.onCreateReview(this.props.offerId, data)}
+                      onSubmit={(data) => this.props.onCreateReview(this.props.offerId, data)}
                     />
                   ) : null}
                 </section>
@@ -154,7 +162,7 @@ class OfferDetail extends React.PureComponent {
                       offers={[this.props.offer].concat(this.props.nearbyOffers.data)}
                       currentOffer={this.props.offer}
                     />
-                    <PlaceCardListNearby nearbyOffers={this.props.nearbyOffers.data} />
+                    <PlaceCardListNearby nearbyOffers={this.props.nearbyOffers.data} onFavoriteClick={onChangeFavoriteStatus} />
                   </>
                 );
               } else {
@@ -185,7 +193,8 @@ OfferDetail.propTypes = {
   fetchReviews: PropTypes.func.isRequired,
   fetchNearbyOffers: PropTypes.func.isRequired,
   isAuthorized: authType.isRequired,
-  onCreateReview: PropTypes.func.isRequired
+  onCreateReview: PropTypes.func.isRequired,
+  onChangeFavoriteStatus: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state, ownProps) => ({
@@ -198,7 +207,8 @@ const mapStateToProps = (state, ownProps) => ({
 const mapDispatchToProps = (dispatch) => ({
   fetchReviews: (offerId) => dispatch(ReviewsApiCall.fetchReviews(offerId)),
   fetchNearbyOffers: (offerId) => dispatch(NearbyOffersApiCall.fetchNearbyOffers(offerId)),
-  onCreateReview: (hotelId, data) => dispatch(ReviewsApiCall.createReview(hotelId, data))
+  onCreateReview: (hotelId, data) => dispatch(ReviewsApiCall.createReview(hotelId, data)),
+  onChangeFavoriteStatus: (hotelId, status) => dispatch(OffersApiCall.changeOfferFavoriteStatus(hotelId, status))
 });
 
 export {OfferDetail};

@@ -21,6 +21,11 @@ export const MapDisplayType = {
   PROPERTY: `propery`,
 };
 
+export const PlaceCardType = {
+  CITY: `CITY`,
+  NEAR: `NEAR`,
+};
+
 export const AuthStatus = {
   AUTH: `AUTH`,
   NO_AUTH: `NO_AUTH`,
