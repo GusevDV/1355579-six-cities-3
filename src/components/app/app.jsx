@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Main from '../main/main.jsx';
-import {Router, Switch, Route} from 'react-router-dom';
+import {Router, Switch, Route, Redirect} from 'react-router-dom';
 import {connect} from "react-redux";
 import Throbber from '../throbber/throbber.jsx';
 import ErrorArea from '../error/error-area.jsx';
@@ -10,6 +10,7 @@ import {ErrorMessage, Route as RoutePath} from '../../const.js';
 import OfferDetail from '../offer-detail/offer-detail.jsx';
 import SignIn from '../sign-in/sign-in.jsx';
 import PrivateRoute from "../private-route/private-route.jsx";
+import {getAuthStatus} from '../../reducer/user/selectors.js';
 import history from '../../history.js';
 
 const App = (props) => {
@@ -29,7 +30,9 @@ const App = (props) => {
         <Route exact path='/offer/:id' render={(routeProps) => (
           <OfferDetail offerId={routeProps.match.params.id} />
         )} />
-        <Route exact path={RoutePath.LOGIN} component={SignIn} />
+        <Route exact path={RoutePath.LOGIN} render={()=> (
+          !props.isAuthorized ? <SignIn /> : <Redirect to={`/`} />
+        )}/>
         <PrivateRoute
           exact
           path={RoutePath.FAVORITES}
@@ -44,12 +47,14 @@ const App = (props) => {
 
 App.propTypes = {
   isLoading: PropTypes.bool.isRequired,
-  isError: PropTypes.bool.isRequired
+  isError: PropTypes.bool.isRequired,
+  isAuthorized: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   isLoading: state.offers.isLoading,
   isError: state.offers.isError,
+  isAuthorized: getAuthStatus(state)
 });
 
 export {App};
