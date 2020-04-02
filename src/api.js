@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {BASE_API_URL} from '../const.js';
+import {BASE_API_URL} from './const.js';
 import {transformFieldsToCamelCase} from './helpers/transform-helpers.js';
 
 const createAPI = (onUnauthorized) => {

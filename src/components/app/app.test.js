@@ -4,7 +4,7 @@ import configureStore from "redux-mock-store";
 import App from "./app.jsx";
 import {Provider} from "react-redux";
 import offers from '../../test-mocks/offers.js';
-import {AuthStatus} from '../../../const.js';
+import {AuthStatus} from '../../const.js';
 
 const mockStore = configureStore([]);
 

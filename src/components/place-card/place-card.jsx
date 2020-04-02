@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
 import {offerType} from '../../types/offers-types.js';
 import {convertRatingToProcent} from '../../helpers/transform-helpers.js';
-import {PlaceCardType} from '../../../const.js';
+import {PlaceCardType} from '../../const.js';
+import {placeCardType as placeType} from '../../types/place-types.js';
 
 const PlaceCard = (props) => {
   const {offer, placeCardType, onMouseEnter, onMouseLeave, onFavoriteClick} = props;
@@ -11,24 +12,30 @@ const PlaceCard = (props) => {
 
   const rating = convertRatingToProcent(offer.rating);
 
-  let articleClass;
+  let parentLinkClass;
   let imageWrapperClass;
+  let infoBlockClass = ``;
 
   switch (placeCardType) {
     case PlaceCardType.CITY:
-      articleClass = `cities__place-card`;
+      parentLinkClass = `cities__place-card`;
       imageWrapperClass = `cities__image-wrapper`;
       break;
     case PlaceCardType.NEAR:
-      articleClass = `near-places__card`;
+      parentLinkClass = `near-places__card`;
       imageWrapperClass = `near-places__image-wrapper`;
+      break;
+    case PlaceCardType.FAVORITE:
+      parentLinkClass = `favorites__card`;
+      imageWrapperClass = `favorites__image-wrapper`;
+      infoBlockClass = `favorites__card-info`;
       break;
   }
 
   return (
     <Link
       to={`/offer/${offer.id}`}
-      className={`${articleClass} place-card`}
+      className={`${parentLinkClass} place-card`}
       onMouseOver={() => onMouseEnter(offer.id)}
       onMouseLeave={onMouseLeave}
     >
@@ -47,7 +54,7 @@ const PlaceCard = (props) => {
           alt="Place image"
         />
       </div>
-      <div className="place-card__info">
+      <div className={`place-card__info ${infoBlockClass}`}>
         <div className="place-card__price-wrapper">
           <div className="place-card__price">
             <b className="place-card__price-value">&euro;{price}</b>
@@ -92,7 +99,7 @@ PlaceCard.defaultProps = {
 
 PlaceCard.propTypes = {
   offer: offerType.isRequired,
-  placeCardType: PropTypes.oneOf([PlaceCardType.CITY, PlaceCardType.NEAR]),
+  placeCardType: placeType.isRequired,
   onFavoriteClick: PropTypes.func.isRequired,
   onMouseEnter: PropTypes.func,
   onMouseLeave: PropTypes.func

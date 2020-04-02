@@ -1,7 +1,7 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import SortOptions from "./sort-options.jsx";
-import {sortTypes as types} from "../../../const.js";
+import {sortTypes as types} from "../../const.js";
 
 it(`Should active SortOptions component render correctly`, () => {
 

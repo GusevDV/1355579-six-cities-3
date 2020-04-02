@@ -1,5 +1,5 @@
 import MockAdapter from "axios-mock-adapter";
-import {AuthStatus} from '../../../const.js';
+import {AuthStatus} from '../../const.js';
 import createAPI from "../../api.js";
 import {reducer, ActionType, ApiCall} from "./user.js";
 

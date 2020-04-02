@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import PlaceCard from '../place-card/place-card.jsx';
 import {offerType} from '../../types/offers-types.js';
-import {PlaceCardType} from '../../../const.js';
+import {PlaceCardType} from '../../const.js';
 
 const PlaceCardListNearby = (props) => {
   const {nearbyOffers} = props;

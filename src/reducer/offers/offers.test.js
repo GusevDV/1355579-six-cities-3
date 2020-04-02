@@ -217,4 +217,23 @@ describe(`ApiCall work correctly`, () => {
       });
   });
 
+  it(`Should API call POST /favorite/1/1 finished success`, function () {
+    const apiMock = new MockAdapter(api);
+    const dispatch = jest.fn();
+    const offerLoader = ApiCall.changeOfferFavoriteStatus(1, true);
+    const expectedActions = [
+      {type: ActionType.UPDATE_OFFER, payload: offers[0]},
+    ];
+
+    apiMock
+      .onPost(`/favorite/1/1`)
+      .reply(200);
+
+    return offerLoader(dispatch, () => {}, api)
+      .then(() => {
+        expect(dispatch).toHaveBeenCalledTimes(1);
+        expect(dispatch.mock.calls[0][0]).toEqual(expectedActions[0]);
+      });
+  });
+
 });

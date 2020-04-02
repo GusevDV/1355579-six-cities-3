@@ -3,7 +3,7 @@ import Enzyme, {mount} from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 import {SignIn} from "./sign-in.jsx";
 import {BrowserRouter} from 'react-router-dom';
-import {AuthStatus} from "../../../const.js";
+import {AuthStatus} from "../../const.js";
 import {Provider} from "react-redux";
 import configureStore from "redux-mock-store";
 

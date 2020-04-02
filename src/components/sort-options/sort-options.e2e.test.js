@@ -2,7 +2,7 @@ import React from "react";
 import Enzyme, {mount} from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 import SortOptions from "./sort-options.jsx";
-import {sortTypes as types} from "../../../const.js";
+import {sortTypes as types} from "../../const.js";
 
 Enzyme.configure({
   adapter: new Adapter(),

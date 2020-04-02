@@ -1,7 +1,7 @@
 import React from 'react';
 import {reviewType} from '../../types/reviews-types.js';
 import {convertRatingToProcent} from '../../helpers/transform-helpers.js';
-import {monthNames} from '../../../const.js';
+import {monthNames} from '../../const.js';
 
 const Review = React.memo(function Review(props) {
   let date = new Date(props.review.date);

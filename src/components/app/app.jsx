@@ -5,9 +5,11 @@ import {Router, Switch, Route} from 'react-router-dom';
 import {connect} from "react-redux";
 import Throbber from '../throbber/throbber.jsx';
 import ErrorArea from '../error/error-area.jsx';
-import {ErrorMessage} from '../../../const.js';
+import Favorites from '../favorites/favorites.jsx';
+import {ErrorMessage, Route as RoutePath} from '../../const.js';
 import OfferDetail from '../offer-detail/offer-detail.jsx';
 import SignIn from '../sign-in/sign-in.jsx';
+import PrivateRoute from "../private-route/private-route.jsx";
 import history from '../../history.js';
 
 const App = (props) => {
@@ -27,7 +29,13 @@ const App = (props) => {
         <Route exact path='/offer/:id' render={(routeProps) => (
           <OfferDetail offerId={routeProps.match.params.id} />
         )} />
-        <Route exact path='/login' component={SignIn} />
+        <Route exact path={RoutePath.LOGIN} component={SignIn} />
+        <Route exact path='/favorites' component={Favorites} />
+        <PrivateRoute
+          exact
+          path={RoutePath.FAVORITES}
+          render={() => <Favorites />}
+        />
       </Switch>
     </Router>
   );

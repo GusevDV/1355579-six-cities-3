@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {sortTypes as types} from '../../../const.js';
+import {sortTypes as types} from '../../const.js';
 
 const SortOptions = React.memo(function SortOptions(props) {
   const {sortTypes, isActive, activeItem, onItemClick, onToggle} = props;
