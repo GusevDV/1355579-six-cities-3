@@ -62,6 +62,10 @@ it(`Should App component render correctly when offers is fetching`, () => {
       currentCity: offers[0].city,
       coords: offers[0].cityCoords,
       zoom: offers[0].cityZoom,
+    },
+    user: {
+      authorizationStatus: AuthStatus.NO_AUTH,
+      data: []
     }
   });
 
@@ -89,6 +93,10 @@ it(`Should App component render correctly when offers is loaded with error`, () 
       currentCity: offers[0].city,
       coords: offers[0].cityCoords,
       zoom: offers[0].cityZoom,
+    },
+    user: {
+      authorizationStatus: AuthStatus.NO_AUTH,
+      data: []
     }
   });
 
