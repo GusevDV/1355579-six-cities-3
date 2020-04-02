@@ -30,7 +30,6 @@ const App = (props) => {
           <OfferDetail offerId={routeProps.match.params.id} />
         )} />
         <Route exact path={RoutePath.LOGIN} component={SignIn} />
-        <Route exact path='/favorites' component={Favorites} />
         <PrivateRoute
           exact
           path={RoutePath.FAVORITES}

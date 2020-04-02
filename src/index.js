@@ -12,7 +12,6 @@ import {Route} from './const.js';
 import {ActionCreator as UserActionCreator, ApiCall as UserApiCall} from './reducer/user/user.js';
 import {ApiCall as OfferApiCall} from "./reducer/offers/offers.js";
 
-
 const api = createAPI(() => {
   history.push(Route.LOGIN);
   store.dispatch(UserActionCreator.signOut());

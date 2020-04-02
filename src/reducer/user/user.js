@@ -22,7 +22,7 @@ const ActionCreator = {
 
 const ApiCall = {
   getAuthStatus: () => (dispatch, getState, api) => {
-    return api.get(`/login/`)
+    return api.checkAuth()
       .then((response) => {
         dispatch(ActionCreator.signIn(response.data));
       })

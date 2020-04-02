@@ -3,10 +3,12 @@ import {BASE_API_URL} from './const.js';
 import {transformFieldsToCamelCase} from './helpers/transform-helpers.js';
 
 const createAPI = (onUnauthorized) => {
+
+  axios.defaults.withCredentials = true;
+
   const api = axios.create({
     baseURL: BASE_API_URL,
     timeout: 5000,
-    withCredentials: true,
     transformResponse: [
       (data) => {
         let dataObject;
@@ -35,6 +37,9 @@ const createAPI = (onUnauthorized) => {
   };
 
   api.interceptors.response.use(onSuccess, onFail);
+
+  // checkAuth - request without interceptors
+  api.checkAuth = () => axios.get(`${BASE_API_URL}/login/`);
 
   return api;
 };

@@ -91,18 +91,18 @@ const PlaceCard = (props) => {
 
 };
 
-PlaceCard.defaultProps = {
-  placeCardType: PlaceCardType.CITY,
-  onMouseEnter: () => {},
-  onMouseLeave: () => {}
-};
-
 PlaceCard.propTypes = {
   offer: offerType.isRequired,
   placeCardType: placeType.isRequired,
   onFavoriteClick: PropTypes.func.isRequired,
   onMouseEnter: PropTypes.func,
   onMouseLeave: PropTypes.func
+};
+
+PlaceCard.defaultProps = {
+  placeCardType: PlaceCardType.CITY,
+  onMouseEnter: () => {},
+  onMouseLeave: () => {}
 };
 
 export default PlaceCard;

@@ -3,7 +3,7 @@ import createAPI from "../../api.js";
 import {reducer, ActionType, ApiCall} from "./offers.js";
 import {ActionType as CityActionType} from "../city/city.js";
 import offers from '../../test-mocks/server-offers.js';
-import {transformOffers} from '../../helpers/api-adapters.js';
+import {transformOffers, transformOffer} from '../../helpers/api-adapters.js';
 
 const api = createAPI(() => {});
 
@@ -214,6 +214,25 @@ describe(`ApiCall work correctly`, () => {
         expect(dispatch).toHaveBeenCalledTimes(2);
         expect(dispatch.mock.calls[0][0]).toEqual(expectedActions[0]);
         expect(dispatch.mock.calls[1][0]).toEqual(expectedActions[1]);
+      });
+  });
+
+  it(`Should API call POST /favorite/1/1 finished success`, function () {
+    const apiMock = new MockAdapter(api);
+    const dispatch = jest.fn();
+    const offerLoader = ApiCall.changeOfferFavoriteStatus(1, true);
+    const expectedActions = [
+      {type: ActionType.UPDATE_OFFER, payload: transformOffer(offers[0])},
+    ];
+
+    apiMock
+      .onPost(`/favorite/1/1`)
+      .reply(200, offers[0]);
+
+    return offerLoader(dispatch, () => {}, api)
+      .then(() => {
+        expect(dispatch).toHaveBeenCalledTimes(1);
+        expect(dispatch.mock.calls[0][0]).toEqual(expectedActions[0]);
       });
   });
 

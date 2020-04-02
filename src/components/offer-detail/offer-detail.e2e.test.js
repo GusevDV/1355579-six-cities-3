@@ -60,7 +60,7 @@ it(`Should onChangeFavoriteStatus be called`, () => {
 
 });
 
-it(`Should fetchReviews and fetchNearbyOffers  be called`, () => {
+it(`Should fetchReviews and fetchNearbyOffers be called`, () => {
   const fetchReviews = jest.fn();
   const fetchNearbyOffers = jest.fn();
   mount(
