@@ -17,6 +17,12 @@ class SignIn extends React.PureComponent {
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
   }
 
+  componentDidMount() {
+    if (this.props.isAuthorized) {
+      history.push(`/`);
+    }
+  }
+
   componentDidUpdate() {
     if (this.props.isAuthorized) {
       history.push(`/`);
