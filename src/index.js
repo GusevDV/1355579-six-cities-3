@@ -13,8 +13,8 @@ import {ActionCreator as UserActionCreator, ApiCall as UserApiCall} from './redu
 import {ApiCall as OfferApiCall} from "./reducer/offers/offers.js";
 
 const api = createAPI(() => {
-  history.push(Route.LOGIN);
   store.dispatch(UserActionCreator.signOut());
+  history.push(Route.LOGIN);
 });
 
 const store = createStore(
