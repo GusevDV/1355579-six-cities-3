@@ -10,7 +10,8 @@ describe(`Reviews reducers`, () => {
   it(`Reducer without additional parameters should return initial state`, () => {
     expect(reducer(void 0, {})).toEqual({
       data: [],
-      isLoading: false,
+      isLoadingFetchReview: false,
+      isLoadingCreateReview: false,
       isErrorFetchReview: false,
       isErrorCreateReview: false
     });
@@ -19,7 +20,8 @@ describe(`Reviews reducers`, () => {
   it(`FETCH_REVIEWS_START after situation without error`, () => {
     const initialState = {
       data: [],
-      isLoading: false,
+      isLoadingFetchReview: false,
+      isLoadingCreateReview: false,
       isErrorFetchReview: false,
       isErrorCreateReview: false
     };
@@ -28,7 +30,8 @@ describe(`Reviews reducers`, () => {
     };
     expect(reducer(initialState, action)).toEqual({
       data: [],
-      isLoading: true,
+      isLoadingFetchReview: true,
+      isLoadingCreateReview: false,
       isErrorFetchReview: false,
       isErrorCreateReview: false
     });
@@ -37,16 +40,18 @@ describe(`Reviews reducers`, () => {
   it(`FETCH_REVIEWS_START after situation with error`, () => {
     const initialState = {
       data: [],
-      isLoading: false,
+      isLoadingFetchReview: false,
+      isLoadingCreateReview: false,
       isErrorFetchReview: true,
-      isErrorCreateReview: false
+      isErrorCreateReview: true
     };
     const action = {
       type: ActionType.FETCH_REVIEWS_START,
     };
     expect(reducer(initialState, action)).toEqual({
       data: [],
-      isLoading: true,
+      isLoadingFetchReview: true,
+      isLoadingCreateReview: false,
       isErrorFetchReview: false,
       isErrorCreateReview: false
     });
@@ -55,7 +60,8 @@ describe(`Reviews reducers`, () => {
   it(`FETCH_REVIEWS_SUCCESS`, () => {
     const initialState = {
       data: [],
-      isLoading: true,
+      isLoadingFetchReview: true,
+      isLoadingCreateReview: false,
       isErrorFetchReview: false,
       isErrorCreateReview: false
     };
@@ -65,7 +71,8 @@ describe(`Reviews reducers`, () => {
     };
     expect(reducer(initialState, action)).toEqual({
       data: reviews,
-      isLoading: false,
+      isLoadingFetchReview: false,
+      isLoadingCreateReview: false,
       isErrorFetchReview: false,
       isErrorCreateReview: false
     });
@@ -74,7 +81,8 @@ describe(`Reviews reducers`, () => {
   it(`FETCH_REVIEWS_FAILURE`, () => {
     const initialState = {
       data: [],
-      isLoading: true,
+      isLoadingFetchReview: true,
+      isLoadingCreateReview: false,
       isErrorFetchReview: false,
       isErrorCreateReview: false
     };
@@ -83,37 +91,60 @@ describe(`Reviews reducers`, () => {
     };
     expect(reducer(initialState, action)).toEqual({
       data: [],
-      isLoading: false,
+      isLoadingFetchReview: false,
+      isLoadingCreateReview: false,
       isErrorFetchReview: true,
       isErrorCreateReview: false
     });
   });
 
-  it(`CREATE_REVIEW_SUCCESS after situation without error`, () => {
+  it(`CREATE_REVIEW_START after situation without error`, () => {
     const initialState = {
-      data: [],
-      isLoading: false,
+      data: [`test`],
+      isLoadingFetchReview: false,
+      isLoadingCreateReview: false,
       isErrorFetchReview: false,
       isErrorCreateReview: false
     };
     const action = {
-      type: ActionType.CREATE_REVIEW_SUCCESS,
-      payload: {test: true}
+      type: ActionType.CREATE_REVIEW_START,
     };
     expect(reducer(initialState, action)).toEqual({
-      data: {test: true},
-      isLoading: false,
+      data: [],
+      isLoadingFetchReview: false,
+      isLoadingCreateReview: true,
       isErrorFetchReview: false,
       isErrorCreateReview: false
     });
   });
 
-  it(`CREATE_REVIEW_SUCCESS after situation with error`, () => {
+  it(`CREATE_REVIEW_START after situation with error`, () => {
+    const initialState = {
+      data: [`test`],
+      isLoadingFetchReview: false,
+      isLoadingCreateReview: false,
+      isErrorFetchReview: false,
+      isErrorCreateReview: true
+    };
+    const action = {
+      type: ActionType.CREATE_REVIEW_START,
+    };
+    expect(reducer(initialState, action)).toEqual({
+      data: [],
+      isLoadingFetchReview: false,
+      isLoadingCreateReview: true,
+      isErrorFetchReview: false,
+      isErrorCreateReview: false
+    });
+  });
+
+  it(`CREATE_REVIEW_SUCCESS`, () => {
     const initialState = {
       data: [],
-      isLoading: false,
+      isLoadingFetchReview: false,
+      isLoadingCreateReview: true,
       isErrorFetchReview: false,
-      isErrorCreateReview: true,
+      isErrorCreateReview: false
     };
     const action = {
       type: ActionType.CREATE_REVIEW_SUCCESS,
@@ -121,7 +152,8 @@ describe(`Reviews reducers`, () => {
     };
     expect(reducer(initialState, action)).toEqual({
       data: {test: true},
-      isLoading: false,
+      isLoadingFetchReview: false,
+      isLoadingCreateReview: false,
       isErrorFetchReview: false,
       isErrorCreateReview: false
     });
@@ -130,7 +162,8 @@ describe(`Reviews reducers`, () => {
   it(`CREATE_REVIEW_FAILURE`, () => {
     const initialState = {
       data: [],
-      isLoading: false,
+      isLoadingFetchReview: false,
+      isLoadingCreateReview: true,
       isErrorFetchReview: false,
       isErrorCreateReview: false,
     };
@@ -139,7 +172,8 @@ describe(`Reviews reducers`, () => {
     };
     expect(reducer(initialState, action)).toEqual({
       data: [],
-      isLoading: false,
+      isLoadingFetchReview: false,
+      isLoadingCreateReview: false,
       isErrorFetchReview: false,
       isErrorCreateReview: true
     });
@@ -200,6 +234,7 @@ describe(`ApiCall work correctly`, () => {
     const reviewsLoader = ApiCall.createReview(1, body);
 
     const expectedActions = [
+      {type: ActionType.CREATE_REVIEW_START},
       {type: ActionType.CREATE_REVIEW_SUCCESS, payload: body},
     ];
 
@@ -209,8 +244,9 @@ describe(`ApiCall work correctly`, () => {
 
     return reviewsLoader(dispatch, () => {}, api)
       .then(() => {
-        expect(dispatch).toHaveBeenCalledTimes(1);
+        expect(dispatch).toHaveBeenCalledTimes(2);
         expect(dispatch.mock.calls[0][0]).toEqual(expectedActions[0]);
+        expect(dispatch.mock.calls[1][0]).toEqual(expectedActions[1]);
       });
   });
 
@@ -221,6 +257,7 @@ describe(`ApiCall work correctly`, () => {
     const reviewsLoader = ApiCall.createReview(1, body);
 
     const expectedActions = [
+      {type: ActionType.CREATE_REVIEW_START},
       {type: ActionType.CREATE_REVIEW_FAILURE}
     ];
 
@@ -231,8 +268,9 @@ describe(`ApiCall work correctly`, () => {
 
     return reviewsLoader(dispatch, () => {}, api)
       .then(() => {
-        expect(dispatch).toHaveBeenCalledTimes(1);
+        expect(dispatch).toHaveBeenCalledTimes(2);
         expect(dispatch.mock.calls[0][0]).toEqual(expectedActions[0]);
+        expect(dispatch.mock.calls[1][0]).toEqual(expectedActions[1]);
       });
   });
 

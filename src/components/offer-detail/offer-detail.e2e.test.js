@@ -32,7 +32,8 @@ it(`Should onChangeFavoriteStatus be called`, () => {
             offer={offers[0]}
             reviews={{
               data: reviews,
-              isLoading: false,
+              isLoadingFetchReview: false,
+              isLoadingCreateReview: false,
               isErrorFetchReview: false,
               isErrorCreateReview: false,
             }}
@@ -71,7 +72,8 @@ it(`Should fetchReviews and fetchNearbyOffers be called`, () => {
             offer={offers[0]}
             reviews={{
               data: reviews,
-              isLoading: false,
+              isLoadingFetchReview: false,
+              isLoadingCreateReview: false,
               isErrorFetchReview: false,
               isErrorCreateReview: false,
             }}
@@ -106,7 +108,8 @@ it(`Should onCreateReview be called`, () => {
             offer={offers[0]}
             reviews={{
               data: reviews,
-              isLoading: false,
+              isLoadingFetchReview: false,
+              isLoadingCreateReview: false,
               isErrorFetchReview: false,
               isErrorCreateReview: false,
             }}

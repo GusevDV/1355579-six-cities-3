@@ -27,7 +27,8 @@ it(`Should Main component render correctly with reviews AUTH`, () => {
             offer={offers[0]}
             reviews={{
               data: reviews,
-              isLoading: false,
+              isLoadingFetchReview: false,
+              isLoadingCreateReview: false,
               isErrorFetchReview: false,
               isErrorCreateReview: false,
             }}
@@ -64,7 +65,8 @@ it(`Should Main component render correctly with reviews NO_AUTH`, () => {
             offer={offers[0]}
             reviews={{
               data: reviews,
-              isLoading: false,
+              isLoadingFetchReview: false,
+              isLoadingCreateReview: false,
               isErrorFetchReview: false,
               isErrorCreateReview: false,
             }}
@@ -101,7 +103,8 @@ it(`Should Main component render correctly with loading reviews and nearby offer
             offer={offers[0]}
             reviews={{
               data: [],
-              isLoading: true,
+              isLoadingFetchReview: true,
+              isLoadingCreateReview: true,
               isErrorFetchReview: false,
               isErrorCreateReview: false,
             }}
@@ -136,7 +139,8 @@ it(`Should Main component render correctly with errors`, () => {
           offer={offers[0]}
           reviews={{
             data: [],
-            isLoading: false,
+            isLoadingFetchReview: false,
+            isLoadingCreateReview: false,
             isErrorFetchReview: true,
             isErrorCreateReview: true,
           }}

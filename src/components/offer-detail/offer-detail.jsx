@@ -134,7 +134,7 @@ class OfferDetail extends React.PureComponent {
                   </div>
                 </div>
                 <section className="property__reviews reviews">
-                  <ThrobberSwitcher isLoading={this.props.reviews.isLoading} render={() => {
+                  <ThrobberSwitcher isLoading={this.props.reviews.isLoadingFetchReview} render={() => {
                     if (!this.props.reviews.isErrorFetchReview) {
                       return <ReviewsList reviews={this.props.reviews.data} maxReviewsCount={MAX_REVIEWS_COUNT} />;
                     } else {
@@ -144,6 +144,7 @@ class OfferDetail extends React.PureComponent {
                   {this.props.isAuthorized ? (
                     <ReviewFormWrapped
                       isError={this.props.reviews.isErrorCreateReview}
+                      isFormDisabled={this.props.reviews.isLoadingCreateReview}
                       onSubmit={(data) => this.props.onCreateReview(this.props.offerId, data)}
                     />
                   ) : null}
@@ -185,7 +186,8 @@ OfferDetail.propTypes = {
   offerId: PropTypes.string.isRequired,
   reviews: PropTypes.shape({
     data: PropTypes.arrayOf(reviewType).isRequired,
-    isLoading: PropTypes.bool.isRequired,
+    isLoadingFetchReview: PropTypes.bool.isRequired,
+    isLoadingCreateReview: PropTypes.bool.isRequired,
     isErrorFetchReview: PropTypes.bool.isRequired,
     isErrorCreateReview: PropTypes.bool.isRequired
   }),

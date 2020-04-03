@@ -19,6 +19,7 @@ it(`Should onFormSubmit be called`, () => {
         isError={false}
         onChangeRating={()=>{}}
         onChangeComment={()=>{}}
+        isFormDisabled={false}
       />
   );
 

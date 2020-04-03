@@ -13,6 +13,7 @@ it(`Should no active ReviewForm component`, () => {
         isError={false}
         onChangeRating={()=>{}}
         onChangeComment={()=>{}}
+        isFormDisabled={false}
       />
   )
   .toJSON();
@@ -31,6 +32,26 @@ it(`Should active ReviewForm component`, () => {
         isError={false}
         onChangeRating={()=>{}}
         onChangeComment={()=>{}}
+        isFormDisabled={false}
+      />
+  )
+  .toJSON();
+
+  expect(render).toMatchSnapshot();
+});
+
+it(`Should disabled ReviewForm component`, () => {
+
+  const render = renderer.create(
+      <ReviewForm
+        onFormSubmit={()=>{}}
+        comment={`comment`}
+        isActive={true}
+        rating={0}
+        isError={false}
+        onChangeRating={()=>{}}
+        onChangeComment={()=>{}}
+        isFormDisabled={true}
       />
   )
   .toJSON();
@@ -49,6 +70,7 @@ it(`Should ReviewForm component with error`, () => {
         isError={true}
         onChangeRating={()=>{}}
         onChangeComment={()=>{}}
+        isFormDisabled={false}
       />
   )
   .toJSON();
