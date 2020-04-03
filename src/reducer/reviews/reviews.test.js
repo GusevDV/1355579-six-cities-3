@@ -100,7 +100,7 @@ describe(`Reviews reducers`, () => {
 
   it(`CREATE_REVIEW_START after situation without error`, () => {
     const initialState = {
-      data: [`test`],
+      data: [],
       isLoadingFetchReview: false,
       isLoadingCreateReview: false,
       isErrorFetchReview: false,
@@ -120,7 +120,7 @@ describe(`Reviews reducers`, () => {
 
   it(`CREATE_REVIEW_START after situation with error`, () => {
     const initialState = {
-      data: [`test`],
+      data: [],
       isLoadingFetchReview: false,
       isLoadingCreateReview: false,
       isErrorFetchReview: false,

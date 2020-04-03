@@ -70,7 +70,7 @@ const reducer = (state = initialState, action) => {
     case ActionType.FETCH_REVIEWS_FAILURE:
       return Object.assign({}, state, {data: [], isErrorFetchReview: true, isLoadingFetchReview: false});
     case ActionType.CREATE_REVIEW_START:
-      return Object.assign({}, state, {data: [], isLoadingCreateReview: true, isErrorCreateReview: false});
+      return Object.assign({}, state, {isLoadingCreateReview: true, isErrorCreateReview: false});
     case ActionType.CREATE_REVIEW_SUCCESS:
       return Object.assign({}, state, {data: action.payload, isErrorCreateReview: false, isLoadingCreateReview: false});
     case ActionType.CREATE_REVIEW_FAILURE:
