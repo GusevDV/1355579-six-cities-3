@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import {OfferType} from '../../const.js';
+import {OfferType} from '../const.js';
 import {createRatingPropType} from './rating-types.js';
 
 export const offerType = PropTypes.shape({

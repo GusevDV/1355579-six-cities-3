@@ -1,7 +1,8 @@
 import MockAdapter from "axios-mock-adapter";
-import {AuthStatus} from '../../../const.js';
+import {AuthStatus, BASE_API_URL} from '../../const.js';
 import createAPI from "../../api.js";
 import {reducer, ActionType, ApiCall} from "./user.js";
+import axios from 'axios';
 
 const api = createAPI(() => {});
 
@@ -72,7 +73,7 @@ describe(`ApiCall work correctly`, () => {
   });
 
   it(`Should API call to GET /login finished successfully`, function () {
-    const apiMock = new MockAdapter(api);
+    const apiMock = new MockAdapter(axios);
     const dispatch = jest.fn();
     const userLoader = ApiCall.getAuthStatus();
 
@@ -82,8 +83,28 @@ describe(`ApiCall work correctly`, () => {
     ];
 
     apiMock
-      .onGet(`/login/`)
+      .onGet(`${BASE_API_URL}/login/`)
       .reply(200, payload);
+
+    return userLoader(dispatch, () => {}, api)
+      .then(() => {
+        expect(dispatch).toHaveBeenCalledTimes(1);
+        expect(dispatch.mock.calls[0][0]).toEqual(expectedActions[0]);
+      });
+  });
+
+  it(`Should API call to GET /login finished failure`, function () {
+    const apiMock = new MockAdapter(axios);
+    const dispatch = jest.fn();
+    const userLoader = ApiCall.getAuthStatus();
+
+    const expectedActions = [
+      {type: ActionType.SIGN_OUT}
+    ];
+
+    apiMock
+      .onGet(`${BASE_API_URL}/login/`)
+      .reply(401);
 
     return userLoader(dispatch, () => {}, api)
       .then(() => {

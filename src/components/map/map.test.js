@@ -2,7 +2,7 @@ import React from "react";
 import renderer from "react-test-renderer";
 import Map from "./map.jsx";
 import offers from '../../test-mocks/offers.js';
-import {MapDisplayType} from '../../../const.js';
+import {MapDisplayType} from '../../const.js';
 
 it(`Should Map city component render correctly`, () => {
   const tree = renderer

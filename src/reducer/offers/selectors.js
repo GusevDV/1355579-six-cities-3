@@ -1,5 +1,5 @@
 import {createSelector} from 'reselect';
-import {SortIndex} from '../../../const.js';
+import {SortIndex} from '../../const.js';
 
 const getOffers = (state) => state.offers.data;
 const getCurrentCity = (state) => state.city.currentCity;

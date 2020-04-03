@@ -24,6 +24,7 @@ export const MapDisplayType = {
 export const PlaceCardType = {
   CITY: `CITY`,
   NEAR: `NEAR`,
+  FAVORITE: `FAVORITE`,
 };
 
 export const AuthStatus = {

@@ -5,7 +5,7 @@ import {Main} from "./main.jsx";
 import offers from '../../test-mocks/offers.js';
 import {BrowserRouter} from 'react-router-dom';
 import configureStore from "redux-mock-store";
-import {AuthStatus} from '../../../const.js';
+import {AuthStatus} from '../../const.js';
 import {Provider} from "react-redux";
 
 Enzyme.configure({
@@ -136,7 +136,7 @@ it(`Should onChangeHoverOffer be called`, () => {
 
 });
 
-it(`Should onChangeHoverOffer be called`, () => {
+it(`Should onChangeFavoriteStatus be called`, () => {
 
   const onChangeFavoriteStatus = jest.fn();
 
@@ -168,3 +168,4 @@ it(`Should onChangeHoverOffer be called`, () => {
   expect(onChangeFavoriteStatus).toHaveBeenCalledWith(1, true);
 
 });
+

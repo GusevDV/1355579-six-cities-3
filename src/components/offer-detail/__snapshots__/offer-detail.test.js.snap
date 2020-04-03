@@ -1488,7 +1488,7 @@ exports[`Should Main component render correctly with reviews AUTH 1`] = `
                 />
               </div>
               <div
-                className="place-card__info"
+                className="place-card__info "
               >
                 <div
                   className="place-card__price-wrapper"
@@ -1590,7 +1590,7 @@ exports[`Should Main component render correctly with reviews AUTH 1`] = `
                 />
               </div>
               <div
-                className="place-card__info"
+                className="place-card__info "
               >
                 <div
                   className="place-card__price-wrapper"
@@ -1692,7 +1692,7 @@ exports[`Should Main component render correctly with reviews AUTH 1`] = `
                 />
               </div>
               <div
-                className="place-card__info"
+                className="place-card__info "
               >
                 <div
                   className="place-card__price-wrapper"
@@ -2195,7 +2195,7 @@ exports[`Should Main component render correctly with reviews NO_AUTH 1`] = `
                 />
               </div>
               <div
-                className="place-card__info"
+                className="place-card__info "
               >
                 <div
                   className="place-card__price-wrapper"
@@ -2297,7 +2297,7 @@ exports[`Should Main component render correctly with reviews NO_AUTH 1`] = `
                 />
               </div>
               <div
-                className="place-card__info"
+                className="place-card__info "
               >
                 <div
                   className="place-card__price-wrapper"
@@ -2399,7 +2399,7 @@ exports[`Should Main component render correctly with reviews NO_AUTH 1`] = `
                 />
               </div>
               <div
-                className="place-card__info"
+                className="place-card__info "
               >
                 <div
                   className="place-card__price-wrapper"

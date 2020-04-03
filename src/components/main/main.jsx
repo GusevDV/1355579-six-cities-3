@@ -12,7 +12,7 @@ import {ActionCreator as CityActionCreator} from "../../reducer/city/city.js";
 import {ActionCreator as OffersActionCreator, ApiCall as OffersApiCall} from "../../reducer/offers/offers.js";
 import {getOffersWithSort, getHoverOffer, getCurrentSort} from "../../reducer/offers/selectors.js";
 import * as citySelectors from "../../reducer/city/selectors.js";
-import {MAX_CITIES_COUNT, sortTypes} from '../../../const.js';
+import {MAX_CITIES_COUNT, sortTypes} from '../../const.js';
 import withToggle from '../../hocs/with-toggle/with-toggle.js';
 
 const SortOptionsWrapped = withToggle(SortOptions);

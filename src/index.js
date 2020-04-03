@@ -8,10 +8,9 @@ import reducer from './reducer/reducer.js';
 import thunk from 'redux-thunk';
 import createAPI from './api.js';
 import history from './history';
-import {Route} from '../const.js';
+import {Route} from './const.js';
 import {ActionCreator as UserActionCreator, ApiCall as UserApiCall} from './reducer/user/user.js';
 import {ApiCall as OfferApiCall} from "./reducer/offers/offers.js";
-
 
 const api = createAPI(() => {
   history.push(Route.LOGIN);

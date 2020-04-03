@@ -1,4 +1,4 @@
-import {AuthStatus} from '../../../const.js';
+import {AuthStatus} from '../../const.js';
 
 const initialState = {
   authorizationStatus: AuthStatus.NO_AUTH,
@@ -22,7 +22,7 @@ const ActionCreator = {
 
 const ApiCall = {
   getAuthStatus: () => (dispatch, getState, api) => {
-    return api.get(`/login/`)
+    return api.checkAuth()
       .then((response) => {
         dispatch(ActionCreator.signIn(response.data));
       })

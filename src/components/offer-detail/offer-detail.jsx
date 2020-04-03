@@ -11,7 +11,6 @@ import withReviewForm from '../../hocs/with-review-form/with-review-form.js';
 import ErrorArea from '../error/error-area.jsx';
 import ThrobberSwitcher from '../throbber-switcher/throbber-switcher.jsx';
 import PlaceCardListNearby from '../place-card-list-nearby/place-card-list-nearby.jsx';
-import {MapDisplayType} from '../../../const.js';
 import {ApiCall as OffersApiCall} from '../../reducer/offers/offers.js';
 import {ApiCall as ReviewsApiCall} from '../../reducer/reviews/reviews.js';
 import {ApiCall as NearbyOffersApiCall} from '../../reducer/nearby-offers/nearby-offers.js';
@@ -21,7 +20,7 @@ import {getAuthStatus} from '../../reducer/user/selectors.js';
 import {getReviews} from '../../reducer/reviews/selectors.js';
 import {authType} from '../../types/user-types.js';
 import Map from '../map/map.jsx';
-import {ErrorMessage, MAX_REVIEWS_COUNT} from '../../../const.js';
+import {ErrorMessage, MAX_REVIEWS_COUNT, MapDisplayType} from '../../const.js';
 
 const ReviewFormWrapped = withReviewForm(ReviewForm);
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ErrorArea from '../error/error-area.jsx';
-import {ErrorMessage} from '../../../const.js';
+import {ErrorMessage} from '../../const.js';
 
 const ReviewForm = (props) => {
   const {rating, comment, isActive, isError, onChangeRating, onChangeComment, onFormSubmit} = props;
