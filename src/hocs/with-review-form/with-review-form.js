@@ -17,12 +17,12 @@ const withReviewForm = (Component) => {
       this.checkValid = this.checkValid.bind(this);
     }
 
-    handleInputChangeRating(e, value) {
+    handleInputChangeRating(event, value) {
       this.setState({rating: value});
     }
 
-    handleInputChangeComment(e) {
-      this.setState({comment: e.target.value});
+    handleInputChangeComment(event) {
+      this.setState({comment: event.target.value});
     }
 
     handleFormSubmit(e) {

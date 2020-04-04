@@ -42,9 +42,9 @@ it(`Should onChangeCity be called`, () => {
         <BrowserRouter>
           <Main
             offers={offers}
-            currentCity={cities[1].currentCity}
-            cityCoords={cities[1].cityCoords}
-            cityZoom={cities[1].cityZoom}
+            currentCity={cities[1].name}
+            cityCoords={cities[1].coords}
+            cityZoom={cities[1].zoom}
             uniqCities={cities}
             hoverOffer={offers[2]}
             onChangeCity={(city) => handleChangeCity(city)}
@@ -74,9 +74,9 @@ it(`Should onChangeSortType be called`, () => {
         <BrowserRouter>
           <Main
             offers={offers}
-            currentCity={cities[1].currentCity}
-            cityCoords={cities[1].cityCoords}
-            cityZoom={cities[1].cityZoom}
+            currentCity={cities[1].name}
+            cityCoords={cities[1].coords}
+            cityZoom={cities[1].zoom}
             uniqCities={cities}
             hoverOffer={offers[2]}
             onChangeCity={() => {}}
@@ -107,9 +107,9 @@ it(`Should onChangeHoverOffer be called`, () => {
         <BrowserRouter>
           <Main
             offers={offers}
-            currentCity={cities[1].currentCity}
-            cityCoords={cities[1].cityCoords}
-            cityZoom={cities[1].cityZoom}
+            currentCity={cities[1].name}
+            cityCoords={cities[1].coords}
+            cityZoom={cities[1].zoom}
             uniqCities={cities}
             hoverOffer={offers[2]}
             onChangeCity={() => {}}
@@ -145,9 +145,9 @@ it(`Should onChangeFavoriteStatus be called`, () => {
         <BrowserRouter>
           <Main
             offers={offers}
-            currentCity={cities[1].currentCity}
-            cityCoords={cities[1].cityCoords}
-            cityZoom={cities[1].cityZoom}
+            currentCity={cities[1].name}
+            cityCoords={cities[1].coords}
+            cityZoom={cities[1].zoom}
             uniqCities={cities}
             hoverOffer={offers[2]}
             onChangeCity={() => {}}

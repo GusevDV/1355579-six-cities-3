@@ -182,7 +182,7 @@ OfferDetail.propTypes = {
     data: PropTypes.arrayOf(offerType.isRequired).isRequired,
     isLoading: PropTypes.bool.isRequired,
     isError: PropTypes.bool.isRequired
-  }),
+  }).isRequired,
   offerId: PropTypes.string.isRequired,
   reviews: PropTypes.shape({
     data: PropTypes.arrayOf(reviewType).isRequired,
@@ -190,7 +190,7 @@ OfferDetail.propTypes = {
     isLoadingCreateReview: PropTypes.bool.isRequired,
     isErrorFetchReview: PropTypes.bool.isRequired,
     isErrorCreateReview: PropTypes.bool.isRequired
-  }),
+  }).isRequired,
   fetchReviews: PropTypes.func.isRequired,
   fetchNearbyOffers: PropTypes.func.isRequired,
   isAuthorized: authType.isRequired,

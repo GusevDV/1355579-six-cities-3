@@ -28,7 +28,7 @@ const getUniqueCities = (offers) => {
     zoom: offer.cityZoom
   }));
   return cities.filter((item, index, self) => (
-    index === self.findIndex((t) => (t.name === item.name))
+    index === self.findIndex((element) => (element.name === item.name))
   ));
 };
 const getOffers = (state) => state.offers.data;

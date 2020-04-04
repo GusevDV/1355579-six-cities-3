@@ -17,7 +17,7 @@ it(`Should onItemClick be called and active class be added`, () => {
         sortTypes={types}
         isActive={true}
         activeItem={1}
-        onItemClick={(i) => onItemClick(i)}
+        onItemClick={(item) => onItemClick(item)}
         onToggle={()=>{}}
       />
   );

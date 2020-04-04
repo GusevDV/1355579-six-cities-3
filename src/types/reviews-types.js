@@ -4,7 +4,7 @@ import {createRatingPropType} from './rating-types.js';
 export const reviewType = PropTypes.shape({
   user: PropTypes.shape({
     id: PropTypes.isRequired,
-    isPro: PropTypes.bool,
+    isPro: PropTypes.bool.isRequired,
     name: PropTypes.string.isRequired,
     avatarUrl: PropTypes.string.isRequired,
   }).isRequired,

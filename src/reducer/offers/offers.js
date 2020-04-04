@@ -73,7 +73,7 @@ const reducer = (state = initialState, action) => {
     case ActionType.FETCH_OFFERS_START:
       return Object.assign({}, state, {isLoading: true, isError: false});
     case ActionType.FETCH_OFFERS_SUCCESS:
-      return Object.assign({}, state, {data: action.payload, isError: false, isLoading: false});
+      return Object.assign({}, state, {data: action.payload.slice(), isError: false, isLoading: false});
     case ActionType.FETCH_OFFERS_FAILURE:
       return Object.assign({}, state, {data: [], isError: true, isLoading: false});
     case ActionType.UPDATE_OFFER:

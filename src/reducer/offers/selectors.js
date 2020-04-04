@@ -20,11 +20,11 @@ export const getCurrentSort = createSelector(
 const getSortedOffers = (offers, sortType) => {
   switch (sortType) {
     case SortIndex.PRICE_LOW_TO_HIGH:
-      return offers.slice().sort((a, b) => b.price - a.price);
+      return offers.slice().sort((one, two) => two.price - one.price);
     case SortIndex.PRICE_HIGH_TO_LOW:
-      return offers.slice().sort((a, b) => a.price - b.price);
+      return offers.slice().sort((one, two) => one.price - two.price);
     case SortIndex.TOP_RATED_FIRST:
-      return offers.slice().sort((a, b) => b.rating - a.rating);
+      return offers.slice().sort((one, two) => two.rating - one.rating);
     default:
       return offers;
   }

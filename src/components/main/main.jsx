@@ -62,9 +62,13 @@ const Main = (props) => {
 Main.propTypes = {
   offers: PropTypes.arrayOf(offerType.isRequired).isRequired,
   currentCity: PropTypes.string,
-  cityCoords: PropTypes.array,
-  cityZoom: PropTypes.number,
-  uniqCities: PropTypes.array.isRequired,
+  cityCoords: PropTypes.arrayOf(PropTypes.number.isRequired).isRequired,
+  cityZoom: PropTypes.number.isRequired,
+  uniqCities: PropTypes.arrayOf(PropTypes.shape({
+    coords: PropTypes.arrayOf(PropTypes.number).isRequired,
+    name: PropTypes.string.isRequired,
+    zoom: PropTypes.number.isRequired
+  })).isRequired,
   hoverOffer: offerType,
   onChangeCity: PropTypes.func.isRequired,
   onChangeSortType: PropTypes.func.isRequired,

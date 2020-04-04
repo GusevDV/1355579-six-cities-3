@@ -1,9 +1,9 @@
 import {createSelector} from 'reselect';
 
 const createGroupBy = (key) => (array) =>
-  array.reduce((objectsByKeyValue, obj) => {
-    const value = obj[key];
-    objectsByKeyValue[value] = (objectsByKeyValue[value] || []).concat(obj);
+  array.reduce((objectsByKeyValue, object) => {
+    const value = object[key];
+    objectsByKeyValue[value] = (objectsByKeyValue[value] || []).concat(object);
     return objectsByKeyValue;
   }, {});
 

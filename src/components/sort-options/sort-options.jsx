@@ -14,12 +14,12 @@ const SortOptions = React.memo(function SortOptions(props) {
         </svg>
       </span>
       <ul className={`places__options places__options--custom ${isActive ? `places__options--opened` : ``}`}>
-        {sortTypes.map((param, i) => (
+        {sortTypes.map((param, index) => (
           <li
-            key={`${param}-${i}`}
-            className={`places__option ${activeItem === i ? `places__option--active` : ``}`}
-            tabIndex={i}
-            onClick={() => onItemClick(i)}
+            key={`${param}-${index}`}
+            className={`places__option ${activeItem === index ? `places__option--active` : ``}`}
+            tabIndex={index}
+            onClick={() => onItemClick(index)}
           >
             {param}
           </li>

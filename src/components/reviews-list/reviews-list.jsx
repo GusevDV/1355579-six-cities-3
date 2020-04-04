@@ -5,7 +5,7 @@ import Review from '../review/review.jsx';
 
 const ReviewsList = React.memo(function Header(props) {
   let reviews = props.reviews;
-  reviews.sort((a, b) => new Date(b.date) - new Date(a.date));
+  reviews.sort((one, two) => new Date(two.date) - new Date(one.date));
   reviews = props.reviews.slice(0, props.maxReviewsCount);
   return (
     <>

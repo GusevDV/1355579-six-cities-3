@@ -18,7 +18,7 @@ export const offerType = PropTypes.shape({
   isFavorite: PropTypes.bool.isRequired,
   maxAdults: PropTypes.number.isRequired,
   rating: createRatingPropType(true, 0, 5),
-  goods: PropTypes.array.isRequired,
+  goods: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
   host: PropTypes.shape({
     id: PropTypes.number.isRequired,
     name: PropTypes.string.isRequired,
@@ -26,6 +26,6 @@ export const offerType = PropTypes.shape({
     avatarUrl: PropTypes.string.isRequired,
   }),
   city: PropTypes.string.isRequired,
-  coords: PropTypes.arrayOf(PropTypes.number).isRequired,
-  images: PropTypes.arrayOf(PropTypes.string).isRequired,
+  coords: PropTypes.arrayOf(PropTypes.number.isRequired).isRequired,
+  images: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
 });

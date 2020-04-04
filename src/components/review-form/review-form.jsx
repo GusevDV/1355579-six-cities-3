@@ -14,7 +14,7 @@ const ReviewForm = (props) => {
           <React.Fragment key={`star-${i}`}>
             <input
               checked={rating === i}
-              onChange={(e) => onChangeRating(e, ratingValue)}
+              onChange={(event) => onChangeRating(event, ratingValue)}
               className="form__rating-input visually-hidden"
               name="rating"
               value={i}

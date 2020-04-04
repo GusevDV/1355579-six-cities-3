@@ -13,8 +13,8 @@ export function transformFieldsToCamelCase(object) {
 
   const newObject = {};
 
-  const checkIsObject = function (o) {
-    return o === Object(o) && !Array.isArray(o) && typeof o !== `function`;
+  const checkIsObject = function (param) {
+    return param === Object(param) && !Array.isArray(param) && typeof param !== `function`;
   };
 
   const transformToCamel = (str) => {
